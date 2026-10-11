@@ -900,3 +900,90 @@
 	Don't hyphenate	სიტყვების გადატანის გარეშე
 	Double strikethrough	ორმაგი გადახაზვა
 	Drop cap	ინიციალი
+	(no style)	(სტილის გარეშე)
+	Add tab stop at:	ტაბულაციის დამატება პოზიციაზე:
+	Aligned at:	სწორება პოზიციაზე:
+	Balloons	ბუშტები
+	Bullet	ბურთულა
+	By author	ავტორის მიხედვით
+	Changed lines:	შეცვლილი სტრიქონები:
+	Click level to modify:	აირჩიეთ შესაცვლელი დონე:
+	Color only	მხოლოდ ფერი
+	Deletions:	წაშლილი:
+	Enter formatting for number:	ნომრის ფორმატი:
+	Follow number with:	ნომრის შემდეგ:
+	Formatting	ფორმატირება
+	Include level number from:	დონის ნომრის ჩართვა:
+	Insertions and Deletions	ჩასმული და წაშლილი
+	Insertions:	ჩასმული:
+	Left border	მარცხენა ჩარჩო
+	Legal style numbering	იურიდიული სტილის დანომვრა
+	Link level to style:	დონის დაკავშირება სტილთან:
+	Nothing	არაფერი
+	Number alignment:	ნომრის სწორება:
+	Number format	ნომრის ფორმატი
+	Number style for this level:	ამ დონის ნომრის სტილი:
+	Outside border	გარე ჩარჩო
+	Restart list after:	სიის თავიდან დაწყება შემდეგის შემდეგ:
+	Right border	მარჯვენა ჩარჩო
+	Show all revisions inline	ყველა ცვლილების ტექსტში ჩვენება
+	Tab stop position:	ტაბულაციის პოზიცია:
+	Default tab stops:	ნაგულისხმევი ტაბულაცია:
+	Tab stops to be cleared:	წასაშლელი ტაბულაციები:
+	All	ყველა
+	Decimal	ათწილადი
+	Bar	ზოლი
+	Leader	შემავსებელი
+	Set	დაყენება
+	Page Border	გვერდის ჩარჩო
+	Apply to:	გამოყენება:
+	Whole document	მთელი დოკუმენტი
+	This section	ეს სექცია
+	Fill	შევსება
+	Setting:	ტიპი:
+	3-D	3D
+	Custom	მორგებული
+	Style:	სტილი:
+	Dot dash	შტრიხ-პუნქტირი
+	Triple	სამმაგი
+	Between	შორის
+	Box	ჩარჩო
+	Clear	გასუფთავება
+	Color:	ფერი:
+	Font:	შრიფტი:
+	OK	OK
+	Show only comments and formatting in balloons	ბუშტებში მხოლოდ კომენტარებისა და ფორმატირების ჩვენება
+	Show revisions in balloons	ცვლილებების ბუშტებში ჩვენება
+	Space	სივრცე
+	Start at:	დაწყება:
+	Tab character	ტაბულაციის სიმბოლო
+	Text indent at:	ტექსტის შეწევა:
+	Track formatting	ფორმატირების ჩაწერა
+	Level {n}	დონე {n}
+	First line	პირველი სტრიქონი
+	Font color	შრიფტის ფერი
+	Highlight	მარკერი
+	Justified	სიგანეზე
+	Left indent	მარცხენა შეწევა
+	Line spacing	ინტერვალი
+	Outline level	სტრუქტურის დონე
+	Raised/lowered	აწეული/დაწეული
+	Right indent	მარჯვენა შეწევა
+	Scale	მასშტაბი
+	Space after	ინტერვალი შემდეგ
+	Space before	ინტერვალი წინ
+	Suppress line numbers	სტრიქონების ნომრების გამორთვა
+	Underline color	ხაზგასმის ფერი
+	Top	ზემოთ
+	Bottom	ქვემოთ
+	Preview	წინასწარი ნახვა
+	Manage Styles…	სტილების მართვა…
+	Change Picture…	სურათის შეცვლა…
+	Font…	შრიფტი…
+	Paragraph…	აბზაცი…
+	Link…	ბმული…
+	Size and Crop…	ზომა და ჩამოჭრა…
+	Insert Columns to the Left	სვეტების მარცხნივ ჩასმა
+	Insert Columns to the Right	სვეტების მარჯვნივ ჩასმა
+	Insert Rows Above	სტრიქონების ზემოთ ჩასმა
+	Insert Rows Below	სტრიქონების ქვემოთ ჩასმა
