@@ -1,6 +1,6 @@
 # Localization parity with Microsoft Word
 
-> **Last reviewed:** 2026-10-10 · **Last updated:** 2026-10-10 · **Change:** major (first version; catalogs measured from `crates/ui-egui/src/i18n`, Word's languages from its bundle listing) · **Target:** Microsoft Word (Microsoft 365) for Mac 16.113.4
+> **Last reviewed:** 2026-10-11 · **Last updated:** 2026-10-11 · **Change:** minor (Georgian interface catalog) · **Target:** Microsoft Word (Microsoft 365) for Mac 16.113.4
 
 Interface languages, script support and proofing per language. How translation works (catalog
 format, adding a language, clean-room rule): `crates/ui-egui/src/i18n/mod.rs`.
@@ -18,8 +18,8 @@ other ~18 languages Word ships, plus native-speaker review (human).
 
 ## What WordCraft ships (measured)
 
-- **10 interface languages**: English plus `zh-hans`, `zh-hant`, `ja`, `uk`, `es`, `pt-br`,
-  Serbian `sr`/`sr-latn` (#250), and Estonian `et` (1,161 entries). Catalogs have ~1,100–1,160 entries
+- **11 interface languages**: English plus `zh-hans`, `zh-hant`, `ja`, `uk`, `es`, `pt-br`,
+  Serbian `sr`/`sr-latn` (#250), Estonian `et` (1,161 entries) and Georgian `ka` (1,307 entries). Catalogs have ~1,100–1,160 entries
   each. A test (`every_tab_and_command_is_translated`) enforces that every ribbon tab, command
   label and ribbon location is translated in every language.
 - Of the 675 English strings a scan extracts from `tl!(…)` calls and command labels/locations, each
@@ -52,11 +52,16 @@ shared items below.
 | Korean | ko | 0 | ❌ | Hangul ✅; macOS Korean IME fixes pending (#163, #164) | no | none | 3–5 |
 | Vietnamese | vi | 0 | ❌ | Latin with stacked diacritics, untested | no | none | 3–4 |
 
-Other shipped languages: **5** — Traditional Chinese (`zh-hant`), Ukrainian (`uk`), Serbian
-Cyrillic and Latin (`sr`, `sr-latn`, #250), and Estonian (`et`), all partial.
+Other shipped languages: **6** — Traditional Chinese (`zh-hant`), Ukrainian (`uk`), Serbian
+Cyrillic and Latin (`sr`, `sr-latn`, #250), Estonian (`et`) and Georgian (`ka`), all partial.
 Estonian uses the existing fonts, follows `et-EE` system locales, and is available in Options or
 through `ui.language` with `{"value":"et"}`. Its 1,161 entries cover the existing interface catalog.
 Estonian spelling, grammar, dates and document templates are not added by the interface catalog.
+Georgian (`ka`, ქართული) covers the whole interface catalog, follows `ka-GE` system locales and
+was reviewed string by string by a native speaker against one shared glossary. Georgian has no
+sentence capitals, so AutoCorrect, the grammar check and Change Case leave Mkhedruli as typed;
+the interface needs a Georgian-capable font (bundled from craft-fonts, else SF Georgian, Sylfaen,
+Noto Sans Georgian or DejaVu Sans). Georgian spelling, hyphenation and dates are not added yet.
 
 ## Shared work (not in the per-language hours)
 
@@ -66,12 +71,13 @@ Estonian spelling, grammar, dates and document templates are not added by the in
 | Mirrored (right-to-left) interface for Arabic and Hebrew | 15–25 | Ribbon, panes, dialogs, rulers |
 | Vertical text, ruby, document grid (Chinese, Japanese, Korean) | counted in [layout-parity.md](layout-parity.md) | |
 | Proofing dictionaries, grammar and hyphenation for the 11 non-English key languages | 25–45 | Open dictionaries only (licence check per dictionary); issues #25, #40, #100 |
-| Native-speaker review of every catalog | human | None reviewed yet |
+| Native-speaker review of every catalog | human | Georgian reviewed; the others not yet |
 
 ## Revision history
 
 | Date | Change | Summary |
 |---|---|---|
+| 2026-10-11 | minor | Georgian interface catalog (1,307 entries, native-speaker reviewed), locale selection and checks |
 | 2026-10-10 | minor | Estonian interface catalog, locale selection, saved preference and font coverage checks |
 | 2026-10-10 | minor | Serbian (Cyrillic and Latin) interface merged (#250) |
 | 2026-10-10 | major | First version: twelve-language table, catalog coverage measured, Word's 30 UI languages and 120 proofing tools listed |
