@@ -155,7 +155,7 @@
 	Decrease Font Size	შრიფტის შემცირება
 	Decrease Indent	შეწევის შემცირება
 	Default	ნაგულისხმევი
-	Define New Bullet	ახალი სიის ნიშნის განსაზღვრა
+	Define New Bullet	ახალი ბურთულის განსაზღვრა
 	Define New Number Format	ახალი ნუმერაციის ფორმატის განსაზღვრა
 	Delete	წაშლა
 	Delete Cells	უჯრების წაშლა
@@ -189,3 +189,61 @@
 	Double Strikethrough	ორმაგი გადახაზვა
 	Double Underline	ორმაგი ხაზგასმა
 	Down	ქვემოთ
+	Draft	შავი ვარიანტი
+	Draw	ხატვა
+	Drawing Tools	ხატვის ხელსაწყოები
+	Drawing\nCanvas	სახატავი\nტილო
+	Drop Cap	ინიციალი
+	Edit Footer	ქვედა კოლონტიტულის რედაქტირება
+	Edit Header	ზედა კოლონტიტულის რედაქტირება
+	Edit Recipient List	მიმღებთა სიის რედაქტირება
+	Edit\nRecipient List	მიმღებთა\nსიის რედაქტირება
+	Editing	რედაქტირება
+	Editing — edit the document directly	რედაქტირება — დოკუმენტის პირდაპირ შეცვლა
+	Editor	რედაქტორი
+	Effects	ეფექტები
+	Emboss	რელიეფი
+	Encrypt with Password	პაროლით დაშიფვრა
+	Engrave	გრავირება
+	Envelopes	კონვერტები
+	Equation	განტოლება
+	Eraser	საშლელი
+	Even Page	ლუწი გვერდი
+	Export a copy to share (PDF, Word document)	ასლის ექსპორტირება გასაზიარებლად (PDF, Word დოკუმენტი)
+	Export Page as PNG	გვერდის PNG ფაილად ექსპორტირება
+	Export PDF	PDF ექსპორტი
+	Extend Selection	მონიშვნის გაფართოება
+	Field	ველი
+	File	ფაილი
+	Find	ძებნა
+	Find Next	შემდეგის ძებნა
+	Find Previous	წინას ძებნა
+	Find Recipient	მიმღების ძებნა
+	Finish	დასრულება
+	Finish & Merge	დასრულება და შერწყმა
+	Finish &\nMerge	დასრულება და\nშერწყმა
+	First Column	პირველი სვეტი
+	Fixed Column Width	სვეტის ფიქსირებული სიგანე
+	Focus	ფოკუსი
+	Font	შრიფტი
+	Font Color	შრიფტის ფერი
+	Font Dialog	შრიფტის ფანჯარა
+	Font Size	შრიფტის ზომა
+	Fonts	შრიფტები
+	Footer	ქვედა კოლონტიტული
+	Footnote and Endnote	სქოლიო და დოკუმენტის სქოლიო
+	Footnotes	სქოლიოები
+	Format	ფორმატი
+	Format Page Numbers	გვერდის ნომრების ფორმატი
+	Format Page Numbers…	გვერდის ნომრების ფორმატი…
+	Format Painter	ფორმატის ფუნჯი
+	Formatting at Selection	მონიშნულის ფორმატირება
+	Formula	ფორმულა
+	Go To	გადასვლა
+	Greeting Line	მისალმების სტრიქონი
+	Greeting\nLine	მისალმების\nსტრიქონი
+	Gridlines	ბადე
+	Group	დაჯგუფება
+	Grow Font 1 Point	შრიფტის 1 პუნქტით გაზრდა
+	Hanging Indent	გამოწეული სტრიქონი
+	Header	ზედა კოლონტიტული
