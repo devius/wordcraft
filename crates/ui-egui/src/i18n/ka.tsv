@@ -1318,3 +1318,33 @@
 	Version	ვერსია
 	% of all commits	ყველა კომიტის %
 	Lines +/−	სტრიქონები +/−
+	Normal	ჩვეულებრივი
+	No Spacing	ინტერვალის გარეშე
+	Heading 4	სათაური 4
+	Heading 5	სათაური 5
+	Heading 6	სათაური 6
+	Heading 7	სათაური 7
+	Heading 8	სათაური 8
+	Heading 9	სათაური 9
+	Title	დასახელება
+	Subtitle	ქვესათაური
+	Quote	ციტატა
+	Intense Quote	გამოკვეთილი ციტატა
+	List Paragraph	სიის აბზაცი
+	Caption	წარწერა
+	Footnote Text	სქოლიოს ტექსტი
+	Endnote Text	დოკუმენტის სქოლიოს ტექსტი
+	TOC Heading	სარჩევის სათაური
+	TOC 1	სარჩევი 1
+	TOC 2	სარჩევი 2
+	TOC 3	სარჩევი 3
+	TOC 4	სარჩევი 4
+	TOC 5	სარჩევი 5
+	TOC 6	სარჩევი 6
+	TOC 7	სარჩევი 7
+	TOC 8	სარჩევი 8
+	TOC 9	სარჩევი 9
+	Default Paragraph Font	აბზაცის ნაგულისხმევი შრიფტი
+	Emphasis	აქცენტი
+	Strong	მუქი
+	Hyperlink	ბმული
