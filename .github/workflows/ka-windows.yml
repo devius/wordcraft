@@ -1,0 +1,49 @@
+# Preview build for testers (fork only, not for upstream): the Windows x64 MSI from the
+# ka-preview branch, unsigned. Steps copied from release.yml's windows job.
+name: Windows preview
+on:
+  push:
+    branches: [ka-preview]
+  workflow_dispatch:
+env:
+  CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: 0
+  WORDCRAFT_BUILD_SHA: ${{ github.sha }}
+jobs:
+  windows:
+    runs-on: windows-latest
+    env:
+      CRAFT_FONTS_DIR: ${{ github.workspace }}/craft-fonts
+      CRAFT_FONTS_REQUIRED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      # Optional font input (docs: storytold/craft-fonts docs/integration.md); releases always embed it.
+      - name: Check out craft-fonts
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          repository: storytold/craft-fonts
+          ref: 8dcdacd5153e64560d109541a47d806f26f048c0
+          path: craft-fonts
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-pc-windows-msvc
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: release-windows-x64
+      - name: Install WiX
+        shell: pwsh
+        run: |
+          $PSNativeCommandUseErrorActionPreference = $true  # stop at the first failing command
+          dotnet tool install --global wix --version 5.0.2
+          # Installer dialogs and the finish page's "Launch WordCraft" (packaging/windows/wordcraft.wxs).
+          wix extension add -g WixToolset.UI.wixext/5.0.2
+          wix extension add -g WixToolset.Util.wixext/5.0.2
+      - name: Build, sign, package
+        shell: pwsh
+        run: ./packaging/windows/package.ps1 -Arch x64
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-windows-x64
+          path: dist/release/*
+          if-no-files-found: error
+
