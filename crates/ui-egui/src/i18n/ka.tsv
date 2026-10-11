@@ -1066,3 +1066,88 @@
 	Type the field's name and its switches, for example PAGE \\* roman.	აკრიფეთ ველის სახელი და მისი პარამეტრები, მაგალითად PAGE \\* roman.
 	Width and spacing	სიგანე და ინტერვალი
 	from Unicode (hex)	Unicode-დან (თექვსმეტობითი)
+	A free, open-source word processor written from scratch in Rust.\nPart of the Crafting Apps from the ArtCraft team.	უფასო, ღია კოდის ტექსტური რედაქტორი, თავიდან დაწერილი Rust-ზე.\nArtCraft-ის გუნდის Crafting Apps-ის ნაწილი.
+	About WordCraft	WordCraft-ის შესახებ
+	Add	დამატება
+	Add space between Asian and Latin text	ინტერვალის დამატება აზიურ და ლათინურ ტექსტს შორის
+	Add space between Asian text and numbers	ინტერვალის დამატება აზიურ ტექსტსა და რიცხვებს შორის
+	Address:	მისამართი:
+	All caps	მთავრული
+	Allow hanging punctuation	გამოწეული პუნქტუაციის დაშვება
+	Allow Latin text to wrap in the middle of a word	ლათინური ტექსტის სიტყვის შუაში გადატანის დაშვება
+	Apply Asian line-breaking rules (kinsoku)	აზიური გადატანის წესების გამოყენება (kinsoku)
+	Compress punctuation at the start of a line	სტრიქონის დასაწყისში პუნქტუაციის შეკუმშვა
+	Indents and Spacing	შეწევა და ინტერვალი
+	Line breaking	სტრიქონების გადატანა
+	Borders and Shading	ჩარჩოები და ფონი
+	Tabs…	ტაბულაცია…
+	Bottom:	ქვემოთ:
+	Characters (no spaces)	სიმბოლოები (სივრცის გარეშე)
+	Characters (with spaces)	სიმბოლოები (სივრცით)
+	Count words in text boxes and notes	სიტყვების დათვლა ტექსტურ ბლოკებსა და სქოლიოებში
+	Create New Style	ახალი სტილის შექმნა
+	Custom Watermark	საკუთარი ჭვირნიშანი
+	development build	დეველოპერული ვერსია
+	Diagonal	დიაგონალური
+	Do you want to save changes to {name}?	შევინახო ცვლილებები ფაილში {name}?
+	Don't Save	არ შეინახო
+	Enter page number:	შეიყვანეთ გვერდის ნომერი:
+	Exported {path}	ექსპორტირებულია: {path}
+	Find and Replace	ძებნა და ჩანაცვლება
+	Find what:	რა მოიძებნოს:
+	First line:	პირველი სტრიქონი:
+	Font color:	შრიფტის ფერი:
+	Horizontal	ჰორიზონტალური
+	Indentation	შეწევა
+	Insert Hyperlink	ბმულის ჩასმა
+	Insert Table	ცხრილის ჩასმა
+	Join us on Discord: discord.gg/artcraft	შემოგვიერთდით Discord-ზე: discord.gg/artcraft
+	Keep lines together	სტრიქონების ერთად დატოვება
+	Keep with next	შემდეგთან ერთად
+	Line spacing:	ინტერვალი:
+	Lines	სტრიქონები
+	Many pages	ბევრი გვერდი
+	Match case	რეგისტრის გათვალისწინება
+	MIT OR Apache-2.0. Copyright (c) 2026 ArtCraft Team and the WordCraft contributors.	MIT OR Apache-2.0. საავტორო უფლება (c) 2026 ArtCraft Team და WordCraft-ის მონაწილეები.
+	Modify…	შეცვლა…
+	Name:	სახელი:
+	New Style…	ახალი სტილი…
+	Number of rows:	სტრიქონების რაოდენობა:
+	Page break before	გვერდის გამყოფი წინ
+	Page width	გვერდის სიგანე
+	Replace with:	ჩანაცვლება:
+	Search Commands	ბრძანებების ძებნა
+	Size:	ზომა:
+	Small caps	პატარა მთავრული
+	Source code: github.com/storytold/wordcraft	საწყისი კოდი: github.com/storytold/wordcraft
+	Space before/after:	ინტერვალი წინ/შემდეგ:
+	Spacing (pt):	ინტერვალი (პტ):
+	Style based on:	სტილი, რომელსაც ეფუძნება:
+	Text to display:	საჩვენებელი ტექსტი:
+	Text:	ტექსტი:
+	The new style takes the formatting of the current paragraph.	ახალი სტილი მიმდინარე აბზაცის ფორმატირებას იღებს.
+	Top:	ზემოთ:
+	Type a command, e.g. "insert table"	აკრიფეთ ბრძანება, მაგ. „ცხრილის ჩასმა“
+	Version {version} ({build})	ვერსია {version} ({build})
+	Whole page	მთელი გვერდი
+	Whole words	მთლიანი სიტყვები
+	Widow/Orphan control	ცალი სტრიქონების კონტროლი
+	Wildcards (regex)	შაბლონები (regex)
+	WordCraft	WordCraft
+	Direction:	მიმართულება:
+	Right-to-left	მარჯვნიდან მარცხნივ
+	Left-to-right	მარცხნიდან მარჯვნივ
+	Your changes will be lost if you don't save them.	თუ ცვლილებებს არ შეინახავთ, ისინი დაიკარგება.
+	Paste as:	ჩაწებება როგორც:
+	The clipboard is empty.	გაცვლის ბუფერი ცარიელია.
+	Result	შედეგი
+	Keeps the fonts and formatting of the copied text.	ინარჩუნებს დაკოპირებული ტექსტის შრიფტებსა და ფორმატირებას.
+	Reads the clipboard's rich text and keeps its formatting.	კითხულობს ბუფერის ფორმატირებულ ტექსტს (RTF) და ინარჩუნებს მის ფორმატირებას.
+	Reads the clipboard's web content and keeps its formatting.	კითხულობს ბუფერის ვებ-შიგთავსს და ინარჩუნებს მის ფორმატირებას.
+	Drops all formatting and pastes plain text.	აშორებს მთელ ფორმატირებას და აწებებს უბრალო ტექსტს.
+	Reading Highlight	წაკითხვისას გამოკვეთა
+	Apply formatting to:	ფორმატირების გამოყენება:
+	Whole Table	მთელი ცხრილი
+	Fill color:	შევსების ფერი:
+	{count} items highlighted	გამოკვეთილი ელემენტები: {count}
+	If…Then…Else	თუ…მაშინ…სხვა შემთხვევაში
