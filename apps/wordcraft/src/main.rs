@@ -228,6 +228,11 @@ fn main() -> eframe::Result {
             let (file_dialog, dialogs) = file_dialogs::hook(&cc.egui_ctx);
             let mut app = WordApp::new(Session::new(doc), services(file_dialog));
             load_prefs(&mut app);
+            if sample {
+                // The handbook in the interface language, now that the saved preference is known.
+                let lang = wordcraft_ui_egui::i18n::Lang::from_pref(&app.ui.language);
+                app.session.set_document(wordcraft_engine::sample::sample_document_in(lang.code()));
+            }
             app.ui.window = restored;
             app.integrated_titlebar = cfg!(target_os = "macos");
             let mut key_file = None;
