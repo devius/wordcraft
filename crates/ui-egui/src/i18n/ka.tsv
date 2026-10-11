@@ -840,3 +840,63 @@
 	Anyone can open this document. Encrypt it with a password to keep it private.	ამ დოკუმენტის გახსნა ნებისმიერს შეუძლია. დაშიფრეთ პაროლით, რომ დაიცვათ.
 	Interface size:	ინტერფეისის ზომა:
 	Makes the ribbon, menus and dialogs larger or smaller, on top of your system's display scaling. Document zoom is separate.	ზრდის ან ამცირებს ლენტს, მენიუებსა და ფანჯრებს, სისტემის ეკრანის მასშტაბირების გარდა. დოკუმენტის მასშტაბი ცალკე იცვლება.
+	(no suggestions)	(შეთავაზებები არ არის)
+	Add a comment	კომენტარის დამატება
+	Bottom Margin	ქვედა არშია
+	Left Margin	მარცხენა არშია
+	Reopen	ხელახლა გახსნა
+	Right Margin	მარჯვენა არშია
+	AutoSave saves every change to the file (needs a saved document)	ავტოშენახვა ყოველ ცვლილებას ფაილში ინახავს (დოკუმენტი ჯერ უნდა იყოს შენახული)
+	Click an item to paste it.	ჩასაწებებლად დააწკაპუნეთ ელემენტზე.
+	Nothing collected yet. Items you copy or cut appear here.	ჯერ არაფერია შეგროვებული. აქ გამოჩნდება ის, რასაც დააკოპირებთ ან ამოჭრით.
+	(picture or object)	(სურათი ან ობიექტი)
+	Create an interactive outline of your document.\n\nIt's a great way to keep track of where you are or quickly move your content around.\n\nTo get started, go to the Home tab and apply Heading styles to the headings in your document.	შექმენით დოკუმენტის ინტერაქტიული სტრუქტურა.\n\nასე ყოველთვის გეცოდინებათ, სად ხართ, და შიგთავსს სწრაფად გადააადგილებთ.\n\nდასაწყებად გახსენით მთავარი ჩანართი და დოკუმენტის სათაურებს მიანიჭეთ სათაურის სტილები.
+	Current style: {style}	მიმდინარე სტილი: {style}
+	Customize Quick Access Toolbar	სწრაფი წვდომის პანელის მორგება
+	Discord	Discord
+	Edited	შეცვლილია
+	Editing header/footer	კოლონტიტულის რედაქტირება
+	English (United States)	ინგლისური (აშშ)
+	Go to	გადასვლა
+	Go To (⌘⌥G)	გადასვლა (⌘⌥G)
+	Headings	სათაურები
+	Join the ArtCraft community on Discord	შემოუერთდით ArtCraft-ის საზოგადოებას Discord-ზე
+	Not saved	არ არის შენახული
+	Only web (http, https) and email (mailto) links can be followed	გადასვლა შესაძლებელია მხოლოდ ვებ (http, https) და ელფოსტის (mailto) ბმულებზე
+	Page {page}	გვერდი {page}
+	Page {page} of {pages}	გვერდი {page} / {pages}
+	Resolved	გადაწყვეტილია
+	Results	შედეგები
+	Saved	შენახულია
+	Search commands and help	ბრძანებებისა და დახმარების ძებნა
+	Search document	დოკუმენტში ძებნა
+	Synonyms	სინონიმები
+	Top Margin	ზედა არშია
+	Track Changes: On	ცვლილებების ჩაწერა: ჩართულია
+	Update to Match	ნიმუშის მიხედვით განახლება
+	Update to Match Selection	მონიშნულის მიხედვით განახლება
+	Write a reply	დაწერეთ პასუხი
+	{key}+Click to follow link	{key}+დაწკაპუნება ბმულზე გადასასვლელად
+	{words} words	სიტყვა: {words}
+	{selected} of {words} words	სიტყვა: {words}; მონიშნული: {selected}
+	Change to Inline	ტექსტში ჩაშენება
+	Close Equation	განტოლების დახურვა
+	Professional	პროფესიული
+	Linear	წრფივი
+	Characters	სიმბოლოები
+	Direct formatting	პირდაპირი ფორმატირება
+	Reset to Normal	ჩვეულებრივზე დაბრუნება
+	Clear Paragraph Formatting	აბზაცის ფორმატირების გასუფთავება
+	Clear Character Style	სიმბოლოს სტილის გასუფთავება
+	Clear Character Formatting	სიმბოლოს ფორმატირების გასუფთავება
+	Not {name}	არა {name}
+	Body Text	ძირითადი ტექსტი
+	{n} lines	სტრიქონი: {n}
+	At least {n}	მინიმუმ {n}
+	Exactly {n}	ზუსტად {n}
+	Centered	ცენტრში
+	Character spacing	სიმბოლოთა ინტერვალი
+	Don't add space between paragraphs of the same style	ერთი სტილის აბზაცებს შორის ინტერვალი არ დაემატოს
+	Don't hyphenate	სიტყვების გადატანის გარეშე
+	Double strikethrough	ორმაგი გადახაზვა
+	Drop cap	ინიციალი
