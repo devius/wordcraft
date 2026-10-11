@@ -363,6 +363,37 @@ fn only_cjk_languages_ask_for_an_installed_cjk_font() {
 }
 
 #[test]
+fn georgian_covers_the_entire_existing_interface_catalog() {
+    use std::collections::HashSet;
+    let keys = |source| parse_entries(source).0.into_iter().map(|e| e.source).collect::<HashSet<_>>();
+    assert_eq!(keys(lang("ka").0.source), keys(lang("zh-hans").0.source));
+    let ka = lang("ka");
+    assert_eq!(ka.name(), "ქართული");
+    assert_eq!(tr(ka, "Home"), "მთავარი");
+    assert_eq!(tr(ka, "Save"), "შენახვა");
+    assert_eq!(tr(ka, "Paste"), "ჩაწებება");
+    assert_eq!(tr(ka, "unknown future label"), "unknown future label");
+    // Georgian nouns stay singular after a numeral, so "noun: n" reads right for every count.
+    for count in [0, 1, 2, 5, 11, 21, 100] {
+        let words = count.to_string();
+        assert_eq!(fmt(tr(ka, "{words} words"), &[("words", &words)]), format!("სიტყვა: {count}"));
+    }
+    for tag in ["ka", "ka-GE", "ka_GE.UTF-8"] {
+        assert_eq!(lang_from_tag(tag), Some(ka), "{tag}");
+    }
+}
+
+#[test]
+fn georgian_translations_have_no_sentence_capitals() {
+    // Georgian has no capitals in running text: Mtavruli (U+1C90–U+1CBF) appears only where a
+    // label shows the all-caps result itself.
+    let (entries, _) = parse_entries(lang("ka").0.source);
+    let mtavruli = |c: char| ('\u{1C90}'..='\u{1CBF}').contains(&c);
+    let caps: Vec<_> = entries.iter().filter(|e| e.translation.chars().any(mtavruli)).map(|e| e.source.as_str()).collect();
+    assert_eq!(caps, ["UPPERCASE"]);
+}
+
+#[test]
 fn estonian_locales_and_saved_preference_keep_document_content() {
     let et = lang("et");
     for tag in ["et", "et-EE", "ET_ee.UTF-8", "et-Latn-EE", "et_EE.UTF-8@euro"] {
