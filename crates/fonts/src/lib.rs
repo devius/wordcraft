@@ -18,7 +18,7 @@ use harfrust::{Direction, ShapeOptions, Tag, UnicodeBuffer};
 pub use kurbo::BezPath;
 use skrifa::MetadataProvider;
 use skrifa::instance::Size;
-pub use ui_fallback::{SystemUiFont, system_cjk_ui_font, ui_needs_system_cjk};
+pub use ui_fallback::{SystemUiFont, system_cjk_ui_font, system_georgian_ui_font, ui_needs_system_cjk};
 
 /// A font from the optional craft-fonts build input (https://github.com/storytold/craft-fonts;
 /// empty unless built with `CRAFT_FONTS_DIR`, see `build.rs`).
@@ -57,6 +57,11 @@ pub fn japanese_ui_fonts(bold: bool) -> Vec<&'static CraftFont> {
 /// craft-fonts.
 pub fn chinese_fonts() -> impl Iterator<Item = &'static CraftFont> {
     CRAFT_FONTS.iter().filter(|f| f.scripts.contains(&"Hans"))
+}
+
+/// The craft-fonts Regular face for Georgian (`"Geor"`), if embedded.
+pub fn georgian_ui_font() -> Option<&'static CraftFont> {
+    CRAFT_FONTS.iter().find(|f| f.scripts.contains(&"Geor") && f.style == "Regular")
 }
 
 /// The CJK interface faces, Regular styles only (the UI fakes no bold): the Japanese UI face and
