@@ -1229,3 +1229,92 @@
 	South	სამხრეთი
 	West	დასავლეთი
 	Total	სულ
+	AutoSave failed: {error}. Save the document to turn AutoSave back on.	ავტოშენახვა ვერ მოხერხდა: {error}. ავტოშენახვის ხელახლა ჩასართავად შეინახეთ დოკუმენტი.
+	Click a border between two cells to merge them. Esc stops.	ორი უჯრის შესაერთებლად დააწკაპუნეთ მათ შორის საზღვარზე. Esc — შეწყვეტა.
+	Drag a rectangle to draw a table, or a line across cells to split them. Esc stops.	ცხრილის დასახატად გაავლეთ მართკუთხედი, უჯრების დასაყოფად კი — ხაზი მათზე. Esc — შეწყვეტა.
+	AutoSave isn't available in the browser: it can't write to your files. Save downloads a copy.	ბრაუზერში ავტოშენახვა მიუწვდომელია: ის თქვენს ფაილებში ვერ წერს. შენახვა ასლს ჩამოტვირთავს.
+	AutoSave only keeps .docx, .odt and .rtf files; {name} can't keep all formatting. Save as .docx to turn on AutoSave.	ავტოშენახვა მხოლოდ .docx, .odt და .rtf ფაილებს ინახავს; {name} მთელ ფორმატირებას ვერ შეინარჩუნებს. ავტოშენახვის ჩასართავად შეინახეთ .docx-ად.
+	Save the document to turn on AutoSave	ავტოშენახვის ჩასართავად შეინახეთ დოკუმენტი
+	Save the document to turn on AutoSave (a file you have only opened isn't rewritten until you save it)	ავტოშენახვის ჩასართავად შეინახეთ დოკუმენტი (მხოლოდ გახსნილი ფაილი შენახვამდე არ გადაიწერება)
+	Binary assets added	დამატებული ბინარული ფაილები
+	Binary assets removed	წაშლილი ბინარული ფაილები
+	Couldn't download {name}: {error}	{name} ვერ ჩამოიტვირთა: {error}
+	First commit	პირველი კომიტი
+	Grab bag	სხვადასხვა
+	Last commit	ბოლო კომიტი
+	Line delta	სტრიქონების სხვაობა
+	Lines added	დამატებული სტრიქონები
+	Lines deleted	წაშლილი სტრიქონები
+	Merged PRs	გაერთიანებული PR-ები
+	Name (A–Z)	სახელი (ა–ჰ)
+	No contributor data was built into this copy.	ამ ასლში მონაწილეების მონაცემები არ არის ჩაშენებული.
+	No model credits were built into this copy.	ამ ასლში მოდელების მონაცემები არ არის ჩაშენებული.
+	Not available right now	ახლა მიუწვდომელია
+	Reverse the order	რიგის შებრუნება
+	Standard Colors	სტანდარტული ფერები
+	Status Bar	მდგომარეობის ზოლი
+	That format doesn't keep everything, so the document is still open. Save it as a Word document (.docx) to go on.	ეს ფორმატი ყველაფერს ვერ ინახავს, ამიტომ დოკუმენტი ისევ ღიაა. გასაგრძელებლად შეინახეთ Word დოკუმენტად (.docx).
+	Undo {action}	დაბრუნება: {action}
+	{group} settings	{group}: პარამეტრები
+	Waiting for Zotero…	Zotero-ს ლოდინი…
+	Zotero: done	Zotero: დასრულდა
+	Zotero: cancelled	Zotero: გაუქმდა
+	Yes	დიახ
+	No	არა
+	Next sentence	შემდეგი წინადადება
+	Previous sentence	წინა წინადადება
+	Skip citations & bibliography	ციტატებისა და ბიბლიოგრაფიის გამოტოვება
+	Don't read Zotero, Mendeley or EndNote citations and bibliographies	Zotero-ს, Mendeley-ს ან EndNote-ის ციტატებისა და ბიბლიოგრაფიის არ წაკითხვა
+	Play	დაკვრა
+	Pause	პაუზა
+	Stop	შეწყვეტა
+	Sentence	წინადადება
+	Paused	შეჩერებულია
+	Finished	დასრულდა
+	Stopped	შეწყდა
+	Speed	სიჩქარე
+	Normal speed	ჩვეულებრივი სიჩქარე
+	Inline	ტექსტში ჩაშენებული
+	Number	ნომერი
+	Insert New Equation	ახალი განტოლების ჩასმა
+	Built-In	ჩაშენებული
+	Fraction	წილადი
+	Script	ინდექსი
+	Radical	ფესვი
+	Integral	ინტეგრალი
+	Large\nOperator	დიდი\nოპერატორი
+	Bracket	ფრჩხილი
+	Function	ფუნქცია
+	Accent	დიაკრიტიკული ნიშანი
+	Limit and\nLog	ზღვარი და\nლოგარითმი
+	Operator	ოპერატორი
+	Equation Options	განტოლების პარამეტრები
+	All symbol sets	სიმბოლოების ყველა ნაკრები
+	Opening print dialog…	ბეჭდვის ფანჯარა იხსნება…
+	Print failed: {error}	ბეჭდვა ვერ მოხერხდა: {error}
+	Couldn't open {path}: {error}	{path} ვერ გაიხსნა: {error}
+	Light	ღია
+	Dark	ბნელი
+	Use system setting	სისტემის პარამეტრის მიხედვით
+	Insert a new equation (Alt+=)	ახალი განტოლების ჩასმა (Alt+=)
+	Leave the equation (Esc)	განტოლებიდან გასვლა (Esc)
+	Offset: Bottom Right	წანაცვლება: ქვემოთ მარჯვნივ
+	Offset: Bottom	წანაცვლება: ქვემოთ
+	Offset: Bottom Left	წანაცვლება: ქვემოთ მარცხნივ
+	Offset: Right	წანაცვლება: მარჯვნივ
+	Offset: Center	წანაცვლება: ცენტრში
+	Offset: Left	წანაცვლება: მარცხნივ
+	Offset: Top Right	წანაცვლება: ზემოთ მარჯვნივ
+	Offset: Top	წანაცვლება: ზემოთ
+	Offset: Top Left	წანაცვლება: ზემოთ მარცხნივ
+	{contributors} contributors · {commits} commits	მონაწილე: {contributors} · კომიტი: {commits}
+	Document1	დოკუმენტი1
+	Username	მომხმარებლის სახელი
+	Display name	საჩვენებელი სახელი
+	Real name	ნამდვილი სახელი
+	PRs	PR-ები
+	Commits	კომიტები
+	Model	მოდელი
+	Version	ვერსია
+	% of all commits	ყველა კომიტის %
+	Lines +/−	სტრიქონები +/−
