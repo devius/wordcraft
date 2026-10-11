@@ -987,3 +987,82 @@
 	Insert Columns to the Right	სვეტების მარჯვნივ ჩასმა
 	Insert Rows Above	სტრიქონების ზემოთ ჩასმა
 	Insert Rows Below	სტრიქონების ქვემოთ ჩასმა
+	Bookmark name:	სანიშნის სახელი:
+	Cancel	გაუქმება
+	Number of columns:	სვეტების რაოდენობა:
+	First Name	სახელი
+	(All)	(ყველა)
+	(none)	(არცერთი)
+	(normal text)	(ჩვეულებრივი ტექსტი)
+	1/4 Em Space	1/4 Em ინტერვალი
+	A mail merge field	წერილების შერწყმის ველი
+	A numbered sequence (figures, tables…)	დანომრილი თანმიმდევრობა (ილუსტრაციები, ცხრილები…)
+	A table of contents	სარჩევი
+	Categories:	კატეგორიები:
+	Character	სიმბოლო
+	Character code:	სიმბოლოს კოდი:
+	Col #:	სვეტი №:
+	Copyright	საავტორო უფლება
+	Date and Time	თარიღი და დრო
+	Date formats:	თარიღის ფორმატები:
+	Description:	აღწერა:
+	Document Information	დოკუმენტის ინფორმაცია
+	Double Closing Quote	ორმაგი დამხურავი ბრჭყალი
+	Double Opening Quote	ორმაგი გამხსნელი ბრჭყალი
+	Ellipsis	მრავალწერტილი
+	Em Dash	გრძელი ტირე
+	En Dash	მოკლე ტირე
+	Em Space	Em სივრცე
+	En Space	En სივრცე
+	Equal column width	სვეტების თანაბარი სიგანე
+	Field Codes	ველის კოდები
+	Field code:	ველის კოდი:
+	Field codes:	ველის კოდები:
+	Field name:	ველის სახელი:
+	Field names:	ველების სახელები:
+	Field properties	ველის თვისებები
+	Format:	ფორმატი:
+	Hide Codes	კოდების დამალვა
+	Index and Tables	საძიებლები და ცხრილები
+	Line between	ხაზი სვეტებს შორის
+	Links and References	ბმულები და მითითებები
+	Mail Merge	წერილების შერწყმა
+	No-Width Non Break	ნულოვანი სიგანის განუყოფელი
+	No-Width Optional Break	ნულოვანი სიგანის არჩევითი გადატანა
+	Paragraph Mark	აბზაცის ნიშანი
+	Pick a field from the list	აირჩიეთ ველი სიიდან
+	Preserve formatting during updates	განახლებისას ფორმატირების შენარჩუნება
+	Presets	მზა ვარიანტები
+	Recently used symbols:	ბოლოს გამოყენებული სიმბოლოები:
+	Registered	რეგისტრირებული
+	Section Mark	პარაგრაფის ნიშანი
+	Sequence name:	თანმიმდევრობის სახელი:
+	Shortcut key:	კლავიშების კომბინაცია:
+	Single Closing Quote	ერთმაგი დამხურავი ბრჭყალი
+	Single Opening Quote	ერთმაგი გამხსნელი ბრჭყალი
+	Spacing:	ინტერვალი:
+	Special Characters	სპეციალური სიმბოლოები
+	Subset:	ქვეჯგუფი:
+	The time right now	მიმდინარე დრო
+	When this document was first created	დოკუმენტის შექმნის დრო
+	When this document was most recently printed	დოკუმენტის ბოლო ბეჭდვის დრო
+	When this document was most recently saved	დოკუმენტის ბოლო შენახვის დრო
+	The document has no bookmarks yet.	დოკუმენტში ჯერ სანიშნეები არ არის.
+	Who the document properties name as author	დოკუმენტის თვისებებში მითითებული ავტორი
+	Name of the file this document is saved as	ფაილის სახელი, რომლითაც დოკუმენტია შენახული
+	Title from the document properties	სათაური დოკუმენტის თვისებებიდან
+	How many pages the whole document has	დოკუმენტის გვერდების რაოდენობა
+	How many pages this section has	სექციის გვერდების რაოდენობა
+	Number of the page the field sits on	გვერდის ნომერი, სადაც ველია
+	Number of the section the field sits in	სექციის ნომერი, სადაც ველია
+	How many words the document holds	დოკუმენტის სიტყვების რაოდენობა
+	Page on which a bookmarked passage falls	გვერდი, სადაც სანიშნით აღნიშნული ფრაგმენტია
+	Copy of the text a bookmark marks	სანიშნით აღნიშნული ტექსტის ასლი
+	This field has no options.	ამ ველს პარამეტრები არ აქვს.
+	This font has no characters to show.	ამ შრიფტს საჩვენებელი სიმბოლოები არ აქვს.
+	This point forward	აქედან მოყოლებული
+	The date it is today	დღევანდელი თარიღი
+	Trademark	სავაჭრო ნიშანი
+	Type the field's name and its switches, for example PAGE \\* roman.	აკრიფეთ ველის სახელი და მისი პარამეტრები, მაგალითად PAGE \\* roman.
+	Width and spacing	სიგანე და ინტერვალი
+	from Unicode (hex)	Unicode-დან (თექვსმეტობითი)
