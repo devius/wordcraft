@@ -1,6 +1,6 @@
 # Typing parity with Word
 
-> **Last reviewed:** 2026-10-11 · **Last updated:** 2026-10-11 · **Change:** minor (text typed next to a hyperlink stays outside it, #413) · **Target:** Microsoft Word (Microsoft 365) for Mac 16.113.4
+> **Last reviewed:** 2026-10-11 · **Last updated:** 2026-10-11 · **Change:** minor (Georgian sentences aren't capitalised) · **Target:** Microsoft Word (Microsoft 365) for Mac 16.113.4
 
 What Word does when you type, observed black-box (same keystrokes typed into Word and
 WordCraft, results read back paragraph by paragraph) and pinned by tests in
@@ -37,7 +37,7 @@ Applied when a word is finished by a space, punctuation **or Enter** (`enter_fin
 
 - First letter of a sentence (paragraph or list item start, after `. ! ?`) is capitalised; not
   after abbreviations (`e.g.`, `Dr.`, …) or initials (`J.`), and not for mixed-case words
-  (`iPhone`) or single-letter labels (`a.`). `teh`→`the`, `i`→`I`, `(c)`→`©`, `(tm)`→`™`,
+  (`iPhone`), single-letter labels (`a.`) or Georgian, which has no sentence capitals. `teh`→`the`, `i`→`I`, `(c)`→`©`, `(tm)`→`™`,
   `wait...`→`wait…`, smart quotes (`autocorrect_as_you_type`).
 - `1/2 1/4 3/4` → `½ ¼ ¾`; `1st 22nd 13th` get superscript suffixes (`ordinals_become_superscript`).
 - `word -- word` → en dash, `word - word` → en dash, `word--word` → em dash (`dashes`).
@@ -76,6 +76,7 @@ Applied when a word is finished by a space, punctuation **or Enter** (`enter_fin
 
 | Date | Change | Summary |
 |---|---|---|
+| 2026-10-11 | minor | AutoCorrect: Georgian sentences aren't capitalised (Mtavruli is only for all-caps text) |
 | 2026-10-11 | minor | Hyperlinks: text typed at either end of a link or after Enter stays outside it (#413) |
 | 2026-10-10 | trivial | Status line, revision history and cross-links added (progress-docs standard) |
 | 2026-10-10 | minor | Track Changes rows: tracked Enter, Backspace and Delete on paragraph marks (#244) |

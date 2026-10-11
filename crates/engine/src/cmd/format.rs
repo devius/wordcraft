@@ -403,7 +403,11 @@ fn convert(src: &str, mode: &str, para_start: bool) -> String {
             let mut up = true;
             for c in src.chars() {
                 if up && c.is_alphabetic() {
-                    out.extend(c.to_uppercase());
+                    if wordcraft_proof::capitalizes(c) {
+                        out.extend(c.to_uppercase());
+                    } else {
+                        out.extend(c.to_lowercase());
+                    }
                     up = false;
                 } else {
                     out.extend(c.to_lowercase());
@@ -420,7 +424,11 @@ fn convert(src: &str, mode: &str, para_start: bool) -> String {
             let mut up = para_start;
             for c in src.chars() {
                 if up && c.is_alphabetic() {
-                    out.extend(c.to_uppercase());
+                    if wordcraft_proof::capitalizes(c) {
+                        out.extend(c.to_uppercase());
+                    } else {
+                        out.extend(c.to_lowercase());
+                    }
                     up = false;
                 } else {
                     out.extend(c.to_lowercase());
@@ -503,5 +511,9 @@ mod tests {
         assert_eq!(convert("hello WORLD", "title", true), "Hello World");
         assert_eq!(convert("Hello", "toggle", true), "hELLO");
         assert_eq!(convert("straße", "upper", true), "STRASSE");
+        // Georgian has no sentence or title capitals; UPPERCASE gives Mtavruli.
+        assert_eq!(convert("გამარჯობა. როგორ ხარ?", "sentence", true), "გამარჯობა. როგორ ხარ?");
+        assert_eq!(convert("ᲒᲐᲛᲐᲠᲯᲝᲑᲐ ᲛᲡᲝᲤᲚᲘᲝ", "title", true), "გამარჯობა მსოფლიო");
+        assert_eq!(convert("გამარჯობა", "upper", true), "ᲒᲐᲛᲐᲠᲯᲝᲑᲐ");
     }
 }
