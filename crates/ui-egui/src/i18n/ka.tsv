@@ -77,8 +77,8 @@
 	Bottom of Page	გვერდის ბოლოში
 	Breaks	გამყოფები
 	Bring Forward	წინ გადმოტანა
-	Bullet Library	მარკერების ბიბლიოთეკა
-	Bullets	მარკერები
+	Bullet Library	ბურთულების ნაკრები
+	Bullets	ბურთულები
 	Calendar	კალენდარი
 	Capitalize Each Word	ყოველი სიტყვა მთავრულით
 	Captions	წარწერები
@@ -131,3 +131,61 @@
 	Compare	შედარება
 	Compress Pictures	სურათების შეკუმშვა
 	Continuous	უწყვეტი
+	Insert Caption	წარწერის ჩასმა
+	Convert	გარდაქმნა
+	Convert Text to Table	ტექსტის ცხრილად გარდაქმნა
+	Convert Text to Table…	ტექსტის ცხრილად გარდაქმნა…
+	Convert to Text	ტექსტად გარდაქმნა
+	Copy	კოპირება
+	Copy Formatting	ფორმატის კოპირება
+	Corrections	შესწორებები
+	Cover Page	თავფურცელი
+	Create	შექმნა
+	Create a Style	სტილის შექმნა
+	Crop	ამოჭრა
+	Cross-reference	ჯვარედინი ბმული
+	Current Position	მიმდინარე მდებარეობა
+	Custom Margins…	საკუთარი არშიები…
+	Custom Watermark…	საკუთარი ჭვირნიშანი…
+	Cut	ამოჭრა
+	Dark Mode	ბნელი რეჟიმი
+	Dashed	შტრიხიანი
+	Data	მონაცემები
+	Date & Time	თარიღი და დრო
+	Decrease Font Size	შრიფტის შემცირება
+	Decrease Indent	შეწევის შემცირება
+	Default	ნაგულისხმევი
+	Define New Bullet	ახალი სიის ნიშნის განსაზღვრა
+	Define New Number Format	ახალი ნუმერაციის ფორმატის განსაზღვრა
+	Delete	წაშლა
+	Delete Cells	უჯრების წაშლა
+	Delete Columns	სვეტების წაშლა
+	Delete Comment	კომენტარის წაშლა
+	Delete Next Word	შემდეგი სიტყვის წაშლა
+	Delete Previous Word	წინა სიტყვის წაშლა
+	Delete Rows	სტრიქონების წაშლა
+	Delete Style	სტილის წაშლა
+	Delete Table	ცხრილის წაშლა
+	Design	დიზაინი
+	Diamond	რომბი
+	Dictate	კარნახი
+	Different First Page	განსხვავებული პირველი გვერდი
+	Different Odd & Even Pages	განსხვავებული ლუწი და კენტი გვერდები
+	Display for Review	ჩვენება რეცენზირებისთვის
+	Distribute Columns	სვეტების თანაბრად განაწილება
+	Distribute Rows	სტრიქონების თანაბრად განაწილება
+	Distributed	თანაბრად განაწილებული
+	Do Not Show in TOC	სარჩევში არ აჩვენო
+	Document End	დოკუმენტის ბოლო
+	Document Formatting	დოკუმენტის ფორმატირება
+	Document Property	დოკუმენტის თვისება
+	Document Start	დოკუმენტის დასაწყისი
+	Document Text	დოკუმენტის ტექსტი
+	Document Title	დოკუმენტის სათაური
+	Dot-dash	შტრიხ-პუნქტირი
+	Dotted	პუნქტირი
+	Double	ორმაგი
+	Double Spacing	ორმაგი ინტერვალი
+	Double Strikethrough	ორმაგი გადახაზვა
+	Double Underline	ორმაგი ხაზგასმა
+	Down	ქვემოთ
