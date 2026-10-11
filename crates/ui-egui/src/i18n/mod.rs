@@ -228,6 +228,12 @@ pub fn t(s: &str) -> &str {
     tr(current(), s)
 }
 
+/// A style's name as the interface shows it: built-in styles (Normal, Heading 1 …) in the current
+/// language, like Word; the document keeps the English name. A user's own style keeps its name.
+pub fn style_name(s: &wordcraft_doc::Style) -> String {
+    if s.builtin { t(&s.name).to_string() } else { s.name.clone() }
+}
+
 /// `s` in `lang`; strings without a translation come back unchanged.
 pub fn tr(lang: Lang, s: &str) -> &str {
     #[cfg(test)]
