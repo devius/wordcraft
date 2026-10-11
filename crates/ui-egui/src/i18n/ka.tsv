@@ -727,3 +727,55 @@
 	Width:	სიგანე:
 	Alt text	ალტერნატიული ტექსტი
 	Alt:	ალტ.:
+	W:	სიგ.:
+	H:	სიმ.:
+	Reset	გადაყენება
+	Reset Crop	ჩამოჭრის გაუქმება
+	Draw Ink	მელნით ხატვა
+	Erase Ink	მელნის წაშლა
+	Hide Ink	მელნის დამალვა
+	Hide\nInk	მელნის\nდამალვა
+	Pens	კალმები
+	Thickness	სისქე
+	Field…	ველი…
+	More Columns…	სხვა სვეტები…
+	More Symbols…	სხვა სიმბოლოები…
+	Shape Effects	ფიგურის ეფექტები
+	Glow	ნათება
+	Soft Edges	რბილი კიდეები
+	No Shadow	ჩრდილის გარეშე
+	No Glow	ნათების გარეშე
+	No Soft Edges	რბილი კიდეების გარეშე
+	Glow Colors	ნათების ფერები
+	Weight	სისქე
+	Shadow, glow and soft edges	ჩრდილი, ნათება და რბილი კიდეები
+	Manage Styles	სტილების მართვა
+	Show or Hide Style	სტილის ჩვენება ან დამალვა
+	{size} pt	{size} პტ
+	Delete Table Style	ცხრილის სტილის წაშლა
+	Align Top Left	ზემოთ მარცხნივ სწორება
+	Align Top Center	ზემოთ ცენტრში სწორება
+	Align Top Right	ზემოთ მარჯვნივ სწორება
+	Align Center Left	შუაში მარცხნივ სწორება
+	Align Center	ცენტრში სწორება
+	Align Center Right	შუაში მარჯვნივ სწორება
+	Align Bottom Left	ქვემოთ მარცხნივ სწორება
+	Align Bottom Center	ქვემოთ ცენტრში სწორება
+	Align Bottom Right	ქვემოთ მარჯვნივ სწორება
+	pt	პტ
+	Name	სახელი
+	First	პირველი
+	Last	ბოლო
+	Craft	ხელობა
+	Studio	სტუდია
+	Atelier	ატელიე
+	Darkroom	ბნელი ოთახი
+	Gallery	გალერეა
+	Sketchbook	ესკიზების რვეული
+	Rotation	შემობრუნება
+	Rotation:	შემობრუნება:
+	Rotate Right 90°	90°-ით მარჯვნივ შემობრუნება
+	Rotate Left 90°	90°-ით მარცხნივ შემობრუნება
+	Flip Vertical	ვერტიკალურად არეკვლა
+	Flip Horizontal	ჰორიზონტალურად არეკვლა
+	Formatted	დაფორმატებული
