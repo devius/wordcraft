@@ -366,7 +366,8 @@ fn only_cjk_languages_ask_for_an_installed_cjk_font() {
 fn georgian_covers_the_entire_existing_interface_catalog() {
     use std::collections::HashSet;
     let keys = |source| parse_entries(source).0.into_iter().map(|e| e.source).collect::<HashSet<_>>();
-    assert_eq!(keys(lang("ka").0.source), keys(lang("zh-hans").0.source));
+    // Every reference string, plus the built-in style names the gallery and Styles pane show.
+    assert!(keys(lang("ka").0.source).is_superset(&keys(lang("zh-hans").0.source)));
     let ka = lang("ka");
     assert_eq!(ka.name(), "ქართული");
     assert_eq!(tr(ka, "Home"), "მთავარი");
