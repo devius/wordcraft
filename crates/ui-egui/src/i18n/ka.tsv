@@ -1151,3 +1151,81 @@
 	Fill color:	შევსების ფერი:
 	{count} items highlighted	გამოკვეთილი ელემენტები: {count}
 	If…Then…Else	თუ…მაშინ…სხვა შემთხვევაში
+	Skip Record If	ჩანაწერის გამოტოვება, თუ
+	Equals:	უდრის:
+	Then insert:	მაშინ ჩაისვას:
+	Otherwise insert:	სხვა შემთხვევაში ჩაისვას:
+	Courtesy Title	მიმართვა
+	Postal Code	საფოსტო ინდექსი
+	(not matched)	(შესაბამისობა არ არის)
+	Leave a recipient out of the merge when a field has this value.	მიმღების გამოტოვება შერწყმისას, როცა ველს ეს მნიშვნელობა აქვს.
+	Insert one text or another, depending on a field's value.	ერთი ან მეორე ტექსტის ჩასმა ველის მნიშვნელობის მიხედვით.
+	Select recipients first to match their fields.	ველების შესაბამისობისთვის ჯერ აირჩიეთ მიმღებები.
+	The recipient-list field that fills each part of an address block and greeting line.	მიმღებთა სიის ველი, რომელიც ავსებს მისამართის ბლოკისა და მისალმების სტრიქონის თითოეულ ნაწილს.
+	No errors found: every merge field is in the recipient list.	შეცდომა არ მოიძებნა: შერწყმის ყველა ველი მიმღებთა სიაშია.
+	These merge fields aren't in the recipient list:	შერწყმის ეს ველები მიმღებთა სიაში არ არის:
+	Add at least one field.	დაამატეთ მინიმუმ ერთი ველი.
+	Add Field	ველის დამატება
+	Every field needs a name.	ყველა ველს სახელი სჭირდება.
+	Field name	ველის სახელი
+	Field names must be different.	ველების სახელები უნდა განსხვავდებოდეს.
+	Fields:	ველები:
+	Field:	ველი:
+	Find:	ძებნა:
+	New Entry	ახალი ჩანაწერი
+	Recipient List	მიმღებთა სია
+	Recipients: {count}	მიმღები: {count}
+	Remove field	ველის წაშლა
+	Remove recipient	მიმღების წაშლა
+	Select recipients first to choose from their fields.	ველების ასარჩევად ჯერ აირჩიეთ მიმღებები.
+	Type at least one recipient.	აკრიფეთ მინიმუმ ერთი მიმღები.
+	Type the recipients, or load them from a file.	აკრიფეთ მიმღებები ან ჩატვირთეთ ფაილიდან.
+	A file dialog is already open.	ფაილის ფანჯარა უკვე გახსნილია.
+	Row	სტრიქონი
+	Cell	უჯრა
+	Preferred width:	სასურველი სიგანე:
+	Alignment:	სწორება:
+	Indent from left:	შეწევა მარცხნიდან:
+	Specify height:	სიმაღლის მითითება:
+	Exactly	ზუსტად
+	At least	მინიმუმ
+	Allow row to break across pages	სტრიქონის გვერდებზე გაყოფის დაშვება
+	Repeat as header row on each page	სათაურის სტრიქონად გამეორება ყოველ გვერდზე
+	Vertical alignment:	ვერტიკალური სწორება:
+	getartcraft.com/apps/wordcraft	getartcraft.com/apps/wordcraft
+	Sort order:	სორტირების წესი:
+	As Recommended	რეკომენდებულის მიხედვით
+	Alphabetical	ანბანის მიხედვით
+	Font: {font}	შრიფტი: {font}
+	Color: {color}	ფერი: {color}
+	Space before: {pt} pt	ინტერვალი წინ: {pt} პტ
+	Space after: {pt} pt	ინტერვალი შემდეგ: {pt} პტ
+	Based on: {style}	ეფუძნება: {style}
+	Paragraph style	აბზაცის სტილი
+	Character style	სიმბოლოს სტილი
+	Linked style (paragraph and character)	დაკავშირებული სტილი (აბზაცი და სიმბოლო)
+	Table style	ცხრილის სტილი
+	Built-in style	ჩაშენებული სტილი
+	Show in the Styles gallery	სტილების გალერეაში ჩვენება
+	Hide from style lists	სტილების სიებიდან დამალვა
+	Built-in styles can't be deleted.	ჩაშენებული სტილების წაშლა შეუძლებელია.
+	Password	პაროლი
+	Password:	პაროლი:
+	Confirm password:	გაიმეორეთ პაროლი:
+	Anyone who opens the document will need this password.	დოკუმენტის გამხსნელ ყველას ეს პაროლი დასჭირდება.
+	{name} is protected with a password.	{name} პაროლით არის დაცული.
+	That password isn't right. Check it (passwords are case-sensitive) and try again.	პაროლი არასწორია. შეამოწმეთ (პაროლში დიდი და პატარა ასოები განსხვავდება) და სცადეთ ხელახლა.
+	The document will be saved with a password. Save it to protect it.	დოკუმენტი პაროლით შეინახება. შეინახეთ, რომ დაიცვათ.
+	The password is removed. Save the document to keep the change.	პაროლი მოხსნილია. ცვლილების შესანარჩუნებლად შეინახეთ დოკუმენტი.
+	The passwords don't match.	პაროლები არ ემთხვევა.
+	Keep the password somewhere safe: without it nobody, WordCraft included, can open the document. Leave both boxes empty to remove the password.	პაროლი უსაფრთხო ადგილას შეინახეთ: მის გარეშე დოკუმენტს ვერავინ გახსნის, მათ შორის WordCraft-იც. პაროლის მოსახსნელად ორივე ველი ცარიელი დატოვეთ.
+	{cols}×{rows} Table	ცხრილი {cols}×{rows}
+	AaBbYyZz	AaBbYyZz აბგდ
+	Mon	ორშ
+	Tue	სამ
+	Wed	ოთხ
+	Sum	ჯამი
+	North	ჩრდილოეთი
+	South	სამხრეთი
+	West	დასავლეთი
+	Total	სულ
