@@ -779,3 +779,64 @@
 	Flip Vertical	ვერტიკალურად არეკვლა
 	Flip Horizontal	ჰორიზონტალურად არეკვლა
 	Formatted	დაფორმატებული
+	Advanced	დამატებითი
+	Export	ექსპორტი
+	General	ზოგადი
+	Insert Shapes	ფიგურების ჩასმა
+	Line and Page Breaks	სტრიქონისა და გვერდის გამყოფები
+	Line Spacing	ინტერვალი
+	Text Effects	ტექსტის ეფექტები
+	Conversions	გარდაქმნები
+	Structures	სტრუქტურები
+	Tools	ხელსაწყოები
+	About	პროგრამის შესახებ
+	Author	ავტორი
+	Automatic ({language})	ავტომატური ({language})
+	Automatic follows your system's language. Menus and commands change; your documents don't.	ავტომატური რეჟიმი მიჰყვება სისტემის ენას. იცვლება მენიუები და ბრძანებები; დოკუმენტები უცვლელი რჩება.
+	AutoSave documents you have saved in WordCraft	WordCraft-ში შენახული დოკუმენტების ავტოშენახვა
+	Dark page (white text on black)	მუქი გვერდი (თეთრი ტექსტი შავზე)
+	More templates →	მეტი შაბლონი →
+	No templates match your search.	ძიების შესაბამისი შაბლონი არ მოიძებნა.
+	Search for templates	შაბლონების ძებნა
+	Show documents with their colours inverted, like View › Switch Modes. Saving, printing and PDFs are unchanged.	დოკუმენტების ჩვენება შებრუნებული ფერებით, როგორც ჩვენება › რეჟიმის გადართვა. შენახვა, ბეჭდვა და PDF არ იცვლება.
+	Blank document	ცარიელი დოკუმენტი
+	Discord community	Discord საზოგადოება
+	Display	ეკრანი
+	Documents you open will show up here.	აქ გამოჩნდება თქვენ მიერ გახსნილი დოკუმენტები.
+	Every command is available to scripts and AI agents: run `wordcraft-cli mcp` for an MCP server, or start the app with `--control <port>` for the JSON control channel.	ყველა ბრძანება ხელმისაწვდომია სკრიპტებისა და AI აგენტებისთვის: MCP სერვერისთვის გაუშვით `wordcraft-cli mcp`, ან JSON მართვის არხისთვის პროგრამა გახსენით `--control <port>`-ით.
+	Interface language:	ინტერფეისის ენა:
+	Letter	წერილი
+	Location: {path}	მდებარეობა: {path}
+	Markdown (*.md)	Markdown (*.md)
+	Not saved yet	ჯერ არ არის შენახული
+	OpenDocument Text (*.odt)	OpenDocument ტექსტი (*.odt)
+	Page image (*.png)	გვერდის სურათი (*.png)
+	Paragraphs	აბზაცები
+	PDF document (*.pdf)	PDF დოკუმენტი (*.pdf)
+	Plain text (*.txt)	უბრალო ტექსტი (*.txt)
+	Recent	ბოლოდროინდელი
+	Report	ანგარიში
+	Rich Text Format (*.rtf)	Rich Text Format (*.rtf)
+	Résumé	რეზიუმე
+	Save a copy in another format. Printing goes through a PDF you can print from any viewer.	შეინახეთ ასლი სხვა ფორმატში. ბეჭდვა ხდება PDF-ის მეშვეობით, რომლის დაბეჭდვაც ნებისმიერი მნახველიდან შეიძლება.
+	Sections	სექციები
+	Show all formatting marks	ფორმატირების ყველა ნიშნის ჩვენება
+	Show rulers	სახაზავების ჩვენება
+	Show the community button in the title bar	საზოგადოების ღილაკის ჩვენება სათაურის ზოლში
+	Statistics	სტატისტიკა
+	Studio handbook (sample)	სტუდიის სახელმძღვანელო (ნიმუში)
+	User name:	მომხმარებლის სახელი:
+	Web page (*.html)	ვებგვერდი (*.html)
+	Word document (*.docx)	Word დოკუმენტი (*.docx)
+	Words	სიტყვები
+	Browse…	არჩევა…
+	Send the document straight to the system print dialog, or save a copy in another format below.	გაუგზავნეთ დოკუმენტი პირდაპირ სისტემის ბეჭდვის ფანჯარას, ან ქვემოთ შეინახეთ ასლი სხვა ფორმატში.
+	Or save a copy in another format:	ან შეინახეთ ასლი სხვა ფორმატში:
+	Interface theme:	ინტერფეისის თემა:
+	Encrypt with Password…	პაროლით დაშიფვრა…
+	Change Password…	პაროლის შეცვლა…
+	Remove Password	პაროლის მოხსნა
+	A password is required to open this document.	ამ დოკუმენტის გასახსნელად საჭიროა პაროლი.
+	Anyone can open this document. Encrypt it with a password to keep it private.	ამ დოკუმენტის გახსნა ნებისმიერს შეუძლია. დაშიფრეთ პაროლით, რომ დაიცვათ.
+	Interface size:	ინტერფეისის ზომა:
+	Makes the ribbon, menus and dialogs larger or smaller, on top of your system's display scaling. Document zoom is separate.	ზრდის ან ამცირებს ლენტს, მენიუებსა და ფანჯრებს, სისტემის ეკრანის მასშტაბირების გარდა. დოკუმენტის მასშტაბი ცალკე იცვლება.
