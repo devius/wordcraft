@@ -2475,3 +2475,26 @@ preview	Title	სათაური
 	Use "an" before a vowel sound	ხმოვანი ბგერის წინ გამოიყენეთ „an“
 	Use "a" before a consonant sound	თანხმოვანი ბგერის წინ გამოიყენეთ „a“
 	The spelling and grammar check is complete.	მართლწერისა და გრამატიკის შემოწმება დასრულდა.
+	Column width	სვეტის სიგანე
+	Edit Document	დოკუმენტის რედაქტირება
+	Envelope #10   4.12" × 9.5"	კონვერტი #10   4,12" × 9,5"
+	Executive   7.25" × 10.5"	Executive   7,25" × 10,5"
+	Go to what:	რაზე გადავიდეს:
+	Legal   8.5" × 14"	იურიდიული ინფორმაცია   8,5" × 14"
+	Letter   8.5" × 11"	Letter   8,5" × 11"
+	Reading Mode	კითხვის რეჟიმი
+	Researcher needs an online service; WordCraft keeps your documents offline.	მკვლევარს ონლაინ სერვისი სჭირდება; WordCraft თქვენს დოკუმენტებს ოფლაინ ინახავს.
+	Statement   5.5" × 8.5"	Statement   5,5" × 8,5"
+	Suggested	შემოთავაზებული
+	Tabloid   11" × 17"	Tabloid   11" × 17"
+	Text size	ტექსტის ზომა
+	These settings will be used for new documents.	ეს პარამეტრები ახალი დოკუმენტებისთვის გამოიყენება.
+	Type +2 or -1 to move from the page you are on.	მიმდინარე გვერდიდან გადასაადგილებლად აკრიფეთ +2 ან -1.
+	bad parameters: `path` (string) is required	არასწორი პარამეტრები: `path` (ტექსტური) აუცილებელია
+	bad parameters: no comment here	არასწორი პარამეტრები: აქ კომენტარი არ არის
+	bad parameters: select a citation or give `entry`	არასწორი პარამეტრები: მონიშნეთ ციტატა ან მიუთითეთ `entry`
+	can't split at the first row	პირველ სტრიქონზე დაყოფა შეუძლებელია
+	select two or more cells to merge	შესაერთებლად მონიშნეთ ორი ან მეტი უჯრა
+	there is no ink to replay	დასაკრავი მელანი არ არის
+	there's no citation after the caret	კურსორის შემდეგ ციტატა არ არის
+	this item is already at the top level	ეს ელემენტი უკვე ზედა დონეზეა
