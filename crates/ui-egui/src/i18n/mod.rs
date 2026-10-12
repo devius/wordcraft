@@ -130,7 +130,9 @@ pub static LANGUAGES: [LangInfo; 20] = [
         code: "bg", name: "Български", source: include_str!("bg.tsv"), prefer_hans: false, editing_lang: None, catalog: OnceLock::new()
     },
     // Georgian; `ka`, `ka-GE` and `ka_GE.UTF-8` resolve here.
-    LangInfo { code: "ka", name: "ქართული", source: include_str!("ka.tsv"), prefer_hans: false, editing_lang: None, catalog: OnceLock::new() },
+    LangInfo {
+        code: "ka", name: "ქართული", source: include_str!("ka.tsv"), prefer_hans: false, editing_lang: None, catalog: OnceLock::new()
+    },
 ];
 
 impl LangInfo {
