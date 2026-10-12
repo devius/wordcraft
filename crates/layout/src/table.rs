@@ -86,6 +86,14 @@ fn default_margins(t: &Table, style: Option<&TableStyleProps>) -> [f32; 4] {
     t.props.cell_margins.or(style.and_then(|s| s.parts.cell_margins)).unwrap_or(DEFAULT_MARGINS)
 }
 
+/// The margins (top, left, bottom, right; points) inside cell `cell` of row `row`: its own, else
+/// the table's defaults, as the layout uses them. The app's ruler measures a cell's indents from
+/// them.
+pub fn cell_margins(doc: &wordcraft_doc::Document, t: &Table, row: usize, cell: usize) -> [f32; 4] {
+    let style = t.props.style.as_deref().and_then(|id| doc.styles.table_style(id));
+    t.rows.get(row).and_then(|r| r.cells.get(cell)).and_then(|c| c.props.margins).unwrap_or_else(|| default_margins(t, style.as_ref()))
+}
+
 /// The most paragraphs [`measure_table_columns`] lays out: a huge table is measured by its first
 /// rows only, so AutoFit stays quick.
 const MEASURE_BUDGET: usize = 4000;
@@ -164,11 +172,17 @@ pub fn measure_table_columns(doc: &wordcraft_doc::Document, t: &Table) -> Vec<(f
                 label: None,
                 fields: &fields,
                 show_hidden: false,
+                field_codes: false,
                 hide_deleted: false,
                 table: text.as_ref(),
-                proofing: false,
+                proofing: None,
+                // Measurement uses a fixed environment (like show_hidden/proofing above).
+                numeral: crate::NumeralMode::default(),
                 exclusions: &[],
                 eq_number: 0,
+                read_line_spacing: None,
+                grid: crate::para::Grid::default(),
+                fit_objects: false,
             };
             let (mut min, mut max) = (EMPTY_TEXT, EMPTY_TEXT);
             if cell.props.vmerge != VMerge::Continue && !cell.props.text_direction.is_turned() {
@@ -358,16 +372,26 @@ pub fn layout_table(ctx: &mut Ctx, story: StoryRef, t: &Table, path: &[u32], ava
         tborders.overlay(&own);
     }
     let first_cell = t.rows.first().and_then(|r| r.cells.first());
-    let x = match t.props.align {
-        Some(Align::Center) => (avail - total) / 2.0,
-        Some(Align::Right) => avail - total,
-        _ if ctx.doc.settings.compat_mode >= 15 => {
-            // The border is centred on the edge, so half of it sits outside: Word moves the
-            // table in by that half.
-            let border = first_cell.and_then(|c| c.props.borders.and_then(|b| b.left)).or(tborders.left);
-            indent + border.filter(Border::is_visible).map_or(0.0, |b| b.width.clamp(0.0, 12.0) / 2.0)
-        }
-        _ => indent - first_cell_left_margin_in(t, margins_def),
+    // A right-to-left table (`w:bidiVisual`) mirrors: its first column stands at the right, its
+    // start alignment and indent are measured from the right margin, and each cell's start
+    // (left) margin and border are on its right.
+    let rtl = t.props.bidi_visual;
+    // How far in from the start margin the table's edge sits when it is start-aligned.
+    let start_offset = if ctx.doc.settings.compat_mode >= 15 {
+        // The border is centred on the edge, so half of it sits outside: Word moves the table in
+        // by that half.
+        let border = first_cell.and_then(|c| c.props.borders.and_then(|b| b.left)).or(tborders.left);
+        indent + border.filter(Border::is_visible).map_or(0.0, |b| b.width.clamp(0.0, 12.0) / 2.0)
+    } else {
+        indent - first_cell_left_margin_in(t, margins_def)
+    };
+    let x = match (t.props.align, rtl) {
+        (Some(Align::Center), _) => (avail - total) / 2.0,
+        // End alignment: the right margin, or the left one in a right-to-left table.
+        (Some(Align::Right), false) => avail - total,
+        (Some(Align::Right), true) => 0.0,
+        (_, true) => avail - total - start_offset,
+        (_, false) => start_offset,
     };
     let nrows = t.rows.len();
     let header_rows = t.props.look.header_row;
@@ -395,6 +419,8 @@ pub fn layout_table(ctx: &mut Ctx, story: StoryRef, t: &Table, path: &[u32], ava
         let mut rh = 0.0f32;
         // The tallest cell margins plus border bands in the row.
         let mut row_insets = 0.0f32;
+        // Every cell an empty one with a hidden end-of-cell mark: the row is only its borders.
+        let mut collapsed = true;
         let is_header = header_rows && ri == 0;
         let is_total = t.props.look.total_row && ri + 1 == nrows && nrows > 1;
         let band = banded(t, style.as_ref(), ri);
@@ -402,7 +428,11 @@ pub fn layout_table(ctx: &mut Ctx, story: StoryRef, t: &Table, path: &[u32], ava
             let span = cell.span();
             let x0 = colx.get(g).copied().unwrap_or(acc);
             let x1 = colx.get((g + span).min(ncols)).copied().unwrap_or(acc);
+            // Right to left: grid columns run from the right edge, and the start (left) margin
+            // is on the cell's right.
+            let (x0, x1) = if rtl { ((acc - x1).max(0.0), (acc - x0).max(0.0)) } else { (x0, x1) };
             let margins = cell.props.margins.unwrap_or(margins_def);
+            let margins = if rtl { [margins[0], margins[3], margins[2], margins[1]] } else { margins };
             let cw = (x1 - x0 - margins[1] - margins[3]).max(4.0);
             let mut fill = cell.props.shading;
             let region = region_of(t, style.as_ref(), ri, g, span, ncols);
@@ -463,6 +493,10 @@ pub fn layout_table(ctx: &mut Ctx, story: StoryRef, t: &Table, path: &[u32], ava
             {
                 borders.top = Some(b);
             }
+            // The logical start (left) and end (right) borders, drawn mirrored in an RTL table.
+            if rtl {
+                std::mem::swap(&mut borders.left, &mut borders.right);
+            }
             // Word keeps the cell's text clear of its top border (and the last row's of its bottom
             // border): the border's width sits on top of the cell margin.
             let band = |b: Option<Border>| b.filter(Border::is_visible).map_or(0.0, |b| b.width.clamp(0.0, 12.0));
@@ -473,6 +507,7 @@ pub fn layout_table(ctx: &mut Ctx, story: StoryRef, t: &Table, path: &[u32], ava
             let (items, h) = if cell.props.vmerge == VMerge::Continue {
                 (Vec::new(), 0.0)
             } else if turn.is_turned() {
+                collapsed = false;
                 // Turned text: its lines run along the cell's height. An exact row height sets
                 // their length; otherwise they get the length the text needs unwrapped and the row
                 // grows to fit (the second pass lays them out again if the row ends up taller).
@@ -485,12 +520,20 @@ pub fn layout_table(ctx: &mut Ctx, story: StoryRef, t: &Table, path: &[u32], ava
                         natural_length(&probe).clamp(4.0, TURNED_MAX)
                     }
                 };
-                let BoxLayout { items, height, floats_bottom } = layout_box(ctx, story, &cell.blocks, &cpath, len, text, depth, None);
+                let BoxLayout { items, height, floats_bottom, .. } = layout_box(ctx, story, &cell.blocks, &cpath, len, text, depth, None);
                 let across = height.max(floats_bottom);
                 turned = Some(Turned { turn, len, across, snap, region, ci, top: margins[0] + band_t });
                 (items, len)
             } else {
-                let BoxLayout { mut items, height, floats_bottom } = layout_box(ctx, story, &cell.blocks, &cpath, cw, text, depth, None);
+                let BoxLayout { mut items, mut height, floats_bottom, last_top } =
+                    layout_box(ctx, story, &cell.blocks, &cpath, cw, text, depth, None);
+                // A hidden end-of-cell mark: an empty last paragraph takes no room (Word for
+                // Windows: a row of empty such cells is only its borders).
+                if cell.props.hide_mark && cell.blocks.last().and_then(|b| b.as_para()).is_some_and(|p| p.text.is_empty()) {
+                    height = last_top;
+                } else {
+                    collapsed = false;
+                }
                 for it in &mut items {
                     it.translate(x0 + margins[1], margins[0] + band_t);
                 }
@@ -525,7 +568,7 @@ pub fn layout_table(ctx: &mut Ctx, story: StoryRef, t: &Table, path: &[u32], ava
             (Some(h), _) if h > 0.0 => rh.max(h + row_insets),
             _ => rh,
         };
-        heights.push(rh.max(4.0));
+        heights.push(if collapsed && !cells.is_empty() { rh.max(0.0) } else { rh.max(4.0) });
         rows.push(cells);
     }
     // Vertically merged cells: grow the last row of the merge if the content is taller.
@@ -642,7 +685,14 @@ pub fn layout_table(ctx: &mut Ctx, story: StoryRef, t: &Table, path: &[u32], ava
             if let Some(e) = b.right.filter(Border::is_visible) {
                 items.push(Placed::Rule { x0: x1, y0, x1, y1, border: e });
             }
-            items.push(Placed::Cell { rect: Rect::new(c.x, 0.0, c.w, rh), table: wordcraft_doc::Path(path.to_vec()), row: ri, cell: ci, story });
+            items.push(Placed::Cell {
+                rect: Rect::new(c.x, 0.0, c.w, if c.vmerge == VMerge::Continue { rh } else { span_h }),
+                covered: c.vmerge == VMerge::Continue,
+                table: wordcraft_doc::Path(path.to_vec()),
+                row: ri,
+                cell: ci,
+                story,
+            });
         }
         out.push(RowLayout { height: rh, items });
     }
@@ -683,7 +733,7 @@ pub fn split_row(row: &RowLayout, cut: f32) -> Option<(RowLayout, RowLayout)> {
                     }
                 }
             }
-            Placed::Image { rect, .. } | Placed::Shape { rect, .. } | Placed::Graphic { rect, .. } => {
+            Placed::Image { rect, .. } | Placed::Shape { rect, .. } | Placed::Graphic { rect, .. } | Placed::Clip { rect, .. } => {
                 if rect.bottom() <= cut + 0.01 {
                     kept_any = true;
                 } else {
@@ -750,7 +800,11 @@ pub fn split_row(row: &RowLayout, cut: f32) -> Option<(RowLayout, RowLayout)> {
                     });
                 }
             }
-            Placed::Image { rect, .. } | Placed::Shape { rect, .. } | Placed::Graphic { rect, .. } | Placed::Object { rect, .. } => {
+            Placed::Image { rect, .. }
+            | Placed::Shape { rect, .. }
+            | Placed::Graphic { rect, .. }
+            | Placed::Clip { rect, .. }
+            | Placed::Object { rect, .. } => {
                 if rect.bottom() <= cut + 0.01 {
                     a.push(it.clone());
                 } else {
@@ -766,9 +820,9 @@ pub fn split_row(row: &RowLayout, cut: f32) -> Option<(RowLayout, RowLayout)> {
                 a.extend(above.map(|rect| Placed::Fill { rect, color: *color }));
                 b.extend(below.map(|rect| Placed::Fill { rect, color: *color }));
             }
-            Placed::Cell { rect, table, row: r, cell, story } => {
+            Placed::Cell { rect, covered, table, row: r, cell, story } => {
                 let (above, below) = split_rect(*rect, cut, shift);
-                let cell_at = |rect| Placed::Cell { rect, table: table.clone(), row: *r, cell: *cell, story: *story };
+                let cell_at = |rect| Placed::Cell { rect, covered: *covered, table: table.clone(), row: *r, cell: *cell, story: *story };
                 a.extend(above.map(cell_at));
                 b.extend(below.map(cell_at));
             }
