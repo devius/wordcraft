@@ -11,7 +11,7 @@
 # Product, format and technology names (WordCraft, PDF, Markdown, MCP …) stay in Latin letters.
 # Georgian has no sentence capitals; terminology follows one glossary shared by the Craft apps.
 # Licensed MIT OR Apache-2.0, like WordCraft.
-	1.5 Line Spacing	ინტერვალი 1,5
+	1.5 Line Spacing	სტრიქონთა დაშორება 1,5
 	Accept	მიღება
 	Accept All Changes	ყველა ცვლილების მიღება
 	Accept This Change	ამ ცვლილების მიღება
@@ -92,7 +92,7 @@
 	Change Picture	სურათის შეცვლა
 	Change Shape	ფიგურის შეცვლა
 	Changes	ცვლილებები
-	Character Position	სიმბოლოს მდებარეობა
+	Character Position	სიმბოლოს პოზიცია
 	Character Scale	სიმბოლოს მასშტაბი
 	Character Shading	სიმბოლოს ფონი
 	Character Spacing	სიმბოლოთა ინტერვალი
@@ -144,12 +144,12 @@
 	Create a Style	სტილის შექმნა
 	Crop	ჩამოჭრა
 	Cross-reference	ჯვარედინი ბმული
-	Current Position	მიმდინარე მდებარეობა
+	Current Position	მიმდინარე პოზიცია
 	Custom Margins…	საკუთარი არშიები…
 	Custom Watermark…	საკუთარი ჭვირნიშანი…
 	Cut	ამოჭრა
 	Dark Mode	ბნელი რეჟიმი
-	Dashed	შტრიხიანი
+	Dashed	ტირეებიანი
 	Data	მონაცემები
 	Date & Time	თარიღი და დრო
 	Decrease Font Size	შრიფტის შემცირება
@@ -182,14 +182,14 @@
 	Document Start	დოკუმენტის დასაწყისი
 	Document Text	დოკუმენტის ტექსტი
 	Document Title	დოკუმენტის სათაური
-	Dot-dash	შტრიხ-პუნქტირი
+	Dot-dash	წერტილ-ტირე
 	Dotted	პუნქტირი
 	Double	ორმაგი
-	Double Spacing	ორმაგი ინტერვალი
+	Double Spacing	სტრიქონთა ორმაგი დაშორება
 	Double Strikethrough	ორმაგი გადახაზვა
 	Double Underline	ორმაგი ხაზგასმა
 	Down	ქვემოთ
-	Draft	შავი ვარიანტი
+	Draft	მონახაზი
 	Draw	ხატვა
 	Drawing Tools	ხატვის ხელსაწყოები
 	Drawing\nCanvas	სახატავი\nტილო
@@ -249,7 +249,7 @@
 	Header	ზედა კოლონტიტული
 	Header & Footer	კოლონტიტულები
 	Header Row	სათაურის სტრიქონი
-	Header/Footer Position	კოლონტიტულის მდებარეობა
+	Header/Footer Position	კოლონტიტულის პოზიცია
 	Heading 1	სათაური 1
 	Heading 2	სათაური 2
 	Heading 3	სათაური 3
@@ -265,14 +265,14 @@
 	Icons	ხატულები
 	Ignore All	ყველას გამოტოვება
 	Illustrations	ილუსტრაციები
-	Immersive	ჩაღრმავებული
-	Immersive Reader	ფოკუსირებული კითხვა
-	Immersive\nReader	ფოკუსირებული\nკითხვა
+	Immersive	იმერსიული
+	Immersive Reader	იმერსიული წამკითხველი
+	Immersive\nReader	იმერსიული\nწამკითხველი
 	Increase Font Size	შრიფტის გაზრდა
 	Increase Indent	შეწევის გაზრდა
 	Indent	შეწევა
 	Indents	შეწევები
-	Index	საძიებელი
+	Index	ინდექსი
 	Info	ინფორმაცია
 	Ink to\nMath	მელნიდან\nფორმულა
 	Ink to\nShape	მელნიდან\nფიგურა
@@ -283,7 +283,7 @@
 	Insert Citation	ციტატის ჩასმა
 	Insert Endnote	დოკუმენტის სქოლიოს ჩასმა
 	Insert Footnote	სქოლიოს ჩასმა
-	Insert Index	საძიებლის ჩასმა
+	Insert Index	ინდექსის ჩასმა
 	Insert Left	მარცხნივ ჩასმა
 	Insert Merge Field	შერწყმის ველის ჩასმა
 	Insert Merge\nField	შერწყმის ველის\nჩასმა
@@ -298,7 +298,7 @@
 	Inside Borders	შიდა ჩარჩოები
 	Inspect Document	დოკუმენტის შემოწმება
 	Italic	დახრილი
-	Justify	სიგანეზე
+	Justify	ორმხრივი სწორება
 	Keep Lines Together	სტრიქონების ერთად დატოვება
 	Keep Text Only	მხოლოდ ტექსტის დატოვება
 	Keep with Next	შემდეგთან ერთად
@@ -313,11 +313,11 @@
 	Left Border	მარცხენა ჩარჩო
 	Left:	მარცხნივ:
 	Line	ხაზი
-	Line and Paragraph Spacing	სტრიქონებისა და აბზაცების ინტერვალი
-	Line Break	სტრიქონის გადატანა
+	Line and Paragraph Spacing	სტრიქონთა დაშორება და აბზაცთა ინტერვალი
+	Line Break	სტრიქონის წყვეტა
 	Line End	სტრიქონის ბოლო
 	Line Numbers	სტრიქონების ნომრები
-	Line Spacing Options…	ინტერვალის პარამეტრები…
+	Line Spacing Options…	სტრიქონთა დაშორების პარამეტრები…
 	Line Start	სტრიქონის დასაწყისი
 	Link	ბმული
 	Link to Previous	წინასთან დაკავშირება
@@ -364,7 +364,7 @@
 	No Markup	მარკირების გარეშე
 	No Paragraph Space	აბზაცთაშორისი ინტერვალის გარეშე
 	Nonbreaking Hyphen	განუყოფელი დეფისი
-	Nonbreaking Space	განუყოფელი სივრცე
+	Nonbreaking Space	უწყვეტი შორისი
 	None	არცერთი
 	Normal  1" all	ჩვეულებრივი  1" ყოველ მხარეს
 	Normal Style	ჩვეულებრივი სტილი
@@ -419,7 +419,7 @@
 	Picture Styles	სურათის სტილები
 	Pictures	სურათები
 	Portrait	ვერტიკალური
-	Position	მდებარეობა
+	Position	პოზიცია
 	Preview Results	შედეგების გადახედვა
 	Preview\nResults	შედეგების\nგადახედვა
 	Previous	წინა
@@ -468,7 +468,7 @@
 	Reply	პასუხი
 	Research	კვლევა
 	Researcher	მკვლევარი
-	Reset Picture	სურათის საწყისზე დაბრუნება
+	Reset Picture	სურათის ჩამოყრა
 	Resolve	გადაწყვეტა
 	Restart at 1	თავიდან 1-დან
 	Restart Each Page	თავიდან ყოველ გვერდზე
@@ -538,7 +538,7 @@
 	Side\nto Side	გვერდი-\nგვერდ
 	Signature Line	ხელმოწერის სტრიქონი
 	Single	ერთმაგი
-	Single Spacing	ერთმაგი ინტერვალი
+	Single Spacing	სტრიქონთა ერთმაგი დაშორება
 	Size	ზომა
 	Small Caps	პატარა მთავრული
 	SmartArt	SmartArt
@@ -548,9 +548,9 @@
 	Spelling & Grammar	მართლწერა და გრამატიკა
 	Spelling &\nGrammar	მართლწერა და\nგრამატიკა
 	Spelling Suggestions	მართლწერის შეთავაზებები
-	Split	დაყოფა
-	Split Cells	უჯრების დაყოფა
-	Split Table	ცხრილის დაყოფა
+	Split	გაყოფა
+	Split Cells	უჯრების გაყოფა
+	Split Table	ცხრილის გაყოფა
 	Spreadsheet Table	ელცხრილი
 	Star	ვარსკვლავი
 	Start Mail Merge	წერილების შერწყმის დაწყება
@@ -596,7 +596,7 @@
 	Theme Fonts	თემის შრიფტები
 	Theme List	თემების სია
 	Themes	თემები
-	Thesaurus	სინონიმები
+	Thesaurus	თეზაურუსი
 	Thick	სქელი
 	Three	სამი
 	Tight	მჭიდრო
@@ -617,11 +617,11 @@
 	Ungroup	დაჯგუფების მოხსნა
 	Up	ზემოთ
 	Update Field	ველის განახლება
-	Update Index	საძიებლის განახლება
+	Update Index	ინდექსის განახლება
 	Update Style to Match Selection	სტილის განახლება მონიშნულის მიხედვით
 	Update Table	ცხრილის განახლება
 	Update Table of Figures	ილუსტრაციების სიის განახლება
-	UPPERCASE	ᲓᲘᲓᲘ ᲐᲡᲝᲔᲑᲘ
+	UPPERCASE	მთავრული
 	User Name	მომხმარებლის სახელი
 	Version History	ვერსიების ისტორია
 	Vertical	ვერტიკალური
@@ -729,7 +729,7 @@
 	Alt:	ალტ.:
 	W:	სიგ.:
 	H:	სიმ.:
-	Reset	გადაყენება
+	Reset	ჩამოყრა
 	Reset Crop	ჩამოჭრის გაუქმება
 	Draw Ink	მელნით ხატვა
 	Erase Ink	მელნის წაშლა
@@ -784,7 +784,7 @@
 	General	ზოგადი
 	Insert Shapes	ფიგურების ჩასმა
 	Line and Page Breaks	სტრიქონისა და გვერდის გამყოფები
-	Line Spacing	ინტერვალი
+	Line Spacing	სტრიქონთა დაშორება
 	Text Effects	ტექსტის ეფექტები
 	Conversions	გარდაქმნები
 	Structures	სტრუქტურები
@@ -933,7 +933,7 @@
 	All	ყველა
 	Decimal	ათწილადი
 	Bar	ზოლი
-	Leader	შემავსებელი
+	Leader	მიმთითებელი
 	Set	დაყენება
 	Page Border	გვერდის ჩარჩო
 	Apply to:	გამოყენება:
@@ -944,7 +944,7 @@
 	3-D	3D
 	Custom	მორგებული
 	Style:	სტილი:
-	Dot dash	შტრიხ-პუნქტირი
+	Dot dash	წერტილ-ტირე
 	Triple	სამმაგი
 	Between	შორის
 	Box	ჩარჩო
@@ -963,9 +963,9 @@
 	First line	პირველი სტრიქონი
 	Font color	შრიფტის ფერი
 	Highlight	მარკერი
-	Justified	სიგანეზე
+	Justified	ორმხრივი სწორება
 	Left indent	მარცხენა შეწევა
-	Line spacing	ინტერვალი
+	Line spacing	სტრიქონთა დაშორება
 	Outline level	სტრუქტურის დონე
 	Raised/lowered	აწეული/დაწეული
 	Right indent	მარჯვენა შეწევა
@@ -994,7 +994,7 @@
 	(All)	(ყველა)
 	(none)	(არცერთი)
 	(normal text)	(ჩვეულებრივი ტექსტი)
-	1/4 Em Space	1/4 Em ინტერვალი
+	1/4 Em Space	1/4 გრძელი შორისი
 	A mail merge field	წერილების შერწყმის ველი
 	A numbered sequence (figures, tables…)	დანომრილი თანმიმდევრობა (ილუსტრაციები, ცხრილები…)
 	A table of contents	სარჩევი
@@ -1012,18 +1012,18 @@
 	Ellipsis	მრავალწერტილი
 	Em Dash	გრძელი ტირე
 	En Dash	მოკლე ტირე
-	Em Space	Em სივრცე
-	En Space	En სივრცე
+	Em Space	გრძელი შორისი
+	En Space	მოკლე შორისი
 	Equal column width	სვეტების თანაბარი სიგანე
 	Field Codes	ველის კოდები
 	Field code:	ველის კოდი:
 	Field codes:	ველის კოდები:
-	Field name:	ველის სახელი:
-	Field names:	ველების სახელები:
+	Field name:	ველის დასახელება:
+	Field names:	ველების დასახელებები:
 	Field properties	ველის თვისებები
 	Format:	ფორმატი:
 	Hide Codes	კოდების დამალვა
-	Index and Tables	საძიებლები და ცხრილები
+	Index and Tables	ინდექსები და ცხრილები
 	Line between	ხაზი სვეტებს შორის
 	Links and References	ბმულები და მითითებები
 	Mail Merge	წერილების შერწყმა
@@ -1032,10 +1032,10 @@
 	Paragraph Mark	აბზაცის ნიშანი
 	Pick a field from the list	აირჩიეთ ველი სიიდან
 	Preserve formatting during updates	განახლებისას ფორმატირების შენარჩუნება
-	Presets	მზა ვარიანტები
+	Presets	პრესეტები
 	Recently used symbols:	ბოლოს გამოყენებული სიმბოლოები:
 	Registered	რეგისტრირებული
-	Section Mark	პარაგრაფის ნიშანი
+	Section Mark	სექციის ნიშანი
 	Sequence name:	თანმიმდევრობის სახელი:
 	Shortcut key:	კლავიშების კომბინაცია:
 	Single Closing Quote	ერთმაგი დამხურავი ბრჭყალი
@@ -1063,7 +1063,7 @@
 	This point forward	აქედან მოყოლებული
 	The date it is today	დღევანდელი თარიღი
 	Trademark	სავაჭრო ნიშანი
-	Type the field's name and its switches, for example PAGE \\* roman.	აკრიფეთ ველის სახელი და მისი პარამეტრები, მაგალითად PAGE \\* roman.
+	Type the field's name and its switches, for example PAGE \\* roman.	აკრიფეთ ველის დასახელება და მისი პარამეტრები, მაგალითად PAGE \\* roman.
 	Width and spacing	სიგანე და ინტერვალი
 	from Unicode (hex)	Unicode-დან (თექვსმეტობითი)
 	A free, open-source word processor written from scratch in Rust.\nPart of the Crafting Apps from the ArtCraft team.	უფასო, ღია კოდის ტექსტური რედაქტორი, თავიდან დაწერილი Rust-ზე.\nArtCraft-ის გუნდის Crafting Apps-ის ნაწილი.
@@ -1078,7 +1078,7 @@
 	Apply Asian line-breaking rules (kinsoku)	აზიური გადატანის წესების გამოყენება (kinsoku)
 	Compress punctuation at the start of a line	სტრიქონის დასაწყისში პუნქტუაციის შეკუმშვა
 	Indents and Spacing	შეწევა და ინტერვალი
-	Line breaking	სტრიქონების გადატანა
+	Line breaking	სტრიქონების წყვეტა
 	Borders and Shading	ჩარჩოები და ფონი
 	Tabs…	ტაბულაცია…
 	Bottom:	ქვემოთ:
@@ -1104,7 +1104,7 @@
 	Join us on Discord: discord.gg/artcraft	შემოგვიერთდით Discord-ზე: discord.gg/artcraft
 	Keep lines together	სტრიქონების ერთად დატოვება
 	Keep with next	შემდეგთან ერთად
-	Line spacing:	ინტერვალი:
+	Line spacing:	სტრიქონთა დაშორება:
 	Lines	სტრიქონები
 	Many pages	ბევრი გვერდი
 	Match case	რეგისტრის გათვალისწინება
@@ -1167,8 +1167,8 @@
 	Add at least one field.	დაამატეთ მინიმუმ ერთი ველი.
 	Add Field	ველის დამატება
 	Every field needs a name.	ყველა ველს სახელი სჭირდება.
-	Field name	ველის სახელი
-	Field names must be different.	ველების სახელები უნდა განსხვავდებოდეს.
+	Field name	ველის დასახელება
+	Field names must be different.	ველების დასახელებები უნდა განსხვავდებოდეს.
 	Fields:	ველები:
 	Field:	ველი:
 	Find:	ძებნა:
@@ -1231,7 +1231,7 @@
 	Total	სულ
 	AutoSave failed: {error}. Save the document to turn AutoSave back on.	ავტოშენახვა ვერ მოხერხდა: {error}. ავტოშენახვის ხელახლა ჩასართავად შეინახეთ დოკუმენტი.
 	Click a border between two cells to merge them. Esc stops.	ორი უჯრის შესაერთებლად დააწკაპუნეთ მათ შორის საზღვარზე. Esc — შეწყვეტა.
-	Drag a rectangle to draw a table, or a line across cells to split them. Esc stops.	ცხრილის დასახატად გაავლეთ მართკუთხედი, უჯრების დასაყოფად კი — ხაზი მათზე. Esc — შეწყვეტა.
+	Drag a rectangle to draw a table, or a line across cells to split them. Esc stops.	ცხრილის დასახატად გაავლეთ მართკუთხედი, უჯრების გასაყოფად კი — ხაზი მათზე. Esc — შეწყვეტა.
 	AutoSave isn't available in the browser: it can't write to your files. Save downloads a copy.	ბრაუზერში ავტოშენახვა მიუწვდომელია: ის თქვენს ფაილებში ვერ წერს. შენახვა ასლს ჩამოტვირთავს.
 	AutoSave only keeps .docx, .odt and .rtf files; {name} can't keep all formatting. Save as .docx to turn on AutoSave.	ავტოშენახვა მხოლოდ .docx, .odt და .rtf ფაილებს ინახავს; {name} მთელ ფორმატირებას ვერ შეინარჩუნებს. ავტოშენახვის ჩასართავად შეინახეთ .docx-ად.
 	Save the document to turn on AutoSave	ავტოშენახვის ჩასართავად შეინახეთ დოკუმენტი
@@ -1252,7 +1252,7 @@
 	Not available right now	ახლა მიუწვდომელია
 	Reverse the order	რიგის შებრუნება
 	Standard Colors	სტანდარტული ფერები
-	Status Bar	მდგომარეობის ზოლი
+	Status Bar	სტატუსის ზოლი
 	That format doesn't keep everything, so the document is still open. Save it as a Word document (.docx) to go on.	ეს ფორმატი ყველაფერს ვერ ინახავს, ამიტომ დოკუმენტი ისევ ღიაა. გასაგრძელებლად შეინახეთ Word დოკუმენტად (.docx).
 	Undo {action}	დაბრუნება: {action}
 	{group} settings	{group}: პარამეტრები
@@ -1345,6 +1345,6 @@
 	TOC 8	სარჩევი 8
 	TOC 9	სარჩევი 9
 	Default Paragraph Font	აბზაცის ნაგულისხმევი შრიფტი
-	Emphasis	აქცენტი
+	Emphasis	აქცენტირება
 	Strong	მუქი
 	Hyperlink	ბმული
