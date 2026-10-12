@@ -386,12 +386,12 @@ fn georgian_covers_the_entire_existing_interface_catalog() {
 
 #[test]
 fn georgian_translations_have_no_sentence_capitals() {
-    // Georgian has no capitals in running text: Mtavruli (U+1C90–U+1CBF) appears only where a
-    // label shows the all-caps result itself.
+    // Georgian has no capitals in running text: no Mtavruli (U+1C90–U+1CBF) anywhere, not even
+    // UPPERCASE in Change Case (the reviewer chose the plain word მთავრული).
     let (entries, _) = parse_entries(lang("ka").0.source);
     let mtavruli = |c: char| ('\u{1C90}'..='\u{1CBF}').contains(&c);
     let caps: Vec<_> = entries.iter().filter(|e| e.translation.chars().any(mtavruli)).map(|e| e.source.as_str()).collect();
-    assert_eq!(caps, ["UPPERCASE"]);
+    assert!(caps.is_empty(), "{caps:?}");
 }
 
 #[test]
