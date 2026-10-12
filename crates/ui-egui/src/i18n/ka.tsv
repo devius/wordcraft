@@ -109,8 +109,8 @@
 	Clipboard	გაცვლის ბუფერი
 	Clipboard Pane	გაცვლის ბუფერის პანელი
 	Clipboard Items	გაცვლის ბუფერის ელემენტები
-	Paste Clipboard Item	ბუფერის ელემენტის ჩაწებება
-	Paste All	ყველას ჩაწებება
+	Paste Clipboard Item	ბუფერის ელემენტის ჩასმა
+	Paste All	ყველას ჩასმა
 	Delete Clipboard Item	ბუფერის ელემენტის წაშლა
 	Clear All	ყველას გასუფთავება
 	Close	დახურვა
@@ -167,7 +167,7 @@
 	Delete Style	სტილის წაშლა
 	Delete Table	ცხრილის წაშლა
 	Design	დიზაინი
-	Diamond	რომბი
+	Diamond	ბრილიანტი
 	Dictate	კარნახი
 	Different First Page	განსხვავებული პირველი გვერდი
 	Different Odd & Even Pages	განსხვავებული ლუწი და კენტი გვერდები
@@ -407,11 +407,11 @@
 	Paragraph Settings	აბზაცის პარამეტრები
 	Paragraph Spacing	აბზაცთა ინტერვალი
 	Paragraph Up	აბზაცით ზემოთ
-	Paste	ჩაწებება
-	Paste (⌘V)	ჩაწებება (⌘V)
-	Paste Formatting	ფორმატის ჩაწებება
-	Paste: Keep Text Only	ჩაწებება: მხოლოდ ტექსტი
-	Paste: Merge Formatting	ჩაწებება: ფორმატირების შერწყმა
+	Paste	ჩასმა
+	Paste (⌘V)	ჩასმა (⌘V)
+	Paste Formatting	ფორმატის ჩასმა
+	Paste: Keep Text Only	ჩასმა: მხოლოდ ტექსტი
+	Paste: Merge Formatting	ჩასმა: ფორმატირების შერწყმა
 	Pen	კალამი
 	Pencil	ფანქარი
 	Picture Border	სურათის ჩარჩო
@@ -447,7 +447,7 @@
 	Recover Unsaved Documents	შეუნახავი დოკუმენტების აღდგენა
 	Rectangle	მართკუთხედი
 	Reduce Hanging Indent	გამოწეული სტრიქონის შემცირება
-	References	წყაროები
+	References	ცნობარები
 	Reject	უარყოფა
 	Reject All Changes	ყველა ცვლილების უარყოფა
 	Reject Change	ცვლილების უარყოფა
@@ -548,9 +548,9 @@
 	Spelling & Grammar	მართლწერა და გრამატიკა
 	Spelling &\nGrammar	მართლწერა და\nგრამატიკა
 	Spelling Suggestions	მართლწერის შეთავაზებები
-	Split	გაყოფა
-	Split Cells	უჯრების გაყოფა
-	Split Table	ცხრილის გაყოფა
+	Split	დაყოფა
+	Split Cells	უჯრების დაყოფა
+	Split Table	ცხრილის დაყოფა
 	Spreadsheet Table	ელცხრილი
 	Star	ვარსკვლავი
 	Start Mail Merge	წერილების შერწყმის დაწყება
@@ -605,7 +605,7 @@
 	Total Row	ჯამის სტრიქონი
 	Track Changes	ცვლილებების ჩაწერა
 	Track Changes Options	ცვლილებების ჩაწერის პარამეტრები
-	Tracking	ჩაწერა
+	Tracking	თვალის დევნება
 	Translate	თარგმნა
 	Transparency	გამჭვირვალობა
 	Triangle	სამკუთხედი
@@ -692,8 +692,8 @@
 	Style Inspector	სტილების ინსპექტორი
 	Inspect Styles at Selection	მონიშნულის სტილების დათვალიერება
 	Clear Formatting Level	ფორმატირების დონის გასუფთავება
-	Paste Special	სპეციალური ჩაწებება
-	Paste Special…	სპეციალური ჩაწებება…
+	Paste Special	სპეციალური ჩასმა
+	Paste Special…	სპეციალური ჩასმა…
 	Formatted Text	ფორმატირებული ტექსტი
 	Rich Text Format (RTF)	Rich Text Format (RTF)
 	HTML Format	HTML ფორმატი
@@ -717,7 +717,7 @@
 	Company	კომპანია
 	Address	მისამართი
 	City	ქალაქი
-	State	რეგიონი
+	State	შტატი
 	Country	ქვეყანა
 	Type a New List…	ახალი სიის აკრეფა…
 	Use an Existing List…	არსებული სიის გამოყენება…
@@ -847,7 +847,7 @@
 	Reopen	ხელახლა გახსნა
 	Right Margin	მარჯვენა არშია
 	AutoSave saves every change to the file (needs a saved document)	ავტოშენახვა ყოველ ცვლილებას ფაილში ინახავს (დოკუმენტი ჯერ უნდა იყოს შენახული)
-	Click an item to paste it.	ჩასაწებებლად დააწკაპუნეთ ელემენტზე.
+	Click an item to paste it.	ჩასასმელად დააწკაპუნეთ ელემენტზე.
 	Nothing collected yet. Items you copy or cut appear here.	ჯერ არაფერია შეგროვებული. აქ გამოჩნდება ის, რასაც დააკოპირებთ ან ამოჭრით.
 	(picture or object)	(სურათი ან ობიექტი)
 	Create an interactive outline of your document.\n\nIt's a great way to keep track of where you are or quickly move your content around.\n\nTo get started, go to the Home tab and apply Heading styles to the headings in your document.	შექმენით დოკუმენტის ინტერაქტიული სტრუქტურა.\n\nასე ყოველთვის გეცოდინებათ, სად ხართ, და შიგთავსს სწრაფად გადააადგილებთ.\n\nდასაწყებად გახსენით მთავარი ჩანართი და დოკუმენტის სათაურებს მიანიჭეთ სათაურის სტილები.
@@ -931,7 +931,7 @@
 	Default tab stops:	ნაგულისხმევი ტაბულაცია:
 	Tab stops to be cleared:	წასაშლელი ტაბულაციები:
 	All	ყველა
-	Decimal	ათწილადი
+	Decimal	ათწილადის მძიმეზე
 	Bar	ზოლი
 	Leader	მიმთითებელი
 	Set	დაყენება
@@ -940,7 +940,7 @@
 	Whole document	მთელი დოკუმენტი
 	This section	ეს სექცია
 	Fill	შევსება
-	Setting:	ტიპი:
+	Setting:	პარამეტრი:
 	3-D	3D
 	Custom	მორგებული
 	Style:	სტილი:
@@ -994,7 +994,7 @@
 	(All)	(ყველა)
 	(none)	(არცერთი)
 	(normal text)	(ჩვეულებრივი ტექსტი)
-	1/4 Em Space	1/4 გრძელი შორისი
+	1/4 Em Space	მეოთხედი შორისი
 	A mail merge field	წერილების შერწყმის ველი
 	A numbered sequence (figures, tables…)	დანომრილი თანმიმდევრობა (ილუსტრაციები, ცხრილები…)
 	A table of contents	სარჩევი
@@ -1138,13 +1138,13 @@
 	Right-to-left	მარჯვნიდან მარცხნივ
 	Left-to-right	მარცხნიდან მარჯვნივ
 	Your changes will be lost if you don't save them.	თუ ცვლილებებს არ შეინახავთ, ისინი დაიკარგება.
-	Paste as:	ჩაწებება როგორც:
+	Paste as:	ჩასმა როგორც:
 	The clipboard is empty.	გაცვლის ბუფერი ცარიელია.
 	Result	შედეგი
 	Keeps the fonts and formatting of the copied text.	ინარჩუნებს დაკოპირებული ტექსტის შრიფტებსა და ფორმატირებას.
 	Reads the clipboard's rich text and keeps its formatting.	კითხულობს ბუფერის ფორმატირებულ ტექსტს (RTF) და ინარჩუნებს მის ფორმატირებას.
 	Reads the clipboard's web content and keeps its formatting.	კითხულობს ბუფერის ვებ-შიგთავსს და ინარჩუნებს მის ფორმატირებას.
-	Drops all formatting and pastes plain text.	აშორებს მთელ ფორმატირებას და აწებებს უბრალო ტექსტს.
+	Drops all formatting and pastes plain text.	აშორებს მთელ ფორმატირებას და სვამს უბრალო ტექსტს.
 	Reading Highlight	წაკითხვისას გამოკვეთა
 	Apply formatting to:	ფორმატირების გამოყენება:
 	Whole Table	მთელი ცხრილი
@@ -1231,7 +1231,7 @@
 	Total	სულ
 	AutoSave failed: {error}. Save the document to turn AutoSave back on.	ავტოშენახვა ვერ მოხერხდა: {error}. ავტოშენახვის ხელახლა ჩასართავად შეინახეთ დოკუმენტი.
 	Click a border between two cells to merge them. Esc stops.	ორი უჯრის შესაერთებლად დააწკაპუნეთ მათ შორის საზღვარზე. Esc — შეწყვეტა.
-	Drag a rectangle to draw a table, or a line across cells to split them. Esc stops.	ცხრილის დასახატად გაავლეთ მართკუთხედი, უჯრების გასაყოფად კი — ხაზი მათზე. Esc — შეწყვეტა.
+	Drag a rectangle to draw a table, or a line across cells to split them. Esc stops.	ცხრილის დასახატად გაავლეთ მართკუთხედი, უჯრების დასაყოფად კი — ხაზი მათზე. Esc — შეწყვეტა.
 	AutoSave isn't available in the browser: it can't write to your files. Save downloads a copy.	ბრაუზერში ავტოშენახვა მიუწვდომელია: ის თქვენს ფაილებში ვერ წერს. შენახვა ასლს ჩამოტვირთავს.
 	AutoSave only keeps .docx, .odt and .rtf files; {name} can't keep all formatting. Save as .docx to turn on AutoSave.	ავტოშენახვა მხოლოდ .docx, .odt და .rtf ფაილებს ინახავს; {name} მთელ ფორმატირებას ვერ შეინარჩუნებს. ავტოშენახვის ჩასართავად შეინახეთ .docx-ად.
 	Save the document to turn on AutoSave	ავტოშენახვის ჩასართავად შეინახეთ დოკუმენტი
@@ -1279,7 +1279,7 @@
 	Insert New Equation	ახალი განტოლების ჩასმა
 	Built-In	ჩაშენებული
 	Fraction	წილადი
-	Script	ინდექსი
+	Script	სკრიპტი
 	Radical	ფესვი
 	Integral	ინტეგრალი
 	Large\nOperator	დიდი\nოპერატორი

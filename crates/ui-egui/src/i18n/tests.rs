@@ -372,7 +372,7 @@ fn georgian_covers_the_entire_existing_interface_catalog() {
     assert_eq!(ka.name(), "ქართული");
     assert_eq!(tr(ka, "Home"), "მთავარი");
     assert_eq!(tr(ka, "Save"), "შენახვა");
-    assert_eq!(tr(ka, "Paste"), "ჩაწებება");
+    assert_eq!(tr(ka, "Paste"), "ჩასმა");
     assert_eq!(tr(ka, "unknown future label"), "unknown future label");
     // Georgian nouns stay singular after a numeral, so "noun: n" reads right for every count.
     for count in [0, 1, 2, 5, 11, 21, 100] {
