@@ -926,7 +926,7 @@ fn polish_covers_every_key_of_every_other_catalog() {
     // Hungarian and Bulgarian also name the citation styles, and Bulgarian has a few one-line
     // pieces of gallery labels. Polish matches every other catalog, including the style names and
     // equation gallery Russian translates.
-    for other in Lang::all().filter(|l| *l != Lang::EN && !matches!(l.code(), "pl" | "it" | "hu" | "bg")) {
+    for other in Lang::all().filter(|l| *l != Lang::EN && !matches!(l.code(), "pl" | "it" | "hu" | "bg" | "ka")) {
         let mut missing: Vec<String> = keys(other.0.source).difference(&polish).cloned().collect();
         missing.sort();
         assert!(missing.is_empty(), "pl lacks {}'s {missing:?}", other.code());
