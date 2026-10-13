@@ -62,7 +62,7 @@ Applied when a word is finished by a space, punctuation **or Enter** (`enter_fin
 
 - First letter of a sentence (paragraph or list item start, after `. ! ?`) is capitalised; not
   after abbreviations (`e.g.`, `Dr.`, …) or initials (`J.`), and not for mixed-case words
-  (`iPhone`) or single-letter labels (`a.`). `teh`→`the`, `i`→`I`, `(c)`→`©`, `(tm)`→`™`,
+  (`iPhone`), single-letter labels (`a.`) or Georgian, which has no sentence capitals. `teh`→`the`, `i`→`I`, `(c)`→`©`, `(tm)`→`™`,
   `wait...`→`wait…`, smart quotes (`autocorrect_as_you_type`).
 - Correct TWo INitial CApitals: a finished word of three or more letters with two capitals and
   the rest lowercase loses its second capital (`WOrd`→`Word`, `TEh`→`The`); not the exceptions
@@ -168,6 +168,7 @@ Word.
 
 | Date | Change | Summary |
 |---|---|---|
+| 2026-10-13 | minor | AutoCorrect: Georgian sentences aren't capitalised (Mtavruli is only for all-caps text) |
 | 2026-10-12 | trivial | Track Changes: Accept All after a tracked delete from a paragraph end keeps the next paragraph; Reject All after typing into an empty paragraph keeps it (#864) |
 | 2026-10-12 | minor | AutoCorrect: Correct TWo INitial CApitals, accidental cAPS LOCK, capitalize first letter of table cells (#544) |
 | 2026-10-11 | minor | Text direction: right-to-left letters typed into an empty paragraph make it right-to-left; existing paragraphs keep theirs (#713) |
