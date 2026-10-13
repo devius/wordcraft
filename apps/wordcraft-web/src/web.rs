@@ -17,6 +17,11 @@ const LOADING_ID: &str = "wordcraft_loading";
 
 pub fn start() {
     eframe::WebLogger::init(log::LevelFilter::Info).ok();
+    // `?lang=uk` in the address comes before the browser's languages, as `WORDCRAFT_LANGUAGE`
+    // does on the desktop; a language chosen in Options still wins.
+    if let Some(lang) = query_param("lang") {
+        wordcraft_ui_egui::i18n::set_system_override(&lang);
+    }
     wasm_bindgen_futures::spawn_local(async {
         let Some(document) = web_sys::window().and_then(|w| w.document()) else {
             log::error!("no document");
@@ -79,6 +84,11 @@ pub fn start() {
 
 fn query() -> String {
     web_sys::window().and_then(|w| w.location().search().ok()).unwrap_or_default()
+}
+
+/// The value of `name=` in the address's query, if given.
+fn query_param(name: &str) -> Option<String> {
+    query().trim_start_matches('?').split('&').find_map(|kv| kv.strip_prefix(name)?.strip_prefix('=').map(str::to_string)).filter(|v| !v.is_empty())
 }
 
 /// Wraps the app to read dropped files asynchronously (browsers can't read them synchronously)
