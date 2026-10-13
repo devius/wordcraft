@@ -50,8 +50,8 @@ string against one glossary shared by the Craft apps. Product, format and techno
 | Source | Georgian |
 |---|---|
 | File / Home / Insert / Draw / Design | ფაილი / მთავარი / ჩასმა / ხატვა / დიზაინი |
-| Layout / References / Mailings / Review / View | განლაგება / ცნობარები / დაგზავნა / რეცენზირება / ჩვენება |
-| New / Open / Save / Save As / Print | შექმნა / გახსნა / შენახვა / შენახვა სხვა სახელით / ბეჭდვა |
+| Layout / References / Mailings / Review / View | განლაგება / ცნობარები / დაგზავნა / განხილვა / ჩვენება |
+| New / Open / Save / Save As / Print | ახალი / გახსნა / შენახვა / შენახვა სხვა სახელით / დაბეჭდვა |
 | Undo / Redo / Repeat | დაბრუნება / ხელახლა შესრულება / გამეორება |
 | Cut / Copy / Paste / Paste Special | ამოჭრა / კოპირება / ჩასმა / სპეციალური ჩასმა |
 | Find / Replace / Select | ძებნა / ჩანაცვლება / მონიშვნა |
