@@ -39,7 +39,7 @@ string against one glossary shared by the Craft apps. Product, format and techno
 ## Conventions
 
 - Commands are verbal nouns (masdar): შენახვა, გახსნა, წაშლა, not imperatives. Messages and hints
-  address the user politely in the plural (`აირჩიეთ`, `დააწკაპუნეთ`).
+  address the user politely in the plural (`აირჩიეთ`, `დაწკაპეთ`).
 - Ribbon labels keep their `\n` break at a natural word boundary; labels that open a dialog keep
   their `…`. Placeholders are never inflected: they go after a colon or in parentheses
   (`Undo {action}` → `დაბრუნება: {action}`).
@@ -51,7 +51,7 @@ string against one glossary shared by the Craft apps. Product, format and techno
 |---|---|
 | File / Home / Insert / Draw / Design | ფაილი / მთავარი / ჩასმა / ხატვა / დიზაინი |
 | Layout / References / Mailings / Review / View | განლაგება / ცნობარები / დაგზავნა / განხილვა / ჩვენება |
-| New / Open / Save / Save As / Print | ახალი / გახსნა / შენახვა / შენახვა სხვა სახელით / დაბეჭდვა |
+| New / Open / Save / Save As / Print | ახალი / გახსნა / შენახვა / შენახვა როგორც / დაბეჭდვა |
 | Undo / Redo / Repeat | დაბრუნება / ხელახლა შესრულება / გამეორება |
 | Cut / Copy / Paste / Paste Special | ამოჭრა / კოპირება / ჩასმა / სპეციალური ჩასმა |
 | Find / Replace / Select | ძებნა / ჩანაცვლება / მონიშვნა |

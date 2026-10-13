@@ -364,7 +364,7 @@
 	No Color	ფერის გარეშე
 	No Markup	მარკირების გარეშე
 	No Paragraph Space	აბზაცთაშორისი ინტერვალის გარეშე
-	Nonbreaking Hyphen	განუყოფელი დეფისი
+	Nonbreaking Hyphen	უწყვეტი დეფისი
 	Nonbreaking Space	უწყვეტი შორისი
 	None	არცერთი
 	Normal  1" all	ჩვეულებრივი  1" ყოველ მხარეს
@@ -491,7 +491,7 @@
 	Ruler	სახაზავი
 	Rules	წესები
 	Save	შენახვა
-	Save As	შენახვა სხვა სახელით
+	Save As	შენახვა როგორც
 	Save as Template	შაბლონად შენახვა
 	Section Breaks	სექციის გამყოფები
 	Section Properties	სექციის თვისებები
@@ -848,7 +848,7 @@
 	Reopen	ხელახლა გახსნა
 	Right Margin	მარჯვენა არშია
 	AutoSave saves every change to the file (needs a saved document)	ავტოშენახვა ყოველ ცვლილებას ფაილში ინახავს (დოკუმენტი ჯერ უნდა იყოს შენახული)
-	Click an item to paste it.	ჩასასმელად დააწკაპუნეთ ელემენტზე.
+	Click an item to paste it.	ჩასასმელად დაწკაპეთ ელემენტზე.
 	Nothing collected yet. Items you copy or cut appear here.	ჯერ არაფერია შეგროვებული. აქ გამოჩნდება ის, რასაც დააკოპირებთ ან ამოჭრით.
 	(picture or object)	(სურათი ან ობიექტი)
 	Create an interactive outline of your document.\n\nIt's a great way to keep track of where you are or quickly move your content around.\n\nTo get started, go to the Home tab and apply Heading styles to the headings in your document.	შექმენით დოკუმენტის ინტერაქტიული სტრუქტურა.\n\nასე ყოველთვის გეცოდინებათ, სად ხართ, და შიგთავსს სწრაფად გადააადგილებთ.\n\nდასაწყებად გახსენით მთავარი ჩანართი და დოკუმენტის სათაურებს მიანიჭეთ სათაურის სტილები.
@@ -1231,7 +1231,7 @@
 	West	დასავლეთი
 	Total	სულ
 	AutoSave failed: {error}. Save the document to turn AutoSave back on.	ავტოშენახვა ვერ მოხერხდა: {error}. ავტოშენახვის ხელახლა ჩასართავად შეინახეთ დოკუმენტი.
-	Click a border between two cells to merge them. Esc stops.	ორი უჯრის შესაერთებლად დააწკაპუნეთ მათ შორის საზღვარზე. Esc — შეწყვეტა.
+	Click a border between two cells to merge them. Esc stops.	ორი უჯრის შესაერთებლად დაწკაპეთ მათ შორის საზღვარზე. Esc — შეწყვეტა.
 	Drag a rectangle to draw a table, or a line across cells to split them. Esc stops.	ცხრილის დასახატად გაავლეთ მართკუთხედი, უჯრების დასაყოფად კი — ხაზი მათზე. Esc — შეწყვეტა.
 	AutoSave isn't available in the browser: it can't write to your files. Save downloads a copy.	ბრაუზერში ავტოშენახვა მიუწვდომელია: ის თქვენს ფაილებში ვერ წერს. შენახვა ასლს ჩამოტვირთავს.
 	AutoSave only keeps .docx, .odt and .rtf files; {name} can't keep all formatting. Save as .docx to turn on AutoSave.	ავტოშენახვა მხოლოდ .docx, .odt და .rtf ფაილებს ინახავს; {name} მთელ ფორმატირებას ვერ შეინარჩუნებს. ავტოშენახვის ჩასართავად შეინახეთ .docx-ად.
@@ -1337,7 +1337,7 @@
 	AaBbCcDd	AaBbCc აბგდ
 	Annotation Reference	კომენტარის მითითება
 	Annotation Subject	კომენტარის თემა
-	Annotation Text	კომენტარის ტექსტი
+	Annotation Text	შენიშვნის ტექსტი
 	Body text in a short paragraph to show spacing.	მოკლე აბზაცის ძირითადი ტექსტი ინტერვალის საჩვენებლად.
 	Book Title	წიგნის სათაური
 	Category	კატეგორია
@@ -1384,7 +1384,7 @@ preview	Title	სათაური
 	Track\nChanges	ცვლილებების\nჩაწერა
 	Track\nChanges ✓	ცვლილებების\nჩაწერა ✓
 	tOGGLE cASE	რეგისტრის შებრუნება
-	Change to Level 1	დონე 1-ზე გადატანა
+	Change to Level 1	პირველ დონეზე გადატანა
 	Change to Level 2	დონე 2-ზე გადატანა
 	Change to Level 3	დონე 3-ზე გადატანა
 	Change to Level 4	დონე 4-ზე გადატანა
@@ -1399,7 +1399,7 @@ preview	Title	სათაური
 	SAMPLE	ნიმუში
 	URGENT	სასწრაფო
 	Letter   8.50" × 11.00"	Letter   8,50" × 11,00"
-	Legal   8.50" × 14.00"	იურიდიული ინფორმაცია   8,50" × 14,00"
+	Legal   8.50" × 14.00"	Legal   8,50" × 14,00"
 	Executive   7.25" × 10.50"	Executive   7,25" × 10,50"
 	Statement   5.50" × 8.50"	Statement   5,50" × 8,50"
 	Tabloid   11.00" × 17.00"	Tabloid   11,00" × 17,00"
@@ -1480,7 +1480,7 @@ preview	Title	სათაური
 	Subscripts and Superscripts	ქვედა და ზედა ინდექსები
 	Summations	ჯამები
 	Trigonometric Functions	ტრიგონომეტრიული ფუნქციები
-	Unions and Intersections	გაერთიანებები და თანაკვეთები
+	Unions and Intersections	გაერთიანებები და გადაკვეთები
 	1×2 Empty Matrix	ცარიელი მატრიცა 1×2
 	1×3 Empty Matrix	ცარიელი მატრიცა 1×3
 	2×1 Empty Matrix	ცარიელი მატრიცა 2×1
@@ -1576,10 +1576,10 @@ preview	Title	სათაური
 	Hypotenuse	ჰიპოტენუზა
 	Integral with Limits	ინტეგრალი საზღვრებით
 	Integral with Stacked Limits	ინტეგრალი დაწყობილი საზღვრებით
-	Intersection	თანაკვეთა
-	Intersection with Limits	თანაკვეთა საზღვრებით
-	Intersection with Lower Limit	თანაკვეთა ქვედა საზღვრით
-	Intersection with Subscript-Superscript Limits	თანაკვეთა ინდექსური საზღვრებით
+	Intersection	გადაკვეთა
+	Intersection with Limits	გადაკვეთა საზღვრებით
+	Intersection with Lower Limit	გადაკვეთა ქვედა საზღვრით
+	Intersection with Subscript-Superscript Limits	გადაკვეთა ინდექსური საზღვრებით
 	Inverse Cosecant Function	შებრუნებული კოსეკანსის ფუნქცია
 	Inverse Cosine Function	შებრუნებული კოსინუსის ფუნქცია
 	Inverse Cotangent Function	შებრუნებული კოტანგენსის ფუნქცია
@@ -1682,7 +1682,7 @@ preview	Title	სათაური
 	Underbar	ქვედა ხაზი
 	Underbrace	ქვედა ფიგურული ფრჩხილი
 	Union	გაერთიანება
-	Union of intersections	თანაკვეთების გაერთიანება
+	Union of intersections	გადაკვეთების გაერთიანება
 	Union with Limits	გაერთიანება საზღვრებით
 	Union with Lower Limit	გაერთიანება ქვედა საზღვრით
 	Union with Plus	გაერთიანება პლუსით
@@ -1706,10 +1706,10 @@ preview	Title	სათაური
 	✓ None	✓ არცერთი
 	Deleted	წაშლილი
 	Copyright Sign	საავტორო უფლების ნიშანი
-	Demote	დაქვეითება
+	Demote	დონით დაწევა
 	Edit Field Code	ველის კოდის რედაქტირება
 	Edit Field…	ველის რედაქტირება…
-	Go Back	უკან გადასვლა
+	Go Back	უკან
 	Insert Date Field	თარიღის ველის ჩასმა
 	Insert Page Field	გვერდის ველის ჩასმა
 	Insert Time Field	დროის ველის ჩასმა
@@ -1773,7 +1773,7 @@ preview	Title	სათაური
 	Distribute letters	ასოების თანაბრად განაწილება
 	Distribute spacing	ინტერვალის თანაბრად განაწილება
 	Offset (pt):	წანაცვლება (პტ):
-	Phonetic Guide	ფონეტიკური მინიშნება
+	Phonetic Guide	ფონეტიკური გზამკვლევი
 	Right (vertical)	მარჯვნივ (ვერტიკალური)
 	Ruby text:	ფონეტიკური ტექსტი:
 	Size (pt):	ზომა (პტ):
@@ -1804,7 +1804,7 @@ preview	Title	სათაური
 	Blue:	ლურჯი:
 	Hue:	ფერის ტონი:
 	Sat:	გაჯერ.:
-	Lum:	სიღ.:
+	Lum:	სიკაშკ.:
 	Hex:	Hex:
 	Accessibility Pane	ხელმისაწვდომობის პანელი
 	Alt Text Pane	ალტერნატიული ტექსტის პანელი
@@ -1936,7 +1936,7 @@ preview	Title	სათაური
 	Periodical	პერიოდული გამოცემა
 	Position:	პოზიცია:
 	Publisher	გამომცემელი
-	Run-in	ერთ სტრიქონში
+	Run-in	ერთ აბზაცში
 	See	იხილეთ
 	Separator:	გამყოფი:
 	Show every bibliography field	ბიბლიოგრაფიის ყველა ველის ჩვენება
@@ -2002,7 +2002,7 @@ preview	Title	სათაური
 	Make WordCraft the default for Word documents…	WordCraft-ის დაყენება Word დოკუმენტების ნაგულისხმევ პროგრამად…
 	Opens .docx, .doc, .rtf and .odt files and Word templates with WordCraft from now on.	ამიერიდან .docx, .doc, .rtf და .odt ფაილები და Word შაბლონები WordCraft-ით გაიხსნება.
 	Opens Settings › Default apps, where you choose WordCraft for .docx and the other document types.	ხსნის Settings › Default apps-ს, სადაც .docx-ისა და დოკუმენტის სხვა ტიპებისთვის WordCraft-ს აირჩევთ.
-	To open Word documents with WordCraft by default: select one in Finder, choose File › Get Info, pick WordCraft under Open with, then click Change All.	Word დოკუმენტების WordCraft-ით ნაგულისხმევად გასახსნელად: Finder-ში მონიშნეთ ერთ-ერთი, აირჩიეთ File › Get Info, „Open with“-ში აირჩიეთ WordCraft და დააწკაპუნეთ Change All.
+	To open Word documents with WordCraft by default: select one in Finder, choose File › Get Info, pick WordCraft under Open with, then click Change All.	Word დოკუმენტების WordCraft-ით ნაგულისხმევად გასახსნელად: Finder-ში მონიშნეთ ერთ-ერთი, აირჩიეთ File › Get Info, „Open with“-ში აირჩიეთ WordCraft და დაწკაპეთ Change All.
 	WordCraft is now the default app for Word documents.	WordCraft ახლა Word დოკუმენტების ნაგულისხმევი პროგრამაა.
 	Templates	შაბლონები
 	Templates and Add-ins	შაბლონები და დანამატები
@@ -2129,8 +2129,8 @@ preview	Title	სათაური
 	Rotate all text 270°	მთელი ტექსტის 270°-ით შემობრუნება
 	Stacked	დასტად
 	Middle	შუა
-	Click the empty text box the text should continue in (Esc cancels)	დააწკაპუნეთ ცარიელ ტექსტურ ბლოკზე, სადაც ტექსტი უნდა გაგრძელდეს (Esc — გაუქმება)
-	Not linked: click a text box	არ არის დაკავშირებული: დააწკაპუნეთ ტექსტურ ბლოკზე
+	Click the empty text box the text should continue in (Esc cancels)	დაწკაპეთ ცარიელ ტექსტურ ბლოკზე, სადაც ტექსტი უნდა გაგრძელდეს (Esc — გაუქმება)
+	Not linked: click a text box	არ არის დაკავშირებული: დაწკაპეთ ტექსტურ ბლოკზე
 	Show KeyTips (Alt or F10)	კლავიშების მინიშნებების ჩვენება (Alt ან F10)
 	Location	მდებარეობა
 	Endnotes	დოკუმენტის სქოლიოები
@@ -2325,7 +2325,7 @@ preview	Title	სათაური
 	Chinese (Simplified)	ჩინური (გამარტივებული)
 	Chinese (Traditional)	ჩინური (ტრადიციული)
 	Column:	სვეტი:
-	Count by:	ბიჯი:
+	Count by:	დანომვრის ბიჯი:
 	Czech	ჩეხური
 	Danish	დანიური
 	Delivery address:	მიწოდების მისამართი:
@@ -2381,7 +2381,7 @@ preview	Title	სათაური
 	AutoSave writes your changes to the file a moment after you stop typing.	ავტოშენახვა ცვლილებებს ფაილში წერს აკრეფის შეწყვეტიდან ცოტა ხანში.
 	Centimeters	სანტიმეტრი
 	Check spelling as you type	მართლწერის შემოწმება აკრეფისას
-	Click to switch back to inserting	დააწკაპუნეთ ჩასმის რეჟიმზე დასაბრუნებლად
+	Click to switch back to inserting	დაწკაპეთ ჩასმის რეჟიმზე დასაბრუნებლად
 	Custom dictionary	მომხმარებლის ლექსიკონი
 	Formatting marks	ფორმატირების ნიშნები
 	Hidden text	დამალული ტექსტი
@@ -2480,7 +2480,7 @@ preview	Title	სათაური
 	Envelope #10   4.12" × 9.5"	კონვერტი #10   4,12" × 9,5"
 	Executive   7.25" × 10.5"	Executive   7,25" × 10,5"
 	Go to what:	რაზე გადავიდეს:
-	Legal   8.5" × 14"	იურიდიული ინფორმაცია   8,5" × 14"
+	Legal   8.5" × 14"	Legal   8,5" × 14"
 	Letter   8.5" × 11"	Letter   8,5" × 11"
 	Reading Mode	კითხვის რეჟიმი
 	Researcher needs an online service; WordCraft keeps your documents offline.	მკვლევარს ონლაინ სერვისი სჭირდება; WordCraft თქვენს დოკუმენტებს ოფლაინ ინახავს.
