@@ -460,6 +460,18 @@ fn cjk_catalogs_are_covered_by_the_embedded_interface_faces() {
 }
 
 #[test]
+fn interface_fonts_cover_georgian_when_a_georgian_face_is_available() {
+    // No bundled interface face has Georgian: the craft-fonts face or an installed one fills in.
+    let ctx = egui::Context::default();
+    ctx.set_fonts(crate::theme::font_definitions(false, false));
+    ctx.run_ui(Default::default(), |_| {}).textures_delta.clear();
+    let covered = ctx.fonts_mut(|f| f.has_glyphs(&egui::FontId::proportional(14.0), "ქართული"));
+    if wordcraft_fonts::georgian_ui_font().is_some() || wordcraft_fonts::system_georgian_ui_font().is_some() {
+        assert!(covered, "a Georgian face is available but the interface lacks Georgian");
+    }
+}
+
+#[test]
 fn only_cjk_languages_ask_for_an_installed_cjk_font() {
     // #241 follow-up: an English interface must not read a large system CJK font on startup.
     let cjk: Vec<&str> = Lang::all().filter(|l| l.uses_cjk()).map(Lang::code).collect();

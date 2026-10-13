@@ -120,6 +120,27 @@ pub fn system_cjk_ui_font(hans: bool, needed: &[char]) -> Option<SystemUiFont> {
     find_ui_font(&with_asset_data(crate::system_font_dirs()), &candidates(hans), needed, hans)
 }
 
+/// An installed Georgian font for the interface (none of the bundled faces has Georgian). These
+/// files are small (about 0.1–1 MB), unlike the CJK ones.
+pub fn system_georgian_ui_font() -> Option<SystemUiFont> {
+    let names: &[&str] = if cfg!(windows) {
+        &["sylfaen.ttf"]
+    } else if cfg!(target_os = "macos") {
+        &["SFGeorgian.ttf", "Supplemental/Arial Unicode.ttf"]
+    } else {
+        &[
+            "truetype/noto/NotoSansGeorgian-Regular.ttf",
+            "noto/NotoSansGeorgian-Regular.ttf",
+            "google-noto/NotoSansGeorgian-Regular.ttf",
+            "truetype/dejavu/DejaVuSans.ttf",
+            "dejavu/DejaVuSans.ttf",
+            "dejavu-sans-fonts/DejaVuSans.ttf",
+            "TTF/DejaVuSans.ttf",
+        ]
+    };
+    find_ui_font(&crate::system_font_dirs(), names, &['ა'], false)
+}
+
 /// `dirs` and, for each macOS font asset folder among them (`com_apple_MobileAsset_Font<N>`),
 /// the `AssetData` folder of every `<hash>.asset` in it: macOS ships PingFang there, e.g.
 /// `/System/Library/AssetsV2/com_apple_MobileAsset_Font7/<hash>.asset/AssetData/PingFang.ttc`

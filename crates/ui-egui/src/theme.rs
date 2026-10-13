@@ -418,7 +418,7 @@ pub fn font_definitions(prefer_hans: bool, system_cjk: bool) -> FontDefinitions 
     }
     fonts.families.insert(FontFamily::Name("medium".into()), vec!["InterMedium".into(), "Inter".into(), "SourceSans".into()]);
     fonts.families.insert(FontFamily::Name("semibold".into()), vec!["InterSemiBold".into(), "Inter".into(), "SourceSans".into()]);
-    let add_cjk = |fonts: &mut FontDefinitions, name: String, data: FontData| {
+    let add_fallback = |fonts: &mut FontDefinitions, name: String, data: FontData| {
         fonts.font_data.insert(name.clone(), Arc::new(data));
         for fam in [FontFamily::Proportional, FontFamily::Name("medium".into()), FontFamily::Name("semibold".into())] {
             if let Some(v) = fonts.families.get_mut(&fam) {
@@ -429,7 +429,7 @@ pub fn font_definitions(prefer_hans: bool, system_cjk: bool) -> FontDefinitions 
     let cjk = wordcraft_fonts::ui_cjk_fonts(prefer_hans);
     for f in &cjk {
         // The same static bytes the document fonts use: one copy in the binary.
-        add_cjk(&mut fonts, format!("{} {}", f.family, f.style), FontData::from_static(f.bytes));
+        add_fallback(&mut fonts, format!("{} {}", f.family, f.style), FontData::from_static(f.bytes));
     }
     // The embedded faces leave interface characters without a glyph (a build without craft-fonts,
     // without its Chinese face, #241, or with faces lacking catalog characters, #486): an
@@ -438,10 +438,22 @@ pub fn font_definitions(prefer_hans: bool, system_cjk: bool) -> FontDefinitions 
     if system_cjk && let Some(f) = system_cjk_font(prefer_hans) {
         let mut data = FontData::from_static(&f.bytes);
         data.index = f.index;
-        add_cjk(&mut fonts, format!("system {}", f.family), data);
+        add_fallback(&mut fonts, format!("system {}", f.family), data);
     }
     #[cfg(target_arch = "wasm32")]
     let _ = system_cjk;
+    // Georgian: the craft-fonts face, else an installed one. Always added: the language list in
+    // Options shows "ქართული" whatever the interface language, and the files are small.
+    if let Some(f) = wordcraft_fonts::georgian_ui_font() {
+        add_fallback(&mut fonts, format!("{} {}", f.family, f.style), FontData::from_static(f.bytes));
+    } else {
+        #[cfg(not(target_arch = "wasm32"))]
+        if let Some(f) = system_georgian_font() {
+            let mut data = FontData::from_static(&f.bytes);
+            data.index = f.index;
+            add_fallback(&mut fonts, format!("system {}", f.family), data);
+        }
+    }
     // Symbols and emoji fall back to egui's defaults (kept in the families).
     fonts
 }
@@ -469,6 +481,13 @@ fn system_cjk_font(hans: bool) -> Option<&'static wordcraft_fonts::SystemUiFont>
             wordcraft_fonts::system_cjk_ui_font(hans, &needed)
         })
         .as_ref()
+}
+
+/// The installed Georgian interface font, read once.
+#[cfg(not(target_arch = "wasm32"))]
+fn system_georgian_font() -> Option<&'static wordcraft_fonts::SystemUiFont> {
+    static KA: std::sync::OnceLock<Option<wordcraft_fonts::SystemUiFont>> = std::sync::OnceLock::new();
+    KA.get_or_init(wordcraft_fonts::system_georgian_ui_font).as_ref()
 }
 
 pub fn medium(size: f32) -> FontId {
