@@ -47,7 +47,7 @@
 	AutoCorrect Options	ავტოშესწორების პარამეტრები
 	AutoFit	ავტომორგება
 	AutoFit Contents	შიგთავსზე მორგება
-	AutoFit Window	ფანჯარაზე მორგება
+	AutoFit Window	ფანჯარაში ჩატევა
 	Automatic	ავტომატური
 	Automatic Table 1 (3 levels)	ავტომატური სარჩევი 1 (3 დონე)
 	Automatic Table 2 (2 levels)	ავტომატური სარჩევი 2 (2 დონე)
@@ -83,11 +83,11 @@
 	Calendar	კალენდარი
 	Capitalize Each Word	ყოველი სიტყვა მთავრულით
 	Captions	წარწერები
-	Cell Margins	უჯრის არშიები
+	Cell Margins	უჯრის ველები
 	Cell Size	უჯრის ზომა
-	Cell\nMargins	უჯრის\nარშიები
+	Cell\nMargins	უჯრის\nველები
 	Center	ცენტრში
-	Change	ჩანაცვლება
+	Change	შეცვლა
 	Change Case	რეგისტრის შეცვლა
 	Change List Level	სიის დონის შეცვლა
 	Change Picture	სურათის შეცვლა
@@ -146,7 +146,7 @@
 	Crop	ჩამოჭრა
 	Cross-reference	ჯვარედინი ბმული
 	Current Position	მიმდინარე პოზიცია
-	Custom Margins…	საკუთარი არშიები…
+	Custom Margins…	საკუთარი ველები…
 	Custom Watermark…	საკუთარი ჭვირნიშანი…
 	Cut	ამოჭრა
 	Dark Mode	ბნელი რეჟიმი
@@ -327,11 +327,11 @@
 	Macros	მაკროსები
 	Mailings	დაგზავნა
 	Manage Sources	წყაროების მართვა
-	Margins	არშიები
-	Mark Citation	ციტატის მონიშვნა
-	Mark Entry	ჩანაწერის მონიშვნა
-	Mark\nCitation	ციტატის\nმონიშვნა
-	Mark\nEntry	ჩანაწერის\nმონიშვნა
+	Margins	ველები
+	Mark Citation	ციტატის მარკირება
+	Mark Entry	ჩანაწერის მარკირება
+	Mark\nCitation	ციტატის\nმარკირება
+	Mark\nEntry	ჩანაწერის\nმარკირება
 	Match Fields	ველების შესაბამისობა
 	Matrix	მატრიცა
 	Merge	შერწყმა
@@ -627,10 +627,10 @@
 	Version History	ვერსიების ისტორია
 	Vertical	ვერტიკალური
 	Vertical Alignment	ვერტიკალური სწორება
-	View	ჩვენება
+	View	ხედი
 	View Gridlines	ბადის ჩვენება
-	View State	ჩვენების მდგომარეობა
-	Views	ჩვენების რეჟიმები
+	View State	ხედის მდგომარეობა
+	Views	ხედები
 	Voice	ხმა
 	Watermark	ჭვირნიშანი
 	Wave	ტალღა
@@ -798,8 +798,8 @@
 	Dark page (white text on black)	მუქი გვერდი (თეთრი ტექსტი შავზე)
 	More templates →	მეტი შაბლონი →
 	No templates match your search.	ძიების შესაბამისი შაბლონი არ მოიძებნა.
-	Search for templates	შაბლონების ძებნა
-	Show documents with their colours inverted, like View › Switch Modes. Saving, printing and PDFs are unchanged.	დოკუმენტების ჩვენება შებრუნებული ფერებით, როგორც ჩვენება › რეჟიმის გადართვა. შენახვა, ბეჭდვა და PDF არ იცვლება.
+	Search for templates	შაბლონების ძიება
+	Show documents with their colours inverted, like View › Switch Modes. Saving, printing and PDFs are unchanged.	დოკუმენტების ჩვენება შებრუნებული ფერებით, როგორც ხედი › რეჟიმის გადართვა. შენახვა, ბეჭდვა და PDF არ იცვლება.
 	Blank document	ცარიელი დოკუმენტი
 	Discord community	Discord საზოგადოება
 	Display	ეკრანი
@@ -815,7 +815,7 @@
 	Paragraphs	აბზაცები
 	PDF document (*.pdf)	PDF დოკუმენტი (*.pdf)
 	Plain text (*.txt)	უბრალო ტექსტი (*.txt)
-	Recent	ბოლოდროინდელი
+	Recent	ბოლოს გახსნილი
 	Report	ანგარიში
 	Rich Text Format (*.rtf)	Rich Text Format (*.rtf)
 	Résumé	რეზიუმე
@@ -843,10 +843,10 @@
 	Makes the ribbon, menus and dialogs larger or smaller, on top of your system's display scaling. Document zoom is separate.	ზრდის ან ამცირებს ლენტს, მენიუებსა და ფანჯრებს, სისტემის ეკრანის მასშტაბირების გარდა. დოკუმენტის მასშტაბი ცალკე იცვლება.
 	(no suggestions)	(შეთავაზებები არ არის)
 	Add a comment	კომენტარის დამატება
-	Bottom Margin	ქვედა არშია
-	Left Margin	მარცხენა არშია
+	Bottom Margin	ქვედა ველი
+	Left Margin	მარცხენა ველი
 	Reopen	ხელახლა გახსნა
-	Right Margin	მარჯვენა არშია
+	Right Margin	მარჯვენა ველი
 	AutoSave saves every change to the file (needs a saved document)	ავტოშენახვა ყოველ ცვლილებას ფაილში ინახავს (დოკუმენტი ჯერ უნდა იყოს შენახული)
 	Click an item to paste it.	ჩასასმელად დაწკაპეთ ელემენტზე.
 	Nothing collected yet. Items you copy or cut appear here.	ჯერ არაფერია შეგროვებული. აქ გამოჩნდება ის, რასაც დააკოპირებთ ან ამოჭრით.
@@ -869,10 +869,10 @@
 	Resolved	გადაწყვეტილია
 	Results	შედეგები
 	Saved	შენახულია
-	Search commands and help	ბრძანებებისა და დახმარების ძებნა
-	Search document	დოკუმენტში ძებნა
+	Search commands and help	ბრძანებებისა და დახმარების ძიება
+	Search document	დოკუმენტში ძიება
 	Synonyms	სინონიმები
-	Top Margin	ზედა არშია
+	Top Margin	ზედა ველი
 	Track Changes: On	ცვლილებების ჩაწერა: ჩართულია
 	Update to Match	ნიმუშის მიხედვით განახლება
 	Update to Match Selection	მონიშნულის მიხედვით განახლება
@@ -902,7 +902,7 @@
 	Double strikethrough	ორმაგი გადახაზვა
 	Drop cap	ინიციალი
 	(no style)	(სტილის გარეშე)
-	Add tab stop at:	ტაბულაციის დამატება პოზიციაზე:
+	Add tab stop at:	ტაბულაციის გაჩერების დამატება პოზიციაზე:
 	Aligned at:	სწორება პოზიციაზე:
 	Balloons	ბუშტები
 	Bullet	ბურთულა
@@ -928,9 +928,9 @@
 	Restart list after:	სიის თავიდან დაწყება შემდეგის შემდეგ:
 	Right border	მარჯვენა ჩარჩო
 	Show all revisions inline	ყველა ცვლილების ტექსტში ჩვენება
-	Tab stop position:	ტაბულაციის პოზიცია:
-	Default tab stops:	ნაგულისხმევი ტაბულაცია:
-	Tab stops to be cleared:	წასაშლელი ტაბულაციები:
+	Tab stop position:	ტაბულაციის გაჩერების პოზიცია:
+	Default tab stops:	ნაგულისხმევი ტაბულაციის გაჩერებები:
+	Tab stops to be cleared:	წასაშლელი ტაბულაციის გაჩერებები:
 	All	ყველა
 	Decimal	ათწილადის მძიმეზე
 	Bar	ზოლი
@@ -1117,7 +1117,7 @@
 	Page break before	გვერდის გამყოფი წინ
 	Page width	გვერდის სიგანე
 	Replace with:	ჩანაცვლება:
-	Search Commands	ბრძანებების ძებნა
+	Search Commands	ბრძანებების ძიება
 	Size:	ზომა:
 	Small caps	პატარა მთავრული
 	Source code: github.com/storytold/wordcraft	საწყისი კოდი: github.com/storytold/wordcraft
@@ -1341,7 +1341,7 @@
 	Body text in a short paragraph to show spacing.	მოკლე აბზაცის ძირითადი ტექსტი ინტერვალის საჩვენებლად.
 	Book Title	წიგნის სათაური
 	Category	კატეგორია
-	Search	ძებნა
+	Search	ძიება
 	Title Bar	სათაურის ზოლი
 	Endnote Reference	დოკუმენტის სქოლიოს მითითება
 	Envelope Address	კონვერტის მისამართი
@@ -1419,7 +1419,7 @@ preview	Title	სათაური
 	List Table 3 – Purple	სიის ცხრილი 3 – იისფერი
 	Convert between built-up and linear form	პროფესიულ და წრფივ ფორმებს შორის გარდაქმნა
 	Justification of a display equation	ცალკე სტრიქონზე მდგომი განტოლების სწორება
-	Number the equation; the number sits at the right margin (or type # then the number)	განტოლების დანომვრა; ნომერი მარჯვენა არშიასთან დგას (ან აკრიფეთ #, შემდეგ ნომერი)
+	Number the equation; the number sits at the right margin (or type # then the number)	განტოლების დანომვრა; ნომერი მარჯვენა ველთან დგას (ან აკრიფეთ #, შემდეგ ნომერი)
 	Show the equation in the line of text	განტოლების ჩვენება ტექსტის სტრიქონში
 	Show the equation on a line of its own	განტოლების ჩვენება ცალკე სტრიქონზე
 	Type equations in LaTeX	განტოლებების აკრეფა LaTeX-ში
@@ -1526,12 +1526,12 @@ preview	Title	სათაური
 	Circled Times	წრეში ჩასმული გამრავლება
 	Colon Equal	ორწერტილი-ტოლობა
 	Contour Integral	კონტურული ინტეგრალი
-	Contour Integral with Limits	კონტურული ინტეგრალი საზღვრებით
-	Contour Integral with Stacked Limits	კონტურული ინტეგრალი დაწყობილი საზღვრებით
+	Contour Integral with Limits	კონტურული ინტეგრალი ზღვრებით
+	Contour Integral with Stacked Limits	კონტურული ინტეგრალი დაწყობილი ზღვრებით
 	Coproduct	კონამრავლი
-	Coproduct with Limits	კონამრავლი საზღვრებით
+	Coproduct with Limits	კონამრავლი ზღვრებით
 	Coproduct with Lower Limit	კონამრავლი ქვედა საზღვრით
-	Coproduct with Subscript-Superscript Limits	კონამრავლი ინდექსური საზღვრებით
+	Coproduct with Subscript-Superscript Limits	კონამრავლი ინდექსური ზღვრებით
 	Cosecant Function	კოსეკანსის ფუნქცია
 	Cosine 2x	კოსინუსი 2x
 	Cosine Function	კოსინუსის ფუნქცია
@@ -1548,8 +1548,8 @@ preview	Title	სათაური
 	Double Bar	ორმაგი ხაზი
 	Double Dot	ორი წერტილი
 	Double Integral	ორმაგი ინტეგრალი
-	Double Integral with Limits	ორმაგი ინტეგრალი საზღვრებით
-	Double Integral with Stacked Limits	ორმაგი ინტეგრალი დაწყობილი საზღვრებით
+	Double Integral with Limits	ორმაგი ინტეგრალი ზღვრებით
+	Double Integral with Stacked Limits	ორმაგი ინტეგრალი დაწყობილი ზღვრებით
 	Double Left Arrow with Text Above	ორმაგი ისარი მარცხნივ, ტექსტი ზემოთ
 	Double Left Arrow with Text Below	ორმაგი ისარი მარცხნივ, ტექსტი ქვემოთ
 	Double Left Right Arrow with Text Above	ორმაგი ორმხრივი ისარი, ტექსტი ზემოთ
@@ -1574,12 +1574,12 @@ preview	Title	სათაური
 	Hyperbolic Sine Function	ჰიპერბოლური სინუსის ფუნქცია
 	Hyperbolic Tangent Function	ჰიპერბოლური ტანგენსის ფუნქცია
 	Hypotenuse	ჰიპოტენუზა
-	Integral with Limits	ინტეგრალი საზღვრებით
-	Integral with Stacked Limits	ინტეგრალი დაწყობილი საზღვრებით
+	Integral with Limits	ინტეგრალი ზღვრებით
+	Integral with Stacked Limits	ინტეგრალი დაწყობილი ზღვრებით
 	Intersection	გადაკვეთა
-	Intersection with Limits	გადაკვეთა საზღვრებით
+	Intersection with Limits	გადაკვეთა ზღვრებით
 	Intersection with Lower Limit	გადაკვეთა ქვედა საზღვრით
-	Intersection with Subscript-Superscript Limits	გადაკვეთა ინდექსური საზღვრებით
+	Intersection with Subscript-Superscript Limits	გადაკვეთა ინდექსური ზღვრებით
 	Inverse Cosecant Function	შებრუნებული კოსეკანსის ფუნქცია
 	Inverse Cosine Function	შებრუნებული კოსინუსის ფუნქცია
 	Inverse Cotangent Function	შებრუნებული კოტანგენსის ფუნქცია
@@ -1607,9 +1607,9 @@ preview	Title	სათაური
 	Logarithm	ლოგარითმი
 	Logarithm with Base	ლოგარითმი ფუძით
 	Logical AND	ლოგიკური „და“
-	Logical AND with Limits	ლოგიკური „და“ საზღვრებით
+	Logical AND with Limits	ლოგიკური „და“ ზღვრებით
 	Logical OR	ლოგიკური „ან“
-	Logical OR with Limits	ლოგიკური „ან“ საზღვრებით
+	Logical OR with Limits	ლოგიკური „ან“ ზღვრებით
 	Maximum	მაქსიმუმი
 	Maximum Example	მაქსიმუმის მაგალითი
 	Measured By	იზომება
@@ -1628,9 +1628,9 @@ preview	Title	სათაური
 	Plus Equal	პლუს-ტოლობა
 	Product	ნამრავლი
 	Product of A	A-ს ნამრავლი
-	Product with Limits	ნამრავლი საზღვრებით
+	Product with Limits	ნამრავლი ზღვრებით
 	Product with Lower Limit	ნამრავლი ქვედა საზღვრით
-	Product with Subscript-Superscript Limits	ნამრავლი ინდექსური საზღვრებით
+	Product with Subscript-Superscript Limits	ნამრავლი ინდექსური ზღვრებით
 	Quadratic Root	კვადრატული განტოლების ფესვი
 	Radical with Degree	ფესვი მაჩვენებლით
 	Right Arrow with Text Above	ისარი მარჯვნივ, ტექსტი ზემოთ
@@ -1663,13 +1663,13 @@ preview	Title	სათაური
 	Summation	ჯამი
 	Summation from 0 to n	ჯამი 0-დან n-მდე
 	Summation over binomials	ბინომური კოეფიციენტების ჯამი
-	Summation with Limits	ჯამი საზღვრებით
+	Summation with Limits	ჯამი ზღვრებით
 	Summation with Lower Limit	ჯამი ქვედა საზღვრით
 	Summation with Subscript Limit	ჯამი ინდექსური საზღვრით
-	Summation with Subscript-Superscript Limits	ჯამი ინდექსური საზღვრებით
+	Summation with Subscript-Superscript Limits	ჯამი ინდექსური ზღვრებით
 	Surface Integral	ზედაპირული ინტეგრალი
-	Surface Integral with Limits	ზედაპირული ინტეგრალი საზღვრებით
-	Surface Integral with Stacked Limits	ზედაპირული ინტეგრალი დაწყობილი საზღვრებით
+	Surface Integral with Limits	ზედაპირული ინტეგრალი ზღვრებით
+	Surface Integral with Stacked Limits	ზედაპირული ინტეგრალი დაწყობილი ზღვრებით
 	Tangent Function	ტანგენსის ფუნქცია
 	Tangent formula	ტანგენსის ფორმულა
 	Text over Colon Equal	ტექსტი ორწერტილი-ტოლობის ზემოთ
@@ -1677,24 +1677,24 @@ preview	Title	სათაური
 	Tilde	ტილდა
 	Triple Dot	სამი წერტილი
 	Triple Integral	სამმაგი ინტეგრალი
-	Triple Integral with Limits	სამმაგი ინტეგრალი საზღვრებით
-	Triple Integral with Stacked Limits	სამმაგი ინტეგრალი დაწყობილი საზღვრებით
+	Triple Integral with Limits	სამმაგი ინტეგრალი ზღვრებით
+	Triple Integral with Stacked Limits	სამმაგი ინტეგრალი დაწყობილი ზღვრებით
 	Underbar	ქვედა ხაზი
 	Underbrace	ქვედა ფიგურული ფრჩხილი
 	Union	გაერთიანება
 	Union of intersections	გადაკვეთების გაერთიანება
-	Union with Limits	გაერთიანება საზღვრებით
+	Union with Limits	გაერთიანება ზღვრებით
 	Union with Lower Limit	გაერთიანება ქვედა საზღვრით
 	Union with Plus	გაერთიანება პლუსით
-	Union with Subscript-Superscript Limits	გაერთიანება ინდექსური საზღვრებით
+	Union with Subscript-Superscript Limits	გაერთიანება ინდექსური ზღვრებით
 	Up Diagonal Dots	ზემოთ დიაგონალური წერტილები
 	Vector A	ვექტორი A
 	Vector AB	ვექტორი AB
 	Vertical Bars	ვერტიკალური ხაზები
 	Vertical Dots	ვერტიკალური წერტილები
 	Volume Integral	მოცულობითი ინტეგრალი
-	Volume Integral with Limits	მოცულობითი ინტეგრალი საზღვრებით
-	Volume Integral with Stacked Limits	მოცულობითი ინტეგრალი დაწყობილი საზღვრებით
+	Volume Integral with Limits	მოცულობითი ინტეგრალი ზღვრებით
+	Volume Integral with Stacked Limits	მოცულობითი ინტეგრალი დაწყობილი ზღვრებით
 	Yields	იძლევა
 	x bar	x ზედა ხაზით
 	Draw\nTable	ცხრილის\nდახატვა
@@ -1714,8 +1714,8 @@ preview	Title	სათაური
 	Insert Page Field	გვერდის ველის ჩასმა
 	Insert Time Field	დროის ველის ჩასმა
 	Lock Fields	ველების ჩაკეტვა
-	Move Paragraph Down	აბზაცის ქვემოთ გადატანა
-	Move Paragraph Up	აბზაცის ზემოთ გადატანა
+	Move Paragraph Down	აბზაცის ჩამოწევა
+	Move Paragraph Up	აბზაცის აწევა
 	Next Field	შემდეგი ველი
 	Previous Field	წინა ველი
 	Promote	დაწინაურება
@@ -1769,13 +1769,13 @@ preview	Title	სათაური
 	Enlarge symbol	ნიშნის გადიდება
 	Enclosure	ჩარჩო
 	Circle	წრე
-	Base text:	საბაზო ტექსტი:
+	Base text:	ძირითადი ტექსტი:
 	Distribute letters	ასოების თანაბრად განაწილება
 	Distribute spacing	ინტერვალის თანაბრად განაწილება
 	Offset (pt):	წანაცვლება (პტ):
 	Phonetic Guide	ფონეტიკური გზამკვლევი
 	Right (vertical)	მარჯვნივ (ვერტიკალური)
-	Ruby text:	ფონეტიკური ტექსტი:
+	Ruby text:	ფურიგანას ტექსტი:
 	Size (pt):	ზომა (პტ):
 	In Line with Text	ტექსტთან ერთ ხაზზე
 	Through	გამჭოლი
@@ -1810,7 +1810,7 @@ preview	Title	სათაური
 	Alt Text Pane	ალტერნატიული ტექსტის პანელი
 	Alt\nText	ალტერნატიული\nტექსტი
 	View Alt Text…	ალტერნატიული ტექსტის ნახვა…
-	Mark as decorative	დეკორატიულად მონიშვნა
+	Mark as decorative	დეკორატიულად მარკირება
 	Title:	სათაური:
 	Errors ({n})	შეცდომები ({n})
 	Warnings ({n})	გაფრთხილებები ({n})
@@ -1831,22 +1831,22 @@ preview	Title	სათაური
 	Moved to	გადატანილია აქ
 	Developer	დეველოპერი
 	Controls	მართვის ელემენტები
-	Rich Text Content Control	ფორმატირებული ტექსტის შიგთავსის ელემენტი
-	Plain Text Content Control	უბრალო ტექსტის შიგთავსის ელემენტი
-	Picture Content Control	სურათის შიგთავსის ელემენტი
-	Building Block Gallery Content Control	სამშენებლო ბლოკების გალერეის შიგთავსის ელემენტი
-	Check Box Content Control	მოსანიშნი ველის შიგთავსის ელემენტი
-	Combo Box Content Control	კომბინირებული ველის შიგთავსის ელემენტი
-	Drop-Down List Content Control	ჩამოსაშლელი სიის შიგთავსის ელემენტი
-	Date Picker Content Control	თარიღის ამრჩევის შიგთავსის ელემენტი
-	Repeating Section Content Control	განმეორებადი სექციის შიგთავსის ელემენტი
+	Rich Text Content Control	ფორმატირებული ტექსტის შიგთავსის მართვის ელემენტი
+	Plain Text Content Control	უბრალო ტექსტის შიგთავსის მართვის ელემენტი
+	Picture Content Control	სურათის შიგთავსის მართვის ელემენტი
+	Building Block Gallery Content Control	სამშენებლო ბლოკების გალერეის შიგთავსის მართვის ელემენტი
+	Check Box Content Control	მოსანიშნი ველის შიგთავსის მართვის ელემენტი
+	Combo Box Content Control	კომბინირებული ველის შიგთავსის მართვის ელემენტი
+	Drop-Down List Content Control	ჩამოსაშლელი სიის შიგთავსის მართვის ელემენტი
+	Date Picker Content Control	თარიღის ამრჩევის შიგთავსის მართვის ელემენტი
+	Repeating Section Content Control	განმეორებადი სექციის შიგთავსის მართვის ელემენტი
 	Design Mode	დიზაინის რეჟიმი
-	Content Control at Selection	შიგთავსის ელემენტი მონიშნულში
+	Content Control at Selection	შიგთავსის მართვის ელემენტი მონიშნულში
 	Toggle Check Box	მოსანიშნი ველის გადართვა
 	Choose List Item	სიის ელემენტის არჩევა
 	Set Date	თარიღის დაყენება
-	Remove Content Control	შიგთავსის ელემენტის წაშლა
-	Content Control Properties	შიგთავსის ელემენტის თვისებები
+	Remove Content Control	შიგთავსის მართვის ელემენტის წაშლა
+	Content Control Properties	შიგთავსის მართვის ელემენტის პარამეტრები
 	Tag	ტეგი
 	Placeholder text	ჩანაცვლების ტექსტი
 	Can't be deleted	წაშლა შეუძლებელია
@@ -1860,7 +1860,7 @@ preview	Title	სათაური
 	Display text	საჩვენებელი ტექსტი
 	Value	მნიშვნელობა
 	Today	დღეს
-	Put the caret in a content control first.	ჯერ კურსორი შიგთავსის ელემენტში მოათავსეთ.
+	Put the caret in a content control first.	ჯერ კურსორი შიგთავსის მართვის ელემენტში მოათავსეთ.
 	Right-to-Left Table	ცხრილი მარჯვნიდან მარცხნივ
 	Right-to-Left Section	სექცია მარჯვნიდან მარცხნივ
 	Table direction:	ცხრილის მიმართულება:
@@ -1893,7 +1893,7 @@ preview	Title	სათაური
 	Edit Source	წყაროს რედაქტირება
 	Edition	გამოცემა
 	Edit…	რედაქტირება…
-	Entry marked.	ჩანაწერი მონიშნულია.
+	Entry marked.	ჩანაწერი მარკირებულია.
 	Example: {sample}	მაგალითი: {sample}
 	Figure	ილუსტრაცია
 	Film	ფილმი
@@ -1914,10 +1914,10 @@ preview	Title	სათაური
 	Made from the author and year when empty	ცარიელის შემთხვევაში იქმნება ავტორისა და წლისგან
 	Magazine or newspaper article	ჟურნალის ან გაზეთის სტატია
 	Main entry:	ძირითადი ჩანაწერი:
-	Mark	მონიშვნა
-	Mark All	ყველას მონიშვნა
-	Mark Entry…	ჩანაწერის მონიშვნა…
-	Mark Index Entry	ინდექსის ჩანაწერის მონიშვნა
+	Mark	მარკირება
+	Mark All	ყველას მარკირება
+	Mark Entry…	ჩანაწერის მარკირება…
+	Mark Index Entry	ინდექსის ჩანაწერის მარკირება
 	Mesosphere	მეზოსფერო
 	Month	თვე
 	New Label	ახალი იარლიყი
@@ -1930,7 +1930,7 @@ preview	Title	სათაური
 	Other styles and their TOC level:	სხვა სტილები და მათი სარჩევის დონე:
 	Outline levels	სტრუქტურის დონეები
 	Page number style	გვერდის ნომრის სტილი
-	Page numbers at the right margin	გვერდის ნომრები მარჯვენა არშიასთან
+	Page numbers at the right margin	გვერდის ნომრები მარჯვენა ველთან
 	Page title	გვერდის სათაური
 	Pages of bookmark:	სანიშნის გვერდები:
 	Periodical	პერიოდული გამოცემა
@@ -1958,7 +1958,7 @@ preview	Title	სათაური
 	Year	წელი
 	a, b, c, …	a, b, c, …
 	i, ii, iii, …	i, ii, iii, …
-	{n} entries marked.	მონიშნული ჩანაწერი: {n}.
+	{n} entries marked.	მარკირებული ჩანაწერი: {n}.
 	Lasso Select	ლასოთი მონიშვნა
 	Move Selected Ink	მონიშნული მელნის გადატანა
 	Delete Selected Ink	მონიშნული მელნის წაშლა
@@ -1988,7 +1988,7 @@ preview	Title	სათაური
 	Technology	ტექნოლოგია
 	Transport	ტრანსპორტი
 	Icon Color	ხატულის ფერი
-	Search icons	ხატულების ძებნა
+	Search icons	ხატულების ძიება
 	No icons match your search.	ძიების შესაბამისი ხატულა არ მოიძებნა.
 	Recolor a one-color picture, such as an icon	ერთფეროვანი სურათის, მაგალითად ხატულის, გადაფერადება
 	Numerals:	ციფრები:
@@ -2089,7 +2089,7 @@ preview	Title	სათაური
 	Tracked changes	ჩაწერილი ცვლილებები
 	Type the password to stop the protection.	დაცვის გამოსართავად აკრიფეთ პაროლი.
 	White space	ცარიელი სივრცე
-	With:	ჩანაცვლება:
+	With:	ამით:
 	Word level	სიტყვის დონეზე
 	Change Chart Type	დიაგრამის ტიპის შეცვლა
 	Chart Design	დიაგრამის დიზაინი
@@ -2253,8 +2253,8 @@ preview	Title	სათაური
 	Reset\nGraphic	გრაფიკის\nჩამოყრა
 	Promote to Heading 1	სათაური 1-ად დაწინაურება
 	Demote to Body Text	ძირითად ტექსტად დაქვეითება
-	Move Up	ზემოთ გადატანა
-	Move Down	ქვემოთ გადატანა
+	Move Up	აწევა
+	Move Down	ჩამოწევა
 	Collapse	ჩაკეცვა
 	Expand or Collapse Heading	სათაურის გაშლა ან ჩაკეცვა
 	Select Heading and Content	სათაურისა და შიგთავსის მონიშვნა
@@ -2340,7 +2340,7 @@ preview	Title	სათაური
 	Full page of the same label	მთელი გვერდი ერთნაირი იარლიყით
 	German (Germany)	გერმანული (გერმანია)
 	Greek	ბერძნული
-	Hebrew	ებრაული
+	Hebrew	ივრითი
 	Hyphenate at:	გადატანა ადგილას:
 	Hyphenate words in CAPS	მთავრულით დაწერილი სიტყვების გადატანა
 	Hyphenation Options…	სიტყვების გადატანის პარამეტრები…
@@ -2388,7 +2388,7 @@ preview	Title	სათაური
 	Ignore web and file addresses	ვებ- და ფაილის მისამართების გამოტოვება
 	Ignore words in capitals	მთავრულით დაწერილი სიტყვების გამოტოვება
 	Ignore words with numbers	ციფრებიანი სიტყვების გამოტოვება
-	Inches	დიუმი
+	Inches	დუიმი
 	Initials:	ინიციალები:
 	Interface	ინტერფეისი
 	Interface language	ინტერფეისის ენა
@@ -2408,7 +2408,7 @@ preview	Title	სათაური
 	Print the page color	გვერდის ფერის ბეჭდვა
 	Printing	ბეჭდვა
 	Proofing language	კორექტურის ენა
-	Recent documents to show:	საჩვენებელი ბოლოდროინდელი დოკუმენტები:
+	Recent documents to show:	საჩვენებელი ბოლოს გახსნილი დოკუმენტები:
 	Save documents	დოკუმენტების შენახვა
 	Show the mini toolbar when text is selected	მინი-პანელის ჩვენება ტექსტის მონიშვნისას
 	Spaces	სივრცეები
@@ -2438,7 +2438,7 @@ preview	Title	სათაური
 	Automatic ({region})	ავტომატური ({region})
 	Start-up	გაშვება
 	Show the Start screen when WordCraft starts	საწყისი ეკრანის ჩვენება WordCraft-ის გაშვებისას
-	On: WordCraft opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	ჩართული: WordCraft იხსნება ფაილი › მთავარი გვერდზე, ცარიელი დოკუმენტით, შაბლონებითა და ბოლოდროინდელი დოკუმენტებით. გამორთული: იხსნება ცარიელი დოკუმენტი.
+	On: WordCraft opens on File › Home, with a blank document, the templates and your recent documents. Off: it opens a blank document.	ჩართული: WordCraft იხსნება ფაილი › მთავარი გვერდზე, ცარიელი დოკუმენტით, შაბლონებითა და ბოლოს გახსნილი დოკუმენტებით. გამორთული: იხსნება ცარიელი დოკუმენტი.
 	Typing	აკრეფა
 	Level 4	დონე 4
 	Level 5	დონე 5
