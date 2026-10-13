@@ -172,7 +172,7 @@
 	Dictate	კარნახი
 	Different First Page	განსხვავებული პირველი გვერდი
 	Different Odd & Even Pages	განსხვავებული ლუწი და კენტი გვერდები
-	Display for Review	ჩვენება რეცენზირებისთვის
+	Display for Review	ჩვენება განხილვისთვის
 	Distribute Columns	სვეტების თანაბრად განაწილება
 	Distribute Rows	სტრიქონების თანაბრად განაწილება
 	Distributed	თანაბრად განაწილებული
@@ -346,7 +346,7 @@
 	Narrow  0.5" all	ვიწრო  0,5" ყოველ მხარეს
 	Navigation	ნავიგაცია
 	Navigation Pane	ნავიგაციის პანელი
-	New	შექმნა
+	New	ახალი
 	New Comment	ახალი კომენტარი
 	New from Template	შაბლონიდან შექმნა
 	New Paragraph	ახალი აბზაცი
@@ -429,11 +429,11 @@
 	Previous Record	წინა ჩანაწერი
 	Previous Section	წინა სექცია
 	Redo	ხელახლა შესრულება
-	Print	ბეჭდვა
+	Print	დაბეჭდვა
 	Print Layout	ბეჭდვის განლაგება
 	Print\nLayout	ბეჭდვის\nგანლაგება
-	Proofing	მართლწერა
-	Proofing Issues	მართლწერის შენიშვნები
+	Proofing	კორექტურა
+	Proofing Issues	კორექტურის შენიშვნები
 	Properties	თვისებები
 	Protect	დაცვა
 	Protect Document	დოკუმენტის დაცვა
@@ -476,10 +476,10 @@
 	Restart Each Section	თავიდან ყოველ სექციაში
 	Restrict Editing	რედაქტირების შეზღუდვა
 	Restrict\nEditing	რედაქტირების\nშეზღუდვა
-	Review	რეცენზირება
-	Reviewing	რეცენზირება
-	Reviewing Pane	რეცენზირების პანელი
-	Reviewing — edits become suggestions	რეცენზირება — ცვლილებები შეთავაზებებად იქცევა
+	Review	განხილვა
+	Reviewing	განხილვა
+	Reviewing Pane	განხილვის პანელი
+	Reviewing — edits become suggestions	განხილვა — ცვლილებები შეთავაზებებად იქცევა
 	Right	მარჯვნივ
 	Right Border	მარჯვენა ჩარჩო
 	Right-to-Left Text Direction	ტექსტის მიმართულება მარჯვნიდან მარცხნივ
@@ -2180,7 +2180,7 @@ preview	Title	სათაური
 	Save these pages as PDF…	ამ გვერდების PDF-ად შენახვა…
 	The printer, two-sided printing and pages per sheet are chosen in that dialog.	პრინტერი, ორმხრივი ბეჭდვა და ფურცელზე გვერდების რაოდენობა იმ ფანჯარაში აირჩევა.
 	Previous Page	წინა გვერდი
-	Print to PDF	PDF-ად ბეჭდვა
+	Print to PDF	PDF-ად დაბეჭდვა
 	Word XML Document (*.xml)	Word XML დოკუმენტი (*.xml)
 	Use wildcards	შაბლონების გამოყენება
 	Special	სპეციალური
@@ -2407,7 +2407,7 @@ preview	Title	სათაური
 	Points	პუნქტი
 	Print the page color	გვერდის ფერის ბეჭდვა
 	Printing	ბეჭდვა
-	Proofing language	მართლწერის ენა
+	Proofing language	კორექტურის ენა
 	Recent documents to show:	საჩვენებელი ბოლოდროინდელი დოკუმენტები:
 	Save documents	დოკუმენტების შენახვა
 	Show the mini toolbar when text is selected	მინი-პანელის ჩვენება ტექსტის მონიშვნისას
