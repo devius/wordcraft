@@ -50,11 +50,11 @@ string against one glossary shared by the Craft apps. Product, format and techno
 | Source | Georgian |
 |---|---|
 | File / Home / Insert / Draw / Design | ფაილი / მთავარი / ჩასმა / ხატვა / დიზაინი |
-| Layout / References / Mailings / Review / View | განლაგება / ცნობარები / დაგზავნა / განხილვა / ჩვენება |
+| Layout / References / Mailings / Review / View | განლაგება / ცნობარები / დაგზავნა / განხილვა / ხედი |
 | New / Open / Save / Save As / Print | ახალი / გახსნა / შენახვა / შენახვა როგორც / დაბეჭდვა |
 | Undo / Redo / Repeat | დაბრუნება / ხელახლა შესრულება / გამეორება |
 | Cut / Copy / Paste / Paste Special | ამოჭრა / კოპირება / ჩასმა / სპეციალური ჩასმა |
-| Find / Replace / Select | ძებნა / ჩანაცვლება / მონიშვნა |
+| Find / Search / Replace / Select / Mark | ძებნა / ძიება / ჩანაცვლება / მონიშვნა / მარკირება |
 | Clipboard | გაცვლის ბუფერი |
 | Font / Paragraph / Styles | შრიფტი / აბზაცი / სტილები |
 | Bold / Italic / Underline | მუქი / დახრილი / ხაზგასმული |
@@ -62,13 +62,13 @@ string against one glossary shared by the Craft apps. Product, format and techno
 | Line spacing / Paragraph spacing | სტრიქონთა დაშორება / აბზაცთა ინტერვალი |
 | Justify | ორმხრივი სწორება |
 | Bullets / Numbering / Indent | ბურთულები / დანომვრა / შეწევა |
-| Tabs (tab stops) / Tab (ribbon) | ტაბულაცია / ჩანართი |
+| Tabs (tab stops) / Tab (ribbon) | ტაბულაცია (ტაბულაციის გაჩერებები) / ჩანართი |
 | Borders / Shading | ჩარჩოები / ფონი |
 | Table / Row / Column / Cell | ცხრილი / სტრიქონი / სვეტი / უჯრა |
 | Picture / Shape / Chart / Text Box | სურათი / ფიგურა / დიაგრამა / ტექსტური ბლოკი |
 | Header / Footer | ზედა კოლონტიტული / ქვედა კოლონტიტული |
 | Page Break / Section Break / Line Break | გვერდის გამყოფი / სექციის გამყოფი / სტრიქონის წყვეტა |
-| Margins / Orientation / Portrait / Landscape | არშიები / ორიენტაცია / ვერტიკალური / ჰორიზონტალური |
+| Margins / Orientation / Portrait / Landscape | ველები / ორიენტაცია / ვერტიკალური / ჰორიზონტალური |
 | Watermark / Equation / Symbol | ჭვირნიშანი / განტოლება / სიმბოლო |
 | Table of Contents / Index | სარჩევი / ინდექსი |
 | Footnote / Endnote | სქოლიო / დოკუმენტის სქოლიო |
