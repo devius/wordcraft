@@ -1,6 +1,7 @@
 //! Design tokens (light and dark), UI fonts and the egui style.
 
-use std::sync::Arc;
+use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::{Arc, OnceLock};
 
 use egui::{Align2, Color32, CornerRadius, FontData, FontDefinitions, FontFamily, FontId, Rect, Stroke, Visuals};
 
@@ -398,6 +399,25 @@ pub fn faces_for_preedit(
     out
 }
 
+/// An interface face supplied at run time, after every other face: the web shell fetches one
+/// served beside the page (e.g. Georgian, which no embedded face has and a browser can't lend).
+static RUNTIME_FALLBACK: OnceLock<Vec<u8>> = OnceLock::new();
+/// The runtime face arrived and the installed fonts don't have it yet.
+static RUNTIME_FALLBACK_NEW: AtomicBool = AtomicBool::new(false);
+
+/// Add `bytes` (a font file) as the last interface fallback; the app installs it on the next
+/// frame. Only the first call counts.
+pub fn set_runtime_fallback_font(bytes: Vec<u8>) {
+    if RUNTIME_FALLBACK.set(bytes).is_ok() {
+        RUNTIME_FALLBACK_NEW.store(true, Ordering::Relaxed);
+    }
+}
+
+/// Whether a runtime fallback face arrived since the last call.
+pub(crate) fn take_new_runtime_fallback() -> bool {
+    RUNTIME_FALLBACK_NEW.swap(false, Ordering::Relaxed)
+}
+
 /// The interface fonts; see [`install_fonts_with`].
 pub fn font_definitions(prefer_hans: bool, system_cjk: bool) -> FontDefinitions {
     let mut fonts = FontDefinitions::default();
@@ -442,6 +462,15 @@ pub fn font_definitions(prefer_hans: bool, system_cjk: bool) -> FontDefinitions 
     }
     #[cfg(target_arch = "wasm32")]
     let _ = system_cjk;
+    if let Some(bytes) = RUNTIME_FALLBACK.get() {
+        let name = "runtime fallback".to_string();
+        fonts.font_data.insert(name.clone(), Arc::new(FontData::from_static(bytes)));
+        for fam in [FontFamily::Proportional, FontFamily::Monospace, FontFamily::Name("medium".into()), FontFamily::Name("semibold".into())] {
+            if let Some(v) = fonts.families.get_mut(&fam) {
+                v.push(name.clone());
+            }
+        }
+    }
     // Symbols and emoji fall back to egui's defaults (kept in the families).
     fonts
 }

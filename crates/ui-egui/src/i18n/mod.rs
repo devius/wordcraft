@@ -271,7 +271,19 @@ pub fn system_lang() -> Lang {
     *SYSTEM.get_or_init(detect_system_lang)
 }
 
+/// A locale tag that comes before the system's languages (the web shell passes `?lang=` from the
+/// address, as `WORDCRAFT_LANGUAGE` does on the desktop). Set it before the first frame; only
+/// the first call counts. The saved language setting still wins over Automatic.
+pub fn set_system_override(tag: &str) {
+    let _ = SYSTEM_OVERRIDE.set(tag.to_string());
+}
+
+static SYSTEM_OVERRIDE: OnceLock<String> = OnceLock::new();
+
 fn detect_system_lang() -> Lang {
+    if let Some(l) = SYSTEM_OVERRIDE.get().and_then(|v| lang_from_tag(v)) {
+        return l;
+    }
     // An explicit override, then the platform's preferred UI languages (Windows display language,
     // macOS preferred languages, `LC_ALL`/`LC_MESSAGES`/`LANG` on Unix, the browser on the web).
     if let Some(l) = std::env::var("WORDCRAFT_LANGUAGE").ok().and_then(|v| lang_from_tag(&v)) {
