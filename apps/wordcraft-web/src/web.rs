@@ -104,6 +104,8 @@ fn load_fallback_font(ctx: egui::Context) {
     wasm_bindgen_futures::spawn_local(async move {
         match fetch_font(FALLBACK_FONT_URL).await {
             Ok(bytes) => {
+                // Documents too: their layout falls back to any loaded face that has the letters.
+                wordcraft_fonts::FontDb::global().add_font(bytes.clone());
                 wordcraft_ui_egui::theme::set_runtime_fallback_font(bytes);
                 ctx.request_repaint();
             }
