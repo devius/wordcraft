@@ -26,6 +26,32 @@ fn doc_extension_dispatches_to_docbin() {
 }
 
 #[test]
+fn encrypted_doc_asks_for_a_password_and_rejects_a_wrong_one() {
+    // #1079: a Word 97-2003 file with the encryption flag and an RC4 header whose verifier does
+    // not match any password asks for one, and a given password is reported as wrong.
+    use std::io::Write;
+    let mut fib = vec![0u8; 0x100];
+    fib[0..2].copy_from_slice(&0xA5ECu16.to_le_bytes());
+    fib[0x0A..0x0C].copy_from_slice(&0x0100u16.to_le_bytes());
+    let mut header = vec![1u8, 0, 1, 0];
+    header.extend_from_slice(&[0x5A; 48]);
+    let mut comp = cfb::CompoundFile::create(std::io::Cursor::new(Vec::new())).unwrap();
+    for (name, data) in [("WordDocument", &fib), ("0Table", &header)] {
+        comp.create_stream(format!("/{name}")).unwrap().write_all(data).unwrap();
+    }
+    let bytes = comp.into_inner().into_inner();
+    for name in ["x.doc", "x.dot"] {
+        let e = crate::io::open_bytes_with(name, &bytes, None).unwrap_err();
+        assert!(crate::io::needs_password(&e), "{e}");
+        let e = crate::io::open_bytes_with(name, &bytes, Some("nope")).unwrap_err();
+        assert!(crate::io::wrong_password(&e), "{e}");
+    }
+    // Opened by content (no extension) it asks the same way.
+    let e = crate::io::open_bytes_with("noext", &bytes, None).unwrap_err();
+    assert!(crate::io::needs_password(&e), "{e}");
+}
+
+#[test]
 fn txt_open_decodes_windows_1252_and_unmarked_utf16() {
     // #433: the TXT open path sniffs encodings like the formats importer.
     let open = |b: &[u8]| crate::io::open_bytes("x.txt", b).unwrap().plain_text(StoryRef::Body);
@@ -1389,6 +1415,40 @@ fn cell_size_boxes_set_row_height_and_column_width() {
     assert_eq!(s.doc.body.iter().find_map(|b| b.as_table()).unwrap(), &t0);
 }
 
+/// The Height and Width boxes act on every row and column the selection covers (#1242), not only
+/// on the caret's: the whole table, a row, a column, and the caret alone.
+#[test]
+fn cell_size_boxes_apply_to_the_whole_selection() {
+    let mut s = s();
+    run(&mut s, "insert.table", json!({"rows": 3, "cols": 3}));
+    run(&mut s, "table.autofit", json!({"mode": "window"}));
+    let table = |s: &Session| s.doc.body.iter().find_map(|b| b.as_table()).unwrap().clone();
+    let heights = |s: &Session| table(s).rows.iter().map(|r| r.props.height).collect::<Vec<_>>();
+    let widths = |s: &Session| table(s).grid;
+    let before = widths(&s);
+    // The caret alone changes its own row and column.
+    run(&mut s, "table.rowHeight", json!({"height": 20.0}));
+    run(&mut s, "table.columnWidth", json!({"width": 80.0}));
+    assert_eq!(heights(&s), vec![Some(20.0), None, None]);
+    assert_eq!(widths(&s)[0], 80.0);
+    assert_eq!(&widths(&s)[1..], &before[1..]);
+    // A selected column: just that column.
+    run(&mut s, "table.selectColumn", json!({}));
+    run(&mut s, "table.columnWidth", json!({"width": 70.0}));
+    assert_eq!(widths(&s)[0], 70.0);
+    assert_eq!(&widths(&s)[1..], &before[1..]);
+    // The whole table: every row and every column, one Undo per edit.
+    let mid = (heights(&s), widths(&s));
+    run(&mut s, "table.selectTable", json!({}));
+    run(&mut s, "table.rowHeight", json!({"height": 40.0}));
+    assert_eq!(heights(&s), vec![Some(40.0); 3]);
+    run(&mut s, "table.columnWidth", json!({"width": 90.0}));
+    assert_eq!(widths(&s), vec![90.0; 3]);
+    assert!(table(&s).rows.iter().all(|r| r.cells.iter().all(|c| c.props.width == Some(90.0))), "cell widths follow the grid");
+    run(&mut s, "edit.undo", json!({}));
+    run(&mut s, "edit.undo", json!({}));
+    assert_eq!((heights(&s), widths(&s)), mid);
+}
 /// Table Properties (#44): table, row, column and cell settings land as one undo step, and
 /// without settings the command reports the current ones (the dialog's source).
 #[test]
@@ -1565,6 +1625,15 @@ fn page_setup_and_breaks() {
     assert_eq!(s.doc.sections().len(), 2);
     assert_eq!(s.layout().pages.len(), 2);
     assert!(s.run("layout.margins", &json!({"left": 1000.0})).is_err());
+    // Mirrored margins: from the preset or `mirror` (#1181); plain numbers keep the setting.
+    run(&mut s, "layout.margins", json!({"preset": "mirrored"}));
+    assert!(s.doc.settings.mirror_margins);
+    run(&mut s, "layout.margins", json!({"left": 80.0}));
+    assert!(s.doc.settings.mirror_margins);
+    run(&mut s, "layout.margins", json!({"left": 80.0, "mirror": false}));
+    assert!(!s.doc.settings.mirror_margins && s.doc.last_section.margin_left == 80.0);
+    run(&mut s, "layout.margins", json!({"mirror": true}));
+    assert!(s.doc.settings.mirror_margins);
 }
 
 /// #1433: a custom page size (More Paper Sizes…) sets the section in its orientation, and
@@ -4430,6 +4499,41 @@ fn unknown_text_extensions_open_as_text() {
     let _ = std::fs::remove_dir_all(&dir);
 }
 
+/// #1384: File Explorer's New › Microsoft Word Document makes an empty, zero-byte .docx. It opens
+/// as a new blank document on the Normal template, and Save writes it back to that file instead
+/// of asking for a name.
+#[test]
+fn an_empty_file_opens_as_a_blank_document_saved_back_to_it() {
+    let dir = std::env::temp_dir().join(format!("wordcraft-1384-{}", std::process::id()));
+    std::fs::create_dir_all(&dir).unwrap();
+    let path = dir.join("New Microsoft Word Document.docx");
+    std::fs::write(&path, b"").unwrap();
+    let mut s = s();
+    run(&mut s, "file.options", json!({"region": "it-IT"}));
+    s.set_editing_language(Some("it-IT"));
+    run(&mut s, "text.insert", json!({"text": "An untitled draft"}));
+    let r = run(&mut s, "file.open", json!({"path": path.to_string_lossy()}));
+    assert_eq!((r["paragraphs"].as_u64(), r["words"].as_u64()), (Some(1), Some(0)), "{r}");
+    assert_eq!(text(&s), "");
+    assert_eq!(s.path.as_deref(), Some(path.as_path()));
+    assert!(!s.dirty);
+    let sp = &s.doc.last_section;
+    assert_eq!((sp.page_w, sp.page_h), (595.28, 841.89), "the region's paper, as File › New gives");
+    assert_eq!(s.doc.styles.default_chr.lang.as_deref(), Some("it-IT"), "in the editing language");
+
+    run(&mut s, "text.insert", json!({"text": "Ciao"}));
+    let r = run(&mut s, "file.save", json!({}));
+    assert_eq!(r["saved"], true, "{r}");
+    assert!(!s.ui_requests.iter().any(|q| q["open"] == "saveAs"), "no Save As");
+    let saved = crate::io::open_path(&path).unwrap();
+    assert_eq!(saved.plain_text(StoryRef::Body), "Ciao");
+
+    // The same from the browser's picker (the web), which hands over the bytes.
+    run(&mut s, "file.open", json!({"path": "Vuoto.docx", "data": ""}));
+    assert_eq!((text(&s), s.doc.last_section.page_w), (String::new(), 595.28));
+    let _ = std::fs::remove_dir_all(&dir);
+}
+
 /// #549: after a double-click, dragging extends the selection by whole words; after a
 /// triple-click by whole paragraphs; after Ctrl/⌘+click by whole sentences. Forward drags keep
 /// the first unit's start as the anchor, backward drags its end.
@@ -4736,17 +4840,57 @@ fn note_options_per_section_and_convert_notes() {
 /// A tiny synthetic Polish Hunspell dictionary (written for these tests). Real dictionaries are
 /// installed on the system, never bundled; every Polish test installs this same one.
 fn polish_test_dictionary() {
-    let aff = "SET UTF-8\nTRY aioeznrwcyszżtkpdmłjlubąęgh\nMAP 2\nMAP oó\nMAP zż\nREP 2\nREP ż rz\nREP rz ż\n";
-    let dic = "12\npłynie\nrzeka\na\nto\nwiem\nże\ntak\nw\nogóle\nzażółć\ngęślą\njaźń\n";
-    wordcraft_proof::pl::install_dictionary(aff, dic).unwrap();
+    wordcraft_proof::pl::install_dictionary(POLISH_TEST_AFF, POLISH_TEST_DIC).unwrap();
 }
+
+const POLISH_TEST_AFF: &str = "SET UTF-8\nTRY aioeznrwcyszżtkpdmłjlubąęgh\nMAP 2\nMAP oó\nMAP zż\nREP 2\nREP ż rz\nREP rz ż\n";
+const POLISH_TEST_DIC: &str = "12\npłynie\nrzeka\na\nto\nwiem\nże\ntak\nw\nogóle\nzażółć\ngęślą\njaźń\n";
 
 /// A tiny synthetic Portuguese Hunspell dictionary (written for these tests). Real dictionaries
 /// are installed on the system, never bundled; every Portuguese test installs this same one.
 fn portuguese_test_dictionary() {
-    let aff = "SET UTF-8\nFLAG UTF-8\nFORBIDDENWORD F\nTRY aeiousrntmdlcpvgqbzfhjxçãõáéíóúâêô\nMAP 2\nMAP aáã\nMAP eé\nREP 1\nREP seje seja\n";
-    let dic = "11\nsaudade\ncoração\ne\nele\ndisse\nnão\né\nque\nseja\nfrequencia/F\nmuito\n";
-    wordcraft_proof::pt::install_dictionary(aff, dic).unwrap();
+    wordcraft_proof::pt::install_dictionary(PORTUGUESE_TEST_AFF, PORTUGUESE_TEST_DIC).unwrap();
+}
+
+const PORTUGUESE_TEST_AFF: &str =
+    "SET UTF-8\nFLAG UTF-8\nFORBIDDENWORD F\nTRY aeiousrntmdlcpvgqbzfhjxçãõáéíóúâêô\nMAP 2\nMAP aáã\nMAP eé\nREP 1\nREP seje seja\n";
+const PORTUGUESE_TEST_DIC: &str = "11\nsaudade\ncoração\ne\nele\ndisse\nnão\né\nque\nseja\nfrequencia/F\nmuito\n";
+
+/// #1063: File › Options › Proofing › Dictionaries folder. A folder of Hunspell files is saved,
+/// searched first and reported per language; a missing folder or a relative path is refused and
+/// changes nothing. The folder holds the same test dictionaries the other tests install, so tests
+/// running meanwhile see the same words; it stays set for the rest of the run for that reason.
+#[test]
+fn dictionaries_folder_option_is_saved_searched_and_reported() {
+    let dir = std::env::temp_dir().join(format!("wc-engine-dictionaries-{}", std::process::id()));
+    std::fs::create_dir_all(&dir).unwrap();
+    for (name, aff, dic) in [("pl_PL", POLISH_TEST_AFF, POLISH_TEST_DIC), ("pt_BR", PORTUGUESE_TEST_AFF, PORTUGUESE_TEST_DIC)] {
+        std::fs::write(dir.join(format!("{name}.aff")), aff).unwrap();
+        std::fs::write(dir.join(format!("{name}.dic")), dic).unwrap();
+    }
+    let mut s = s();
+    let missing = dir.join("no-such-folder");
+    assert!(s.run("file.options", &json!({"dictionariesFolder": missing.to_string_lossy()})).is_err());
+    assert!(s.run("file.options", &json!({"dictionariesFolder": "relative/dictionaries"})).is_err());
+    assert!(s.run("file.options", &json!({"dictionariesFolder": 7})).is_err());
+    assert_eq!(s.prefs.dictionaries_folder, None, "a refused folder changes nothing");
+    let r = run(&mut s, "file.options", json!({"dictionariesFolder": dir.to_string_lossy()}));
+    assert_eq!(s.prefs.dictionaries_folder.as_deref(), Some(dir.to_string_lossy().as_ref()));
+    assert_eq!(r["dictionariesFolder"], json!(dir.to_string_lossy()));
+    let dicts = r["dictionaries"].as_array().unwrap();
+    let file = |lang: &str| dicts.iter().find(|d| d["language"] == lang).map(|d| d["file"].clone());
+    assert_eq!(file("pl"), Some(json!(dir.join("pl_PL.dic").to_string_lossy())));
+    assert_eq!(file("pt"), Some(json!(dir.join("pt_BR.dic").to_string_lossy())));
+    // Polish text is checked against the folder's dictionary.
+    run(&mut s, "document.setText", json!({"text": "rzeka płynie żeka"}));
+    run(&mut s, "select.all", json!({}));
+    run(&mut s, "review.language", json!({"lang": "pl-PL"}));
+    let issues = run(&mut s, "review.issues", json!({}));
+    let words: Vec<&str> = issues.as_array().unwrap().iter().filter(|i| i["kind"] == "spelling").filter_map(|i| i["text"].as_str()).collect();
+    assert_eq!(words, ["żeka"], "{issues}");
+    // Saved with the settings.
+    let prefs = serde_json::to_value(&s.prefs).unwrap();
+    assert_eq!(prefs["dictionariesFolder"], json!(dir.to_string_lossy()));
 }
 
 /// Review › Language and the proofing commands work in Portuguese end to end: the language makes
@@ -5599,6 +5743,67 @@ fn insert_picture_takes_a_windows_metafile() {
     let err = s.run("insert.picture", &json!({"path": path.to_string_lossy()})).unwrap_err();
     assert!(err.to_string().contains("WMF, EMF"), "{err}");
     let _ = std::fs::remove_dir_all(&dir);
+}
+
+/// Insert › Link › Place in This Document (#1234): a link to a bookmark, a heading or the top of
+/// the document, the list of those places, and following the link.
+#[test]
+fn links_to_places_in_this_document() {
+    let mut s = s();
+    run(&mut s, "text.insert", json!({"text": "Intro"}));
+    run(&mut s, "para.style", json!({"style": "Heading1"}));
+    run(&mut s, "text.newParagraph", json!({}));
+    run(&mut s, "para.style", json!({"style": "Normal"}));
+    run(&mut s, "text.insert", json!({"text": "Body text here"}));
+    run(&mut s, "text.newParagraph", json!({}));
+    run(&mut s, "text.insert", json!({"text": "Details"}));
+    run(&mut s, "para.style", json!({"style": "Heading2"}));
+    run(&mut s, "select.text", json!({"text": "Body"}));
+    run(&mut s, "insert.bookmark", json!({"name": "Mark1"}));
+    let links = |s: &Session| -> Vec<(String, String)> {
+        s.doc
+            .body
+            .iter()
+            .filter_map(|b| b.as_para())
+            .flat_map(|p| p.run_ranges().filter_map(|(r, c)| Some((c.link.clone()?, p.text.get(r)?.to_string()))).collect::<Vec<_>>())
+            .collect()
+    };
+    // The places: the top, both headings with their levels, and the one visible bookmark.
+    let t = run(&mut s, "link.targets", json!({}));
+    assert_eq!(t["top"], true);
+    let heads: Vec<(u64, String)> =
+        t["headings"].as_array().unwrap().iter().map(|h| (h["level"].as_u64().unwrap(), h["text"].as_str().unwrap().to_string())).collect();
+    assert_eq!(heads, vec![(1, "Intro".to_string()), (2, "Details".to_string())]);
+    assert_eq!(t["bookmarks"], json!(["Mark1"]));
+    // A bookmark link on the selection.
+    run(&mut s, "select.text", json!({"text": "here"}));
+    run(&mut s, "insert.link", json!({"bookmark": "Mark1"}));
+    assert_eq!(links(&s), vec![("#Mark1".to_string(), "here".to_string())]);
+    // A heading link at a caret inserts the heading's text; it reuses the heading's hidden bookmark.
+    run(&mut s, "caret.set", json!({"pos": {"block": 1, "off": 0}}));
+    run(&mut s, "insert.link", json!({"heading": t["headings"][1]["block"]}));
+    let l = links(&s);
+    assert_eq!(l.len(), 2, "{l:?}");
+    let (hidden, shown) = l.iter().find(|(a, _)| a.starts_with("#_Toc")).cloned().unwrap();
+    assert_eq!(shown, "Details", "{l:?}");
+    let t2 = run(&mut s, "link.targets", json!({}));
+    assert_eq!(t2["bookmarks"], json!(["Mark1"]), "the hidden bookmark is not listed");
+    run(&mut s, "caret.set", json!({"pos": {"block": 1, "off": 0}}));
+    run(&mut s, "insert.link", json!({"heading": t["headings"][1]["block"], "text": "again"}));
+    assert!(links(&s).iter().all(|(a, _)| a == "#Mark1" || *a == hidden), "one bookmark for the heading: {:?}", links(&s));
+    // The top of the document, and following the links.
+    run(&mut s, "caret.set", json!({"pos": {"block": 1, "off": 0}}));
+    run(&mut s, "insert.link", json!({"top": true}));
+    assert!(links(&s).iter().any(|(a, t)| a == "#_top" && t == "Top of the Document"), "{:?}", links(&s));
+    run(&mut s, "edit.goto", json!({"bookmark": "Mark1"}));
+    assert_ne!(s.sel.focus, Pos::body(0, 0));
+    run(&mut s, "edit.goto", json!({"bookmark": "_top"}));
+    assert_eq!(s.sel.focus, Pos::body(0, 0));
+    // Refusals change nothing.
+    let rev = s.rev();
+    assert!(s.run("insert.link", &json!({"bookmark": "Nope"})).is_err());
+    assert!(s.run("insert.link", &json!({"heading": 1})).is_err(), "a body paragraph is not a heading");
+    assert_eq!(s.rev(), rev);
 }
 
 /// A DOCX built in code: a tracked deletion inside a field result, as Word writes when a
