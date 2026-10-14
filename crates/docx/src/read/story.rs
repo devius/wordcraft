@@ -32,6 +32,8 @@ const MAX_FIELD_DEPTH: usize = 32;
 const MAX_STORY_DEPTH: usize = 4;
 /// Longest field code we keep (Zotero's citation codes embed item data as JSON).
 const MAX_INSTR: usize = 2 * 1024 * 1024;
+/// Longest legacy form field definition (`w:ffData`) we keep.
+const MAX_FORM: usize = 64 * 1024;
 
 /// Inherited run context (from `w:hyperlink`, `w:ins`, `w:del` wrappers).
 #[derive(Clone, Default)]
@@ -67,6 +69,8 @@ struct FieldState {
     /// The font size of each piece of the code (where it starts in `instr`): an enclosure's
     /// style is the size of its symbol and text (see [`wordcraft_doc::eq`]).
     sizes: Vec<(usize, Option<f32>)>,
+    /// A legacy form field's `w:ffData`, as raw XML.
+    form: String,
 }
 
 /// Enclosed characters (`eq \o\ac(○,字)`), with their style from the code's font sizes: Word
@@ -121,6 +125,8 @@ pub struct StoryCtx {
     pending: Vec<InlineObject>,
     /// Text-box nesting depth.
     pub story_depth: usize,
+    /// Reading a header or footer (not a text box inside one): where Word keeps its watermark.
+    pub in_hf: bool,
 }
 
 /// Paragraph content under construction.
@@ -465,7 +471,7 @@ impl Reader<'_> {
             "w:fldSimple" => {
                 let instr = k.attr("w:instr").unwrap_or("").to_string();
                 let props = k.child("w:r").and_then(|r| r.child("w:rPr")).map(|p| self.run_props(p, ctx)).unwrap_or_else(|| self.run_props_none(ctx));
-                self.begin_field(sc, props, instr, on_off_attr(k, "w:fldLock"));
+                self.begin_field(sc, props, instr, on_off_attr(k, "w:fldLock"), String::new());
                 self.separate_field(sc, pb);
                 self.read_inline_children(sc, pb, k, rels, ctx, depth + 1);
                 self.end_field(sc, pb);
@@ -628,7 +634,10 @@ impl Reader<'_> {
                 }
             }
             "w:fldChar" => match k.attr("w:fldCharType") {
-                Some("begin") => self.begin_field(sc, props.clone(), String::new(), on_off_attr(k, "w:fldLock")),
+                Some("begin") => {
+                    let form = k.child("w:ffData").map(|f| f.to_xml()).filter(|x| x.len() <= MAX_FORM).unwrap_or_default();
+                    self.begin_field(sc, props.clone(), String::new(), on_off_attr(k, "w:fldLock"), form)
+                }
                 Some("separate") => self.separate_field(sc, pb),
                 Some("end") => self.end_field(sc, pb),
                 _ => {}
@@ -684,9 +693,12 @@ impl Reader<'_> {
                     pb.push_obj(InlineObject::CommentEnd { id: cid }, props);
                 }
             }
-            "w:pgNum" => {
-                self.emit_obj(sc, pb, InlineObject::Field { instr: "PAGE".into(), result: String::new(), locked: false, code: false }, props)
-            }
+            "w:pgNum" => self.emit_obj(
+                sc,
+                pb,
+                InlineObject::Field { instr: "PAGE".into(), result: String::new(), locked: false, code: false, form: String::new() },
+                props,
+            ),
             "w:ruby" => self.read_ruby(sc, pb, k, props),
             "mc:AlternateContent" => {
                 if let Some(o) = self.read_ink_alternate(sc, k, rels).or_else(|| self.read_chartex_alternate(sc, k, rels)) {
@@ -758,13 +770,23 @@ impl Reader<'_> {
 
     // ---- fields ----
 
-    fn begin_field(&mut self, sc: &mut StoryCtx, props: CharProps, instr: String, locked: bool) {
+    fn begin_field(&mut self, sc: &mut StoryCtx, props: CharProps, instr: String, locked: bool, form: String) {
         if sc.fields.len() >= MAX_FIELD_DEPTH || sc.ignored_begins > 0 {
             sc.ignored_begins += 1;
             return;
         }
         // Fields nested deeper than the cap are ignored (their content flows to the enclosing field).
-        sc.fields.push(FieldState { instr, phase: Phase::Instr, spilled: false, buf: Vec::new(), props, locked, range: false, sizes: Vec::new() });
+        sc.fields.push(FieldState {
+            instr,
+            phase: Phase::Instr,
+            spilled: false,
+            buf: Vec::new(),
+            props,
+            locked,
+            range: false,
+            sizes: Vec::new(),
+            form,
+        });
     }
 
     /// Whether the field below the innermost one is still collecting its code (a field nested
@@ -842,7 +864,7 @@ impl Reader<'_> {
             Some(e) => (e.instr(), if result.is_empty() { e.text } else { result }),
             None => (f.instr.trim().to_string(), result),
         };
-        let obj = InlineObject::Field { instr, result, locked: f.locked, code: false };
+        let obj = InlineObject::Field { instr, result, locked: f.locked, code: false, form: f.form };
         if let Some(parent) = sc.fields.last_mut()
             && !parent.spilled
             && parent.phase == Phase::Instr
@@ -861,7 +883,11 @@ impl Reader<'_> {
                 continue;
             }
             f.spilled = true;
-            pb.push_obj(InlineObject::Field { instr: f.instr.trim().to_string(), result: String::new(), locked: f.locked, code: false }, &f.props);
+            let form = std::mem::take(&mut f.form);
+            pb.push_obj(
+                InlineObject::Field { instr: f.instr.trim().to_string(), result: String::new(), locked: f.locked, code: false, form },
+                &f.props,
+            );
             for (it, p) in f.buf.drain(..) {
                 match it {
                     Item::Text(t) => pb.push_text(&t, &p),
@@ -1342,6 +1368,13 @@ impl Reader<'_> {
     /// Legacy VML pictures, text boxes, lines, rectangles and ovals (best effort).
     fn read_vml(&mut self, sc: &mut StoryCtx, pict: &El, rels: &Rels) -> Option<InlineObject> {
         let shape = pict.els().find(|e| e.name.starts_with("v:") && e.local() != "shapetype")?;
+        if sc.in_hf
+            && let Some(wm) = vml_watermark(shape)
+        {
+            // The document's watermark (the first one found); drawn on every page, not as a shape.
+            self.doc.settings.watermark.get_or_insert(wm);
+            return None;
+        }
         let style = shape.attr("style").unwrap_or("");
         let len = |k: &str| vml_style(style, k).and_then(|v| measure(v, 1.0)).unwrap_or(0.0).clamp(0.0, crate::units::MAX_LEN_PT);
         let (mut w, mut h) = (len("width"), len("height"));
@@ -1746,6 +1779,54 @@ fn vml_float(shape: &El, style: &str) -> Float {
     };
     f.set_spin(vml_spin(style));
     f
+}
+
+/// Word's text watermark (Design › Watermark): a VML shape in a header whose `v:textpath` draws
+/// its `string` as text (ECMA-376 Part 4, VML `textpath`), in the textpath's `font-family`, filled
+/// with the shape's `fillcolor`, semitransparent when its `v:fill` has an `opacity` below 1, and
+/// diagonal when the shape is turned. Only Word's watermark shape counts (its `id`), or text
+/// placed absolutely and centred both ways; other header WordArt (a logo or a title) is None.
+fn vml_watermark(shape: &El) -> Option<wordcraft_doc::Watermark> {
+    let tp = shape.child("v:textpath")?;
+    if tp.attr("on").is_some_and(|v| matches!(v, "f" | "false" | "0")) {
+        return None;
+    }
+    let style = shape.attr("style").unwrap_or("");
+    let centred = |k: &str| vml_style(style, k).is_some_and(|v| v.eq_ignore_ascii_case("center"));
+    let word = shape.attr("id").is_some_and(|id| id.starts_with("PowerPlusWaterMarkObject"));
+    let placed = vml_style(style, "position").is_some_and(|p| p.eq_ignore_ascii_case("absolute"))
+        && centred("mso-position-horizontal")
+        && centred("mso-position-vertical");
+    if !word && !placed {
+        return None;
+    }
+    let text: String = tp.attr("string")?.chars().take(200).collect();
+    if text.trim().is_empty() {
+        return None;
+    }
+    let default = wordcraft_doc::Watermark::default();
+    let font = tp
+        .attr("style")
+        .and_then(|s| vml_style(s, "font-family"))
+        .map(|f| f.trim_matches(|c: char| c == '"' || c == '\'' || c.is_whitespace()).chars().take(100).collect::<String>())
+        .filter(|f| !f.is_empty())
+        .unwrap_or(default.font);
+    let color = shape.attr("fillcolor").and_then(vml_color).unwrap_or(default.color);
+    let opacity = shape.child("v:fill").and_then(|f| f.attr("opacity")).and_then(vml_fraction).unwrap_or(1.0);
+    Some(wordcraft_doc::Watermark { text, font, color, diagonal: vml_spin(style).deg != 0.0, semitransparent: opacity < 1.0 })
+}
+
+/// A VML fraction (`opacity`): a number, a percentage, or 65536ths with an `f` suffix; 0..=1.
+fn vml_fraction(v: &str) -> Option<f32> {
+    let v = v.trim();
+    let f = if let Some(n) = v.strip_suffix('f') {
+        n.trim().parse::<f32>().ok()? / 65_536.0
+    } else if let Some(n) = v.strip_suffix('%') {
+        n.trim().parse::<f32>().ok()? / 100.0
+    } else {
+        v.parse::<f32>().ok()?
+    };
+    f.is_finite().then(|| f.clamp(0.0, 1.0))
 }
 
 /// A VML shape's turn: `rotation` in degrees, or 65536ths of one with an `fd` suffix; `flip`: `x`
