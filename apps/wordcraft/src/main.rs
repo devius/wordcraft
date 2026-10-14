@@ -30,9 +30,9 @@ use wordcraft_ui_egui::{
     window_geometry::{WindowGeometry, take_rescue},
 };
 
-/// The app, the restored window geometry until the first frame has checked it, the control
-/// server's key file (removed on exit), the file dialogs the app asked for and, on macOS, the
-/// documents opened from Finder.
+/// The app, the restored window geometry (or, with none, the default: no position) until the
+/// first frame that knows the monitor has checked it, the control server's key file (removed on
+/// exit), the file dialogs the app asked for and, on macOS, the documents opened from Finder.
 struct App(
     WordApp,
     Option<WindowGeometry>,
@@ -47,10 +47,23 @@ impl eframe::App for App {
         apple_events::poll(&self.4, &mut self.0, ctx);
         self.0.logic(ctx);
         self.3.show(frame);
+        // A window that doesn't fit on its screen (the default size on a laptop) shrinks to fit
+        // there, so all of the scroll bar can be dragged (#1215). Checked on the frame that first
+        // knows the monitor: the off-screen check below takes the pending geometry then.
+        if let Some((pos, size)) = ctx.input(|i| self.1.and_then(|g| g.fit_on_monitor(i.viewport()))) {
+            ctx.send_viewport_cmd(egui::ViewportCommand::InnerSize(size));
+            ctx.send_viewport_cmd(egui::ViewportCommand::OuterPosition(pos));
+        }
         let prev = self.0.ui.window;
         self.0.ui.window = ctx.input(|i| WindowGeometry::track(prev, i.viewport(), i.viewport_rect().size()));
+        // The first frame, once the monitor is known (as `take_rescue` waits for): maximize a
+        // window that opened at its normal size so it never flashed on screen half-opened.
+        let maximize = self.1.and_then(|g| g.maximize_after_open()).filter(|_| ctx.input(|i| i.viewport().monitor_size.is_some()));
         if let Some(pos) = ctx.input(|i| take_rescue(&mut self.1, i.viewport())) {
             ctx.send_viewport_cmd(egui::ViewportCommand::OuterPosition(pos));
+        }
+        if let Some(command) = maximize {
+            ctx.send_viewport_cmd(command);
         }
         // The window's close button: with unsaved changes, ask first (`WordApp::close_requested`).
         let closing = ctx.input(|i| i.viewport().close_requested());
@@ -191,13 +204,33 @@ fn save_prefs(app: &WordApp) {
         return;
     }
     if let Some(p) = prefs_path() {
-        if let Some(dir) = p.parent() {
-            let _ = std::fs::create_dir_all(dir);
+        if let Some(dir) = p.parent()
+            && let Err(e) = std::fs::create_dir_all(dir)
+        {
+            log::warn!("preferences: cannot create {}: {e}", dir.display());
+            return;
         }
-        if let Ok(bytes) = serde_json::to_vec_pretty(&app.prefs()) {
-            let _ = std::fs::write(&p, bytes);
+        match serde_json::to_vec_pretty(&app.prefs()) {
+            Ok(bytes) => {
+                if let Err(e) = write_prefs(&p, &bytes) {
+                    log::warn!("preferences: cannot save {}: {e}", p.display());
+                }
+            }
+            Err(e) => log::warn!("preferences: cannot serialize: {e}"),
         }
     }
+}
+
+/// Writes `bytes` to a sibling temporary file and renames it over `path`, so a failed or
+/// interrupted write leaves the previous preferences in place.
+fn write_prefs(path: &std::path::Path, bytes: &[u8]) -> std::io::Result<()> {
+    let name = path.file_name().map(|n| n.to_string_lossy().into_owned()).unwrap_or_else(|| "ui.json".into());
+    let tmp = path.with_file_name(format!(".{name}.{}.tmp", std::process::id()));
+    let written = std::fs::write(&tmp, bytes).and_then(|()| std::fs::rename(&tmp, path));
+    if written.is_err() {
+        let _ = std::fs::remove_file(&tmp);
+    }
+    written
 }
 
 /// Native file dialogs, shown without blocking the window (`file_dialogs`, #94), File › Print
@@ -354,6 +387,14 @@ fn main() -> eframe::Result {
                 app.session.set_document(doc);
             }
             app.watch_desktop_theme(&cc.egui_ctx);
+            if prefs_enabled()
+                && let Some(dir) = wordcraft_control_key::settings_dir()
+            {
+                let ctx = cc.egui_ctx.clone();
+                if let Err(e) = app.session.enable_recovery(dir.join("recovery"), std::sync::Arc::new(move || ctx.request_repaint())) {
+                    log::warn!("local recovery unavailable: {e}");
+                }
+            }
             app.ui.window = restored;
             app.integrated_titlebar = cfg!(target_os = "macos");
             #[cfg(target_os = "macos")]
@@ -381,7 +422,8 @@ fn main() -> eframe::Result {
             }
             Ok(Box::new(App(
                 app,
-                restored,
+                // With nothing restored, the window the system placed is checked all the same.
+                Some(restored.unwrap_or_default()),
                 key_file,
                 dialogs,
                 #[cfg(target_os = "macos")]
@@ -389,4 +431,24 @@ fn main() -> eframe::Result {
             )))
         }),
     )
+}
+
+#[cfg(test)]
+mod tests {
+    use super::write_prefs;
+
+    #[test]
+    fn failed_preferences_write_keeps_the_old_file_and_reports_the_error() {
+        let dir = std::env::temp_dir().join(format!("wordcraft-prefs-test-{}", std::process::id()));
+        std::fs::create_dir_all(&dir).unwrap();
+        let path = dir.join("ui.json");
+        std::fs::write(&path, b"old").unwrap();
+        write_prefs(&path, b"new").unwrap();
+        assert_eq!(std::fs::read(&path).unwrap(), b"new");
+        // A directory squatting on the temporary name makes the preparation step fail.
+        std::fs::create_dir(dir.join(format!(".ui.json.{}.tmp", std::process::id()))).unwrap();
+        assert!(write_prefs(&path, b"newer").is_err());
+        assert_eq!(std::fs::read(&path).unwrap(), b"new");
+        let _ = std::fs::remove_dir_all(&dir);
+    }
 }
