@@ -2517,3 +2517,7 @@ preview	Title	სათაური
 	Paper	ქაღალდი
 	Paper size:	ფურცლის ზომა:
 	The margins don't fit on a page this size; make the margins smaller first.	ველები ამ ზომის გვერდზე არ ეტევა; ჯერ ველები შეამცირეთ.
+	Saving {name} was cancelled, so it is still open and nothing was lost.	შენახვა გაუქმდა ({name}): დოკუმენტი ისევ ღიაა და არაფერი დაკარგულა.
+	Waiting for the save to finish…	შენახვის დასრულების მოლოდინი…
+	Moved objects snap to the page's edges and centre, the margins and other objects. Hold Alt to move freely.	გადაადგილებული ობიექტები ებმის გვერდის კიდეებს, ცენტრს, ველებს და სხვა ობიექტებს. თავისუფლად გადასაადგილებლად დააჭირეთ Alt-ს.
+	Show alignment guides when moving pictures and shapes	გასწორების დამხმარე ხაზების ჩვენება სურათებისა და ფიგურების გადაადგილებისას
