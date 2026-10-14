@@ -1831,6 +1831,35 @@ fn reject_one_paragraph_break_and_rejecting_a_typed_paragraph() {
 }
 
 #[test]
+fn reject_all_of_an_inserted_paragraph_keeps_the_next_paragraphs_style() {
+    // A whole paragraph inserted before a heading, in another style: rejecting it removes the
+    // paragraph, and the heading keeps its own style (it used to take the rejected one's).
+    let mut s = s();
+    run(&mut s, "text.insert", json!({"text": "Intro"}));
+    run(&mut s, "text.newParagraph", json!({}));
+    run(&mut s, "text.insert", json!({"text": "Heading"}));
+    run(&mut s, "para.style", json!({"style": "Heading1"}));
+    run(&mut s, "review.trackChanges", json!({"value": true}));
+    run(&mut s, "caret.set", json!({"pos": {"block": 1, "off": 0}}));
+    run(&mut s, "text.insert", json!({"text": "Inserted"}));
+    run(&mut s, "text.newParagraph", json!({}));
+    run(&mut s, "review.trackChanges", json!({"value": false}));
+    run(&mut s, "caret.set", json!({"pos": {"block": 1, "off": 0}}));
+    run(&mut s, "para.style", json!({"style": "Normal"}));
+    assert_eq!(body_texts(&s), ["Intro", "Inserted", "Heading"]);
+    let style = |s: &Session, i: usize| s.doc.para_at(&Pos::body(i, 0)).unwrap().props.style.clone();
+    assert_eq!(style(&s, 2).as_deref(), Some("Heading1"));
+    run(&mut s, "review.rejectAll", json!({}));
+    assert_eq!(body_texts(&s), ["Intro", "Heading"]);
+    assert_eq!(style(&s, 1).as_deref(), Some("Heading1"));
+    // Accepting instead keeps all three, each with its style.
+    run(&mut s, "edit.undo", json!({}));
+    run(&mut s, "review.acceptAll", json!({}));
+    assert_eq!(body_texts(&s), ["Intro", "Inserted", "Heading"]);
+    assert_eq!(style(&s, 2).as_deref(), Some("Heading1"));
+}
+
+#[test]
 fn tracked_backspace_and_delete_mark_a_paragraph_break_deleted() {
     let two = || {
         let mut s = s();
@@ -3389,6 +3418,37 @@ fn zoom_after_one_page_keeps_single_column() {
     assert!(!s.view.single_column);
 }
 
+/// Issue #995: One Page is saved with the document (`w:zoom`, like Word) and restored when it is
+/// reopened; changing the zoom alone doesn't make the document unsaved.
+#[test]
+fn one_page_is_restored_when_the_document_is_reopened() {
+    let dir = std::env::temp_dir().join(format!("wordcraft-engine-zoom-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&dir);
+    std::fs::create_dir_all(&dir).unwrap();
+    let path = dir.join("one-page.docx");
+    let path = path.to_string_lossy();
+    let mut s = s();
+    run(&mut s, "text.insert", json!({"text": "Hello"}));
+    run(&mut s, "file.save", json!({"path": path}));
+    run(&mut s, "view.onePage", json!({}));
+    assert!(!s.dirty, "a zoom isn't an edit");
+    run(&mut s, "file.save", json!({}));
+
+    let mut other = Session::new(wordcraft_doc::Document::new());
+    run(&mut other, "file.open", json!({"path": path}));
+    assert_eq!(other.view.fit, "onePage");
+    assert!(other.view.single_column && !other.view.multi_page);
+    assert!(!other.dirty);
+
+    // A percentage is restored as a percentage, the fit mode dropped.
+    run(&mut other, "view.zoom", json!({"value": 80}));
+    run(&mut other, "file.save", json!({}));
+    run(&mut s, "file.open", json!({"path": path}));
+    assert!(s.view.fit.is_empty() && !s.view.single_column);
+    assert!((s.view.zoom - 0.8).abs() < 1e-6);
+    let _ = std::fs::remove_dir_all(&dir);
+}
+
 #[test]
 fn navigation_pane_opens_without_changing_view_mode() {
     // Reading Mode's heading navigation is the Navigation pane; Outline is an editing view (#493).
@@ -4804,6 +4864,37 @@ fn polish_proofing_through_the_review_commands() {
     assert_eq!(left.as_array().unwrap().len(), 1, "{left}");
 }
 
+/// Review › Language and proofing commands work in Turkish end to end.
+#[test]
+fn turkish_proofing_through_the_review_commands() {
+    // Spelling and suggestions come from the installed Turkish Hunspell dictionary; machines
+    // without one (CI, most desktops) have nothing to check here.
+    if !crate::proof::tr::has_dictionary() {
+        return;
+    }
+    let mut s = s();
+    run(&mut s, "document.setText", json!({"text": "Bana bazen gelenler oldu ise de. Sana olacaklardan sonra sorna"}));
+    run(&mut s, "select.all", json!({}));
+    run(&mut s, "review.language", json!({"lang": "tr-TR", "default": true}));
+    assert_eq!(s.doc.styles.default_chr.lang.as_deref(), Some("tr-TR"));
+
+    let issues = run(&mut s, "review.issues", json!({}));
+    let arr = issues.as_array().unwrap();
+    // "sorna" must be flagged as spelling issue
+    let sorna_issue = arr.iter().find(|i| i["text"] == "sorna" && i["kind"] == "spelling");
+    assert!(sorna_issue.is_some(), "sorna must be flagged: {issues}");
+
+    // Check suggestions for sorna
+    let sugs: Vec<String> = sorna_issue.unwrap()["suggestions"].as_array().unwrap().iter().filter_map(|x| x.as_str().map(str::to_string)).collect();
+    assert!(sugs.contains(&"sonra".to_string()), "sorna must suggest sonra: {sugs:?}");
+
+    // Add to Dictionary: adding "sorna" should remove its issue
+    run(&mut s, "review.addToDictionary", json!({"word": "sorna"}));
+    let issues_after = run(&mut s, "review.issues", json!({}));
+    let arr_after = issues_after.as_array().unwrap();
+    assert!(!arr_after.iter().any(|i| i["text"] == "sorna"), "sorna should no longer be flagged after adding to dictionary: {issues_after}");
+}
+
 /// `review.language`: tags are validated and normalized, `noProof` alone keeps the language,
 /// no parameters keep the old meaning (US English), and `default` needs a language.
 #[test]
@@ -5510,6 +5601,137 @@ fn insert_picture_takes_a_windows_metafile() {
     let _ = std::fs::remove_dir_all(&dir);
 }
 
+/// A DOCX built in code: a tracked deletion inside a field result, as Word writes when a
+/// formula field's result is edited (#1037). The first field's result is split across the field
+/// end; the second has its whole result deleted.
+fn tracked_field_result_docx() -> Vec<u8> {
+    use std::io::Write;
+    const WHO: &str = r#"w:author="Tester" w:date="2026-10-12T00:00:00Z""#;
+    let field = |instr: &str, inside: &str, after: &str| {
+        format!(
+            r#"<w:r><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:instrText xml:space="preserve"> {instr} </w:instrText></w:r><w:r><w:fldChar w:fldCharType="separate"/></w:r>{inside}<w:r><w:fldChar w:fldCharType="end"/></w:r>{after}"#
+        )
+    };
+    let del = |id: u32, t: &str| format!(r#"<w:del w:id="{id}" {WHO}><w:r><w:delText>{t}</w:delText></w:r></w:del>"#);
+    let ins = |id: u32, t: &str| format!(r#"<w:ins w:id="{id}" {WHO}><w:r><w:t>{t}</w:t></w:r></w:ins>"#);
+    let p1 = field("=SUM(ABOVE)", &del(1, "$"), &(del(2, "150.00") + &ins(3, "$140.00")));
+    let p2 = field("=2+3", &del(4, "5"), &ins(5, "five"));
+    let xml = format!(
+        r#"<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body><w:p>{p1}</w:p><w:p>{p2}</w:p></w:body></w:document>"#
+    );
+    let mut zip = zip::ZipWriter::new(std::io::Cursor::new(Vec::new()));
+    for (name, value) in [
+        ("word/document.xml", xml.as_str()),
+        (
+            "_rels/.rels",
+            r#"<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="main" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>"#,
+        ),
+    ] {
+        zip.start_file(name, zip::write::SimpleFileOptions::default()).unwrap();
+        zip.write_all(value.as_bytes()).unwrap();
+    }
+    zip.finish().unwrap().into_inner()
+}
+
+#[test]
+fn tracked_deletion_inside_a_field_result_is_a_revision_and_is_saved() {
+    let doc = wordcraft_docx::read(&tracked_field_result_docx()).unwrap();
+    // Revisions with one author and date are shared: one deletion, one insertion.
+    let kinds: Vec<_> = doc.revisions.iter().map(|r| r.kind).collect();
+    assert_eq!(kinds, [wordcraft_doc::RevisionKind::Delete, wordcraft_doc::RevisionKind::Insert]);
+    // The deleted `$` is still in the text, marked deleted (not ordinary result text).
+    let p = doc.body[0].as_para().unwrap();
+    assert_eq!(p.text.replace(wordcraft_doc::para::OBJ, ""), "$150.00$140.00");
+    // Saving keeps the deletion inside the result, with its text as delText.
+    let bytes = wordcraft_docx::write(&doc).unwrap();
+    let mut z = zip::ZipArchive::new(std::io::Cursor::new(bytes)).unwrap();
+    let mut xml = String::new();
+    std::io::Read::read_to_string(&mut z.by_name("word/document.xml").unwrap(), &mut xml).unwrap();
+    let sep = xml.find(r#"w:fldCharType="separate""#).unwrap();
+    let end = xml.find(r#"w:fldCharType="end""#).unwrap();
+    let inside = &xml[sep..end];
+    assert!(inside.contains("<w:del ") && inside.contains("<w:delText") && inside.contains('$'), "{inside}");
+}
+
+/// Paragraph texts without the field markers' placeholder characters.
+fn visible_texts(s: &Session) -> Vec<String> {
+    body_texts(s).iter().map(|t| t.replace(wordcraft_doc::para::OBJ, "")).collect()
+}
+
+#[test]
+fn accept_and_reject_all_handle_a_tracked_deletion_inside_a_field_result() {
+    let open = || Session::new(wordcraft_docx::read(&tracked_field_result_docx()).unwrap());
+    let mut s = open();
+    run(&mut s, "review.acceptAll", json!({}));
+    assert_eq!(visible_texts(&s), ["$140.00", "five"]);
+    assert!(s.doc.revisions.is_empty());
+    let mut s = open();
+    run(&mut s, "review.rejectAll", json!({}));
+    assert_eq!(visible_texts(&s), ["$150.00", "5"]);
+}
+
+#[test]
+fn rename_document_preserves_saved_contents_and_rejects_collisions() {
+    let dir = std::env::temp_dir().join(format!("wordcraft-rename-{}", std::process::id()));
+    std::fs::create_dir_all(&dir).unwrap();
+    let original = dir.join("original.docm");
+    let renamed = dir.join("Notes.docm");
+    let existing = dir.join("existing.docm");
+    std::fs::write(&original, b"original bytes").unwrap();
+    std::fs::write(&existing, b"keep these bytes").unwrap();
+    let mut s = Session::new(wordcraft_doc::Document::new());
+    s.path = Some(original.clone());
+    s.dirty = true;
+    assert!(s.run("file.rename", &json!({"name": "existing"})).is_err());
+    assert_eq!(s.path.as_ref(), Some(&original));
+    assert_eq!(std::fs::read(&existing).unwrap(), b"keep these bytes");
+    let roots = crate::file_access::AutomationRoots::new(Some(&dir), None).unwrap();
+    assert!(crate::file_access::confine(roots.as_ref(), || s.run("file.rename", &json!({"name": "Notes"}))).is_err());
+    assert!(original.exists());
+    assert!(!renamed.exists());
+    s.run("file.rename", &json!({"name": " Notes "})).unwrap();
+    assert_eq!(s.path.as_ref(), Some(&renamed));
+    assert!(s.dirty);
+    assert!(!original.exists());
+    assert_eq!(std::fs::read(&renamed).unwrap(), b"original bytes");
+    s.run("file.rename", &json!({"name": "Notes"})).unwrap();
+    s.run("file.rename", &json!({"name": "notes"})).unwrap();
+    let lower = dir.join("notes.docm");
+    assert_eq!(s.path.as_ref(), Some(&lower));
+    let names: Vec<_> = std::fs::read_dir(&dir).unwrap().map(|e| e.unwrap().file_name()).collect();
+    assert!(names.contains(&"notes.docm".into()) && !names.contains(&"Notes.docm".into()), "{names:?}");
+    assert_eq!(std::fs::read(&lower).unwrap(), b"original bytes");
+    assert!(s.run("file.rename", &json!({"name": "existing"})).is_err());
+    assert_eq!(s.path.as_ref(), Some(&lower));
+    assert_eq!(std::fs::read(&existing).unwrap(), b"keep these bytes");
+    std::fs::remove_dir_all(dir).unwrap();
+}
+
+#[test]
+fn rename_unsaved_document_names_the_file_not_the_document() {
+    let mut s = Session::new(wordcraft_doc::Document::new());
+    s.doc.core.title = "Quarterly report".into();
+    for name in ["", "  ", "../report", "a/b", "a\\b", "a\nb", "name."] {
+        assert!(s.run("file.rename", &json!({"name": name})).is_err(), "{name:?}");
+        assert!(s.file_name.is_none());
+    }
+    s.run("file.rename", &json!({"name": " Résumé notes "})).unwrap();
+    assert_eq!(s.file_name.as_deref(), Some("Résumé notes"));
+    assert_eq!(s.doc.core.title, "Quarterly report");
+    assert!(s.path.is_none());
+    assert!(!s.dirty);
+    assert!(!s.can_undo());
+    s.run("file.new", &json!({})).unwrap();
+    assert!(s.file_name.is_none());
+    s.run("file.rename", &json!({"name": "Draft"})).unwrap();
+    s.run("file.open", &json!({"path": "other.txt", "data": "aGk="})).unwrap();
+    assert!(s.file_name.is_none());
+    s.run("file.new", &json!({})).unwrap();
+    s.run("file.rename", &json!({"name": "Draft"})).unwrap();
+    s.run("review.compare", &json!({"text": "changed", "showIn": "new"})).unwrap();
+    assert!(s.file_name.is_none() && s.path.is_none());
+}
+
 /// #1344: File › Info › Inspect Document finds hidden text by its effective formatting (direct,
 /// character style, paragraph style) in every story — body, header, footer, footnote, comment,
 /// text box — and Remove All deletes exactly that text, in one undo step, through a DOCX save.
@@ -5902,4 +6124,90 @@ fn exported_page_images_draw_headers_at_full_strength() {
     let darkest = (0..top).flat_map(|y| (0..img.width()).map(move |x| (x, y))).map(|(x, y)| img.get_pixel(x, y)[0]).min().unwrap();
     assert!(darkest < 60, "header drawn dimmed: darkest pixel {darkest}");
     let _ = std::fs::remove_dir_all(&dir);
+}
+
+/// Gap 19, review: text inserted by one author and deleted by another keeps both marks through
+/// an ODT save, so Reject All (undo the deletion, then the insertion) and Accept All both remove it.
+#[test]
+fn odt_inserted_then_deleted_text_round_trips() {
+    use std::io::Write;
+    let ns = r#"xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/""#;
+    let info = |who: &str| format!("<office:change-info><dc:creator>{who}</dc:creator><dc:date>2024-03-01T10:00:00</dc:date></office:change-info>");
+    let content = format!(
+        r#"<office:document-content {ns}><office:body><office:text><text:tracked-changes><text:changed-region text:id="i1"><text:insertion>{}</text:insertion></text:changed-region><text:changed-region text:id="d1"><text:deletion>{}<text:p><text:change-start text:change-id="i1"/>gone<text:change-end text:change-id="i1"/></text:p></text:deletion></text:changed-region></text:tracked-changes><text:p>Keep <text:change text:change-id="d1"/>this.</text:p></office:text></office:body></office:document-content>"#,
+        info("Alice"),
+        info("Bob")
+    );
+    let mut z = zip::ZipWriter::new(std::io::Cursor::new(Vec::new()));
+    let o = zip::write::SimpleFileOptions::default().compression_method(zip::CompressionMethod::Stored);
+    for (name, data) in [("mimetype", "application/vnd.oasis.opendocument.text"), ("content.xml", content.as_str())] {
+        z.start_file(name, o).unwrap();
+        z.write_all(data.as_bytes()).unwrap();
+    }
+    let doc = crate::io::open_bytes("t.odt", &z.finish().unwrap().into_inner()).unwrap();
+    let doc = crate::io::open_bytes("t.odt", &wordcraft_formats::odt::export(&doc).unwrap()).unwrap();
+    for cmd in ["review.rejectAll", "review.acceptAll"] {
+        let mut s = Session::new(doc.clone());
+        run(&mut s, cmd, json!({}));
+        assert_eq!(text(&s), "Keep this.", "{cmd}");
+    }
+}
+
+/// Gap 19: an ODT's tracked insertion and multi-paragraph deletion come in as revisions that
+/// Reject All turns back into the original and Accept All into the edited text.
+#[test]
+fn odt_tracked_changes_accept_and_reject_all() {
+    use std::io::Write;
+    let ns = r#"xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/""#;
+    let info = |who: &str| format!("<office:change-info><dc:creator>{who}</dc:creator><dc:date>2024-03-01T10:00:00</dc:date></office:change-info>");
+    let content = format!(
+        r#"<office:document-content {ns}><office:body><office:text><text:tracked-changes><text:changed-region text:id="i1"><text:insertion>{}</text:insertion></text:changed-region><text:changed-region text:id="d1"><text:deletion>{}<text:p>tail</text:p><text:p>head<text:s/></text:p></text:deletion></text:changed-region></text:tracked-changes><text:p>First <text:change text:change-id="d1"/>rest <text:change-start text:change-id="i1"/>added<text:change-end text:change-id="i1"/>.</text:p><text:p>End.</text:p></office:text></office:body></office:document-content>"#,
+        info("Alice"),
+        info("Bob")
+    );
+    let mut z = zip::ZipWriter::new(std::io::Cursor::new(Vec::new()));
+    let o = zip::write::SimpleFileOptions::default().compression_method(zip::CompressionMethod::Stored);
+    for (name, data) in [("mimetype", "application/vnd.oasis.opendocument.text"), ("content.xml", content.as_str())] {
+        z.start_file(name, o).unwrap();
+        z.write_all(data.as_bytes()).unwrap();
+    }
+    let bytes = z.finish().unwrap().into_inner();
+    let doc = crate::io::open_bytes("t.odt", &bytes).unwrap();
+
+    let mut sr = Session::new(doc.clone());
+    run(&mut sr, "review.rejectAll", json!({}));
+    assert_eq!(text(&sr), "First tail\nhead rest .\nEnd.");
+    assert!(sr.doc.revisions.is_empty() || run(&mut sr, "review.changes", json!({})).as_array().unwrap().is_empty());
+
+    let mut sa = Session::new(doc);
+    run(&mut sa, "review.acceptAll", json!({}));
+    assert_eq!(text(&sa), "First rest added.\nEnd.");
+    assert!(run(&mut sa, "review.changes", json!({})).as_array().unwrap().is_empty());
+}
+
+/// Gap 19, review 2: a paragraph break deleted inside an insertion range is not itself
+/// inserted, so Reject All keeps the two paragraphs (after an ODT save, too).
+#[test]
+fn odt_deleted_mark_inside_an_insertion_survives_reject_all() {
+    use std::io::Write;
+    let ns = r#"xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0" xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0" xmlns:dc="http://purl.org/dc/elements/1.1/""#;
+    let info = |who: &str| format!("<office:change-info><dc:creator>{who}</dc:creator><dc:date>2024-03-01T10:00:00</dc:date></office:change-info>");
+    let content = format!(
+        r#"<office:document-content {ns}><office:body><office:text><text:tracked-changes><text:changed-region text:id="i1"><text:insertion>{}</text:insertion></text:changed-region><text:changed-region text:id="d1"><text:deletion>{}<text:p/><text:p/></text:deletion></text:changed-region></text:tracked-changes><text:p>One <text:change-start text:change-id="i1"/>A<text:change text:change-id="d1"/>C<text:change-end text:change-id="i1"/> two</text:p></office:text></office:body></office:document-content>"#,
+        info("Alice"),
+        info("Bob")
+    );
+    let mut z = zip::ZipWriter::new(std::io::Cursor::new(Vec::new()));
+    let o = zip::write::SimpleFileOptions::default().compression_method(zip::CompressionMethod::Stored);
+    for (name, data) in [("mimetype", "application/vnd.oasis.opendocument.text"), ("content.xml", content.as_str())] {
+        z.start_file(name, o).unwrap();
+        z.write_all(data.as_bytes()).unwrap();
+    }
+    let doc = crate::io::open_bytes("t.odt", &z.finish().unwrap().into_inner()).unwrap();
+    let saved = crate::io::open_bytes("t.odt", &wordcraft_formats::odt::export(&doc).unwrap()).unwrap();
+    for d in [doc, saved] {
+        let mut s = Session::new(d);
+        run(&mut s, "review.rejectAll", json!({}));
+        assert_eq!(text(&s), "One \n two");
+    }
 }
