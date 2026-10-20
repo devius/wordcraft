@@ -2163,6 +2163,7 @@ preview	Title	სათაური
 	{name} already exists. Choose Save again to replace it.	{name} უკვე არსებობს. ჩასანაცვლებლად კვლავ აირჩიეთ „შენახვა“.
 	This folder can't be read: {error}	ამ საქაღალდის წაკითხვა ვერ მოხერხდა: {error}
 	Showing the first {count} items.	ნაჩვენებია პირველი ელემენტები: {count}.
+	No items to show.	საჩვენებელი არაფერია.
 	File name:	ფაილის სახელი:
 	Browse in WordCraft…	WordCraft-ში დათვალიერება…
 	Open a file with WordCraft's own browser when the system file dialog doesn't appear.	ფაილის გახსნა WordCraft-ის საკუთარი ბრაუზერით, როცა სისტემის ფაილის ფანჯარა არ ჩნდება.

@@ -20,7 +20,7 @@ native-speaker review (human).
 ## What WordCraft ships (measured)
 
 - **24 interface languages**: English plus `zh-hans`, `zh-hant`, `ja`, Korean `ko` (#1216), `uk`, `es`, `pt-br`,
-  Serbian `sr`/`sr-latn` (#250), Estonian `et`, Turkish `tr`, Russian `ru`, Italian `it` (#594), German `de` (#574), Polish `pl`, Czech `cs`, Hungarian `hu`, French `fr`, Bulgarian `bg`, Vietnamese `vi` (#1434), Swedish `sv` (#1219), Croatian `hr` (#1271) and Georgian `ka`. Catalogs have 2,061–2,667 entries
+  Serbian `sr`/`sr-latn` (#250), Estonian `et`, Turkish `tr`, Russian `ru`, Italian `it` (#594), German `de` (#574), Polish `pl`, Czech `cs`, Hungarian `hu`, French `fr`, Bulgarian `bg`, Vietnamese `vi` (#1434), Swedish `sv` (#1219), Croatian `hr` (#1271) and Georgian `ka`. Catalogs have 2,061–2,668 entries
   each; Polish has every key of every other catalog, including the built-in style names and the equation gallery, except the citation style names only Hungarian, Bulgarian and Swedish translate so far (a test checks it). A test (`every_tab_and_command_is_translated`) enforces that every ribbon tab, command
   label and ribbon location is translated in every language.
   `pl`, `pl-PL` and `pl_PL.UTF-8` system locales pick Polish automatically.
@@ -80,7 +80,7 @@ hyphenated by the Bulgarian syllable rules (#826); Bulgarian spelling and gramma
 Hungarian follows `hu-HU` system locales and `{"value":"hu"}`, with a complete catalog of 2,419 entries: every key of
 the Russian catalog, built-in style names shown translated, plus the citation style names. Hungarian proofing is not included; terminology and conventions:
 [`localization-hu.md`](localization-hu.md).
-Georgian (`ka`, ქართული) has 2,667 entries: every key of the reference catalogs and everything the
+Georgian (`ka`, ქართული) has 2,668 entries: every key of the reference catalogs and everything the
 interface audit finds. It follows `ka-GE` system locales and `{"value":"ka"}`, and was reviewed
 string by string by a native speaker against one shared glossary. Georgian has no sentence
 capitals, so AutoCorrect, the grammar check and Change Case leave Mkhedruli as typed; counts use
