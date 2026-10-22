@@ -85,9 +85,10 @@ Slovenian proofing is not included.
 Hungarian follows `hu-HU` system locales and `{"value":"hu"}`, with a complete catalog of 2,419 entries: every key of
 the Russian catalog, built-in style names shown translated, plus the citation style names. Hungarian proofing is not included; terminology and conventions:
 [`localization-hu.md`](localization-hu.md).
-Georgian (`ka`, ქართული) has 2,668 entries: every key of the reference catalogs and everything the
-interface audit finds. It follows `ka-GE` system locales and `{"value":"ka"}`, and was reviewed
-string by string by a native speaker against one shared glossary. Georgian has no sentence
+Georgian (`ka`, ქართული) has 2,746 entries: every key of the reference catalogs and everything the
+interface audit finds. It follows `ka-GE` system locales and `{"value":"ka"}`. A native speaker
+reviewed the 2,610 entries of 2026-10-13 string by string against one shared glossary; of the 136
+rows added since, only the doubtful terms were reviewed. Georgian has no sentence
 capitals, so AutoCorrect, the grammar check and Change Case leave Mkhedruli as typed; counts use
 count-neutral wording (`სიტყვა: 21`). The interface draws Georgian with the craft-fonts Georgian
 face (storytold/craft-fonts#27). Georgian spelling, hyphenation and dates are not added yet;
@@ -211,7 +212,7 @@ WordCraft keeps 2,54 cm).
 | Mirrored (right-to-left) interface for Arabic and Hebrew | 15–25 | Ribbon, panes, dialogs, rulers |
 | Vertical text, ruby, document grid (Chinese, Japanese, Korean) | counted in [layout-parity.md](layout-parity.md) | |
 | Proofing dictionaries, grammar and hyphenation for the 11 non-English key languages | 20–40 | Open dictionaries only (licence check per dictionary); issues #25, #40, #100. Per-run languages, the Hunspell-style affix engine and the TeX pattern reader landed with Polish, so a language with an open Hunspell dictionary and hyphenation patterns is mostly data plus grammar rules |
-| Native-speaker review of every catalog | human | Swedish: terminology and the running app reviewed (2026-10-13); Italian reviewed (2026-10-14); Georgian reviewed string by string; the others not yet |
+| Native-speaker review of every catalog | human | Swedish: terminology and the running app reviewed (2026-10-13); Italian reviewed (2026-10-14); Georgian: the 2,610 entries of 2026-10-13 reviewed string by string, later rows only for doubtful terms; the others not yet |
 
 ## Revision history
 

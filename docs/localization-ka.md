@@ -1,6 +1,6 @@
 # Georgian interface
 
-> **Last reviewed:** 2026-10-13 · **Last updated:** 2026-10-13 · **Change:** minor (Georgian interface notes and terminology) · **Target:** WordCraft 0.5.0
+> **Last reviewed:** 2026-10-13 · **Last updated:** 2026-10-22 · **Change:** minor (review scope of the newer rows; previously minor: Georgian interface notes and terminology) · **Target:** WordCraft 0.5.0
 
 Choose **File › Options › Interface language › ქართული**, or follow a Georgian system display
 language (`ka`, `ka-GE`, `ka_GE.UTF-8`). The catalog code is `ka`; `ui.language` with
@@ -8,11 +8,12 @@ language (`ka`, `ka-GE`, `ka_GE.UTF-8`). The catalog code is `ka`; `ui.language`
 screenshot or a launch while the preference is `auto`. The choice is saved with the other interface
 settings. Document text, command ids, CLI/MCP/control responses and file paths do not change.
 
-`crates/ui-egui/src/i18n/ka.tsv` has 2,668 entries: every key of the other catalogs (built-in style
+`crates/ui-egui/src/i18n/ka.tsv` has 2,746 entries: every key of the other catalogs (built-in style
 names, equation gallery labels, paper sizes, watermarks, greetings and citation style names
 included) and everything the interface audit finds. It is written from the meaning of the English
-labels; no proprietary translation resources were consulted. A native speaker reviewed it string by
-string against one terminology glossary shared by the Craft apps. Product, format and technology names
+labels; no proprietary translation resources were consulted. A native speaker reviewed the 2,610
+entries of 2026-10-13 string by string against one terminology glossary shared by the Craft apps;
+the 136 rows added since were written the same way, and only their doubtful terms were reviewed. Product, format and technology names
 (WordCraft, PDF, Markdown, MCP, citation styles such as APA and IEEE) stay in Latin letters, and
 `OK` stays `OK`. Strings added later fall back to English until they are translated.
 
