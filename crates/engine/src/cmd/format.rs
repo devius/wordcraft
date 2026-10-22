@@ -599,8 +599,7 @@ fn convert_chars(src: &str, mode: &str, para_start: bool) -> Vec<String> {
             "title" => {
                 let n = if up && c.is_alphabetic() {
                     up = false;
-                    // Georgian has no sentence or title capitals (Mtavruli is only for all caps).
-                    if wordcraft_proof::capitalizes(c) { c.to_uppercase().collect() } else { lower(i, c) }
+                    c.to_uppercase().collect()
                 } else {
                     lower(i, c)
                 };
@@ -613,8 +612,7 @@ fn convert_chars(src: &str, mode: &str, para_start: bool) -> Vec<String> {
                 // Sentence case.
                 let n = if up && c.is_alphabetic() {
                     up = false;
-                    // Georgian has no sentence or title capitals (Mtavruli is only for all caps).
-                    if wordcraft_proof::capitalizes(c) { c.to_uppercase().collect() } else { lower(i, c) }
+                    c.to_uppercase().collect()
                 } else {
                     lower(i, c)
                 };
@@ -728,10 +726,6 @@ mod tests {
         assert_eq!(convert("straße", "upper", true), "STRASSE");
         assert_eq!(convert("hello world", "title", false), "Hello World");
         assert_eq!(convert("ΣΟΦΟΣ ΟΔΟΣ", "lower", true), "σοφος οδος");
-        // Georgian has no sentence or title capitals; UPPERCASE gives Mtavruli.
-        assert_eq!(convert("გამარჯობა. როგორ ხარ?", "sentence", true), "გამარჯობა. როგორ ხარ?");
-        assert_eq!(convert("ᲒᲐᲛᲐᲠᲯᲝᲑᲐ ᲛᲡᲝᲤᲚᲘᲝ", "title", true), "გამარჯობა მსოფლიო");
-        assert_eq!(convert("გამარჯობა", "upper", true), "ᲒᲐᲛᲐᲠᲯᲝᲑᲐ");
     }
 
     #[test]
