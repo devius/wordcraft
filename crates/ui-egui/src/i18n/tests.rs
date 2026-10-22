@@ -1009,7 +1009,9 @@ fn polish_covers_every_key_of_every_other_catalog() {
     // pieces of gallery labels. Polish matches every other catalog, including the built-in style
     // names, citation styles and equation gallery. French carries newer strings (paper sizes,
     // bookmarks, printing) the Polish catalog hasn't caught up with yet.
-    for other in Lang::all().filter(|l| *l != Lang::EN && !matches!(l.code(), "pl" | "it" | "hu" | "bg" | "vi" | "sv" | "hr" | "fr" | "ro" | "sl" | "ka")) {
+    for other in
+        Lang::all().filter(|l| *l != Lang::EN && !matches!(l.code(), "pl" | "it" | "hu" | "bg" | "vi" | "sv" | "hr" | "fr" | "ro" | "sl" | "ka"))
+    {
         let mut missing: Vec<String> = keys(other.0.source).difference(&polish).cloned().collect();
         missing.sort();
         assert!(missing.is_empty(), "pl lacks {}'s {missing:?}", other.code());
