@@ -2695,3 +2695,75 @@ preview	Title	სათაური
 	Type a page number, or +2 / -1.	აკრიფეთ გვერდის ნომერი ან +2 / -1.
 	Wait for the print job to finish submitting before closing.	დახურვამდე დაელოდეთ ბეჭდვის დავალების გაგზავნის დასრულებას.
 template	Letter	წერილი
+	Add gradient stop	გრადიენტის გადასვლის წერტილის დამატება
+	Angle	კუთხე
+	Center Glow	ცენტრალური ნათება
+	Continue from previous section	წინა სექციიდან გაგრძელება
+	Dark Variations	მუქი ვარიაციები
+	Deep	ღრმა
+	Direction	მიმართულება
+	Dot-dot-dash	წერტილ-წერტილ-ტირე
+	Editing endnote	დოკუმენტის სქოლიოს რედაქტირება
+	Editing footnote	სქოლიოს რედაქტირება
+	English (Australia)	ინგლისური (ავსტრალია)
+	English (Canada)	ინგლისური (კანადა)
+	English (India)	ინგლისური (ინდოეთი)
+	English (Ireland)	ინგლისური (ირლანდია)
+	English (New Zealand)	ინგლისური (ახალი ზელანდია)
+	English (South Africa)	ინგლისური (სამხრეთ აფრიკა)
+	File locations	ფაილების მდებარეობა
+	File › New lists the .dotx and .dotm templates here under Personal; Save as Word Template starts here.	ფაილი › ახალი აქ არსებულ .dotx და .dotm შაბლონებს „პირადში“ აჩვენებს; „Word-ის შაბლონად შენახვა“ აქედან იწყება.
+	Format Shape	ფიგურის ფორმატირება
+	Format Shape Pane	ფიგურის ფორმატირების პანელი
+	Format Shape…	ფიგურის ფორმატირება…
+	From Bottom Left Corner	ქვედა მარცხენა კუთხიდან
+	From Bottom Right Corner	ქვედა მარჯვენა კუთხიდან
+	From Center	ცენტრიდან
+	From Top Left Corner	ზედა მარცხენა კუთხიდან
+	From Top Right Corner	ზედა მარჯვენა კუთხიდან
+	Full Screen View	მთელ ეკრანზე ხედი
+	Gradient	გრადიენტი
+	Gradient fill	გრადიენტული შევსება
+	Gradient stops	გრადიენტის გადასვლის წერტილები
+	Include label and number	წარწერისა და ნომრის ჩართვა
+	Light Variations	ღია ვარიაციები
+	Linear Diagonal - Bottom Left to Top Right	წრფივი დიაგონალური — ქვედა მარცხნიდან ზედა მარჯვნისკენ
+	Linear Diagonal - Bottom Right to Top Left	წრფივი დიაგონალური — ქვედა მარჯვნიდან ზედა მარცხნისკენ
+	Linear Diagonal - Top Left to Bottom Right	წრფივი დიაგონალური — ზედა მარცხნიდან ქვედა მარჯვნისკენ
+	Linear Diagonal - Top Right to Bottom Left	წრფივი დიაგონალური — ზედა მარჯვნიდან ქვედა მარცხნისკენ
+	Linear Down	წრფივი ქვემოთ
+	Linear Left	წრფივი მარცხნივ
+	Linear Right	წრფივი მარჯვნივ
+	Linear Up	წრფივი ზემოთ
+	Lit from Bottom	ქვემოდან განათებული
+	Lit from Top	ზემოდან განათებული
+	More Gradients…	სხვა გრადიენტები…
+	More Underlines…	ხაზგასმის სხვა სახეები…
+	More tabs	სხვა ჩანართები
+	No Gradient	გრადიენტის გარეშე
+	No fill	შევსების გარეშე
+	Not set	არ არის დაყენებული
+	Old menu keys: Alt, {keys}. Keep typing, or press Esc to cancel.	ძველი მენიუს კლავიშები: Alt, {keys}. განაგრძეთ აკრეფა ან გასაუქმებლად დააჭირეთ Esc-ს.
+	Page Number Format	გვერდის ნომრის ფორმატი
+	Page numbering	გვერდების დანომვრა
+	Path	ტრაექტორია
+	Personal	პირადი
+	Personal Templates	პირადი შაბლონები
+	Preset gradients	გრადიენტების პრესეტები
+	Print job submitted: spooled {count} sheet(s)	ბეჭდვის დავალება გაიგზავნა; რიგში ჩაყენებული ფურცელი: {count}
+	Radial	რადიალური
+	Rectangular	მართკუთხა
+	Remove gradient stop	გრადიენტის გადასვლის წერტილის წაშლა
+	Rotate with shape	ფიგურასთან ერთად შემობრუნება
+	Save as Word Template…	Word-ის შაბლონად შენახვა…
+	Saves a .dotx template in your templates folder. It shows up in File › New under Personal.	ინახავს .dotx შაბლონს თქვენი შაბლონების საქაღალდეში. ის გამოჩნდება ფაილი › ახალი-ში „პირადის“ ქვეშ.
+	Select a shape, text box or drawing canvas to format its fill.	შევსების ფორმატირებისთვის მონიშნეთ ფიგურა, ტექსტური ბლოკი ან სახატავი ტილო.
+	Show the ribbon	ლენტის ჩვენება
+	Soft	რბილი
+	Solid fill	ერთფეროვანი შევსება
+	Templates you save in your templates folder show up here.	თქვენი შაბლონების საქაღალდეში შენახული შაბლონები აქ გამოჩნდება.
+	Underline Color	ხაზგასმის ფერი
+	User templates:	მომხმარებლის შაბლონები:
+	cm	სმ
+	mm	მმ
+	pi	პკ
