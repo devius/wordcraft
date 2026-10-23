@@ -13,7 +13,7 @@ names, equation gallery labels, paper sizes, watermarks, greetings and citation 
 included) and everything the interface audit finds. It is written from the meaning of the English
 labels; no proprietary translation resources were consulted. A native speaker reviewed the 2,610
 entries of 2026-10-13 string by string against one terminology glossary shared by the Craft apps;
-the 136 rows added since were written the same way, and only their doubtful terms were reviewed. Product, format and technology names
+the 173 rows added since were written the same way, and only their doubtful terms were reviewed. Product, format and technology names
 (WordCraft, PDF, Markdown, MCP, citation styles such as APA and IEEE) stay in Latin letters, and
 `OK` stays `OK`. Strings added later fall back to English until they are translated.
 

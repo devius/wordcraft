@@ -87,7 +87,7 @@ the Russian catalog, built-in style names shown translated, plus the citation st
 [`localization-hu.md`](localization-hu.md).
 Georgian (`ka`, ქართული) has 2,783 entries: every key of the reference catalogs and everything the
 interface audit finds. It follows `ka-GE` system locales and `{"value":"ka"}`. A native speaker
-reviewed the 2,610 entries of 2026-10-13 string by string against one shared glossary; of the 136
+reviewed the 2,610 entries of 2026-10-13 string by string against one shared glossary; of the 173
 rows added since, only the doubtful terms were reviewed. Counts use count-neutral wording
 (`სიტყვა: 21`). The interface draws Georgian with the craft-fonts Georgian face
 (storytold/craft-fonts#27), which release builds embed. Georgian spelling, hyphenation and dates are not added yet;
