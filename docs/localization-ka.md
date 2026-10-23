@@ -1,6 +1,6 @@
 # Georgian interface
 
-> **Last reviewed:** 2026-10-13 · **Last updated:** 2026-10-22 · **Change:** minor (review scope of the newer rows; previously minor: Georgian interface notes and terminology) · **Target:** WordCraft 0.5.0
+> **Last reviewed:** 2026-10-13 · **Last updated:** 2026-10-23 · **Change:** trivial (checks follow the shared interface-language tests; previously minor: review scope of the newer rows; previously minor: Georgian interface notes and terminology) · **Target:** WordCraft 0.5.0
 
 Choose **File › Options › Interface language › ქართული**, or follow a Georgian system display
 language (`ka`, `ka-GE`, `ka_GE.UTF-8`). The catalog code is `ka`; `ui.language` with
@@ -84,13 +84,10 @@ decides any term not listed here.
 
 Add a line `<TAB>English source<TAB>Georgian` to `crates/ui-egui/src/i18n/ka.tsv`, with the English
 exactly as the code passes it to `tl!` (escapes `\n`, `\t`, `\\`). Keep every `{name}` placeholder
-and a trailing `…` when the English has one. `cargo test -p wordcraft-ui-egui --lib i18n::tests`
-then checks the catalog parses without errors, that it holds every key of the reference catalogs
-(`georgian_covers_the_entire_existing_interface_catalog`), that no Mtavruli slipped in, the Georgian
-locale tags and the count wording; the shared checks (every tab and
-command translated, placeholders, ellipses) include Georgian automatically. The interface audit
-(`cargo test -p wordcraft-ui-egui untranslated_interface_text -- --ignored --nocapture`) lists any
-interface text Georgian lacks.
+and a trailing `…` when the English has one. Tests in `crates/ui-egui/src/i18n/tests.rs` check
+locale selection, the saved preference and that no Mtavruli slipped in. The shared checks (catalog
+validation and the missing-translation report, `cargo xtask i18n-report`) include Georgian
+automatically; the report lists any interface text Georgian lacks.
 
 Georgian spelling, grammar and hyphenation are not included: this is an interface translation, not
 Georgian proofing.
