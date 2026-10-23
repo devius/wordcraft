@@ -2767,3 +2767,43 @@ template	Letter	წერილი
 	cm	სმ
 	mm	მმ
 	pi	პკ
+# Mail merge: record navigation, Finish & Merge, merge range
+	First Record	პირველი ჩანაწერი
+	Last Record	ბოლო ჩანაწერი
+	Go to Record	ჩანაწერზე გადასვლა
+	Edit Individual Documents…	ცალკეული დოკუმენტების რედაქტირება…
+	Print Documents…	დოკუმენტების დაბეჭდვა…
+	Print Documents	დოკუმენტების დაბეჭდვა
+	Current record	მიმდინარე ჩანაწერი
+	From:	საიდან:
+	To:	სადამდე:
+	Enter a number.	შეიყვანეთ რიცხვი.
+# Why a ribbon control is off (#2678)
+	a drawing canvas can't be ungrouped	სახატავი ტილოს დაჯგუფების მოხსნა შეუძლებელია
+	a drawing canvas can't go inside a text box	ტექსტურ ბლოკში სახატავი ტილოს ჩასმა შეუძლებელია
+	charts and diagrams can't be moved or resized yet	დიაგრამებისა და სქემების გადაადგილება ან ზომის შეცვლა ჯერჯერობით შეუძლებელია
+	no equation at the caret	კურსორთან განტოლება არ არის
+	not editing an equation	განტოლების რედაქტირება არ მიმდინარეობს
+	only in Outline view	მხოლოდ სტრუქტურის ხედში
+	select a SmartArt graphic first	ჯერ მონიშნეთ SmartArt გრაფიკა
+	select a chart first	ჯერ მონიშნეთ დიაგრამა
+	select a connector first	ჯერ მონიშნეთ შემაერთებელი
+	select a drawing canvas first	ჯერ მონიშნეთ სახატავი ტილო
+	select a floating picture or shape first	ჯერ მონიშნეთ მცურავი სურათი ან ფიგურა
+	select a group first	ჯერ მონიშნეთ ჯგუფი
+	select a picture first	ჯერ მონიშნეთ სურათი
+	select a shape first	ჯერ მონიშნეთ ფიგურა
+	select a text box first	ჯერ მონიშნეთ ტექსტური ბლოკი
+	select a text box linked to another first	ჯერ მონიშნეთ სხვა ბლოკთან დაკავშირებული ტექსტური ბლოკი
+	the Clipboard pane is empty	გაცვლის ბუფერის პანელი ცარიელია
+	there is nothing to undo	დასაბრუნებელი არაფერია
+	this SmartArt was made in another program: WordCraft shows it but can't edit it	ეს SmartArt სხვა პროგრამაშია შექმნილი: WordCraft მას აჩვენებს, მაგრამ ვერ არედაქტირებს
+	this chart was made in another program: WordCraft shows it but can't edit it	ეს დიაგრამა სხვა პროგრამაშია შექმნილი: WordCraft მას აჩვენებს, მაგრამ ვერ არედაქტირებს
+	this text box is already linked: break the link first	ეს ტექსტური ბლოკი უკვე დაკავშირებულია: ჯერ გაწყვიტეთ ბმული
+	leave the equation first	ჯერ გამოდით განტოლებიდან
+	the Spike is empty	კრებული ცარიელია
+# More reasons a ribbon control is off (#2678)
+	a group holding Word ink can't be ungrouped yet	Word-ის მელნის შემცველი ჯგუფის დაჯგუფების მოხსნა ჯერჯერობით შეუძლებელია
+	drop caps can't go in a table	ცხრილში ინიციალის ჩასმა შეუძლებელია
+	the document is protected	დოკუმენტი დაცულია
+	Open a document first	ჯერ გახსენით დოკუმენტი
