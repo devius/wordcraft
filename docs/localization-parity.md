@@ -1,9 +1,11 @@
 # Localization parity with Microsoft Word
 
-> **Last reviewed:** 2026-10-10 · **Last updated:** 2026-10-23 · **Change:** minor (Georgian interface catalog; previously trivial: interface-language tests: a missing translation never fails a test, `cargo xtask i18n-report` in `cargo xtask ci` prints the strings each language lacks, and lookup and template tests use inline fixture catalogs or the pseudo-language; previously trivial: interface audit: missing catalog entries are reported per language and don't fail the audit; previously minor: disabled-control reasons in ribbon hints translated in every catalog, #2678; previously trivial: Slovenian interface catalog: every key of every other catalog, 2,614 entries; previously minor: Romanian interface catalog; previously trivial: the File › Home greeting is translated in every catalog; previously trivial: Japanese row: ruby (Phonetic Guide) is supported and HTML export/import keeps it, #1681; previously trivial: Russian sorting keeps ё with е and recognises decomposed ё/й; previously minor: English dialects: en-GB, en-CA, en-AU and the other British-spelling Englishes proof their own spellings and flag the other dialect's, #1281, #1045; previously minor: how to install the Hunspell dictionaries on Windows, macOS and Linux: `docs/spelling-dictionaries.md`; previously minor: Read Aloud speaks each sentence in its own language, #1843; previously minor: Indonesian proofing: id-ID spelling from the installed Hunspell dictionary, dictionary-driven suggestions, generic checks with Indonesian messages, #498; previously trivial: print-area strings translated in every catalog; previously trivial: Italian: the interface audit checks the Italian catalog, `Privacy Settings` wording; previously trivial: Italian grammar: `po'`, `qual è`, `È`, `un`/`un'` rules; more elisions and truncations in spelling; previously trivial: Czech interface catalog completed, 2,447 entries; previously trivial: interface audit runs in CI again: size labels translated, 20 strings in every catalog, Read Aloud error race fixed, #1128; previously trivial: Review › Language reaches every language again — Set Proofing Language… and Set As Default, #860; previously minor: Italian proofing: it-IT spelling from the installed Hunspell dictionary, accent-first suggestions, conservative grammar with Italian messages; previously minor: Portuguese proofing; previously trivial: Turkish interface catalog completed, 2,325 entries, #774; previously minor: Hungarian interface added; previously trivial: sorting and table numbers follow the text's language, #836, #837; previously minor: Polish interface; Polish proofing — spelling, grammar, hyphenation — and a proofing language per run; previously minor: Turkish interface added; previously major: first version; catalogs measured from `crates/ui-egui/src/i18n`, Word's languages from its bundle listing) · **Target:** Microsoft Word (Microsoft 365) for Mac 16.113.4
+> **Last reviewed:** 2026-10-10 · **Last updated:** 2026-10-24 · **Change:** minor (Georgian interface language; previously minor: the interface catalogs moved to storytold/craft-i18n and are looked up through the `craft-i18n` crate, embedded at build time from the commit in `craft-i18n.rev`; previously trivial: interface-language tests: a missing translation never fails a test, `cargo xtask i18n-report` in `cargo xtask ci` prints the strings each language lacks, and lookup and template tests use inline fixture catalogs or the pseudo-language; previously trivial: interface audit: missing catalog entries are reported per language and don't fail the audit; previously minor: disabled-control reasons in ribbon hints translated in every catalog, #2678; previously trivial: Slovenian interface catalog: every key of every other catalog, 2,614 entries; previously minor: Romanian interface catalog; previously trivial: the File › Home greeting is translated in every catalog; previously trivial: Japanese row: ruby (Phonetic Guide) is supported and HTML export/import keeps it, #1681; previously trivial: Russian sorting keeps ё with е and recognises decomposed ё/й; previously minor: English dialects: en-GB, en-CA, en-AU and the other British-spelling Englishes proof their own spellings and flag the other dialect's, #1281, #1045; previously minor: how to install the Hunspell dictionaries on Windows, macOS and Linux: `docs/spelling-dictionaries.md`; previously minor: Read Aloud speaks each sentence in its own language, #1843; previously minor: Indonesian proofing: id-ID spelling from the installed Hunspell dictionary, dictionary-driven suggestions, generic checks with Indonesian messages, #498; previously trivial: print-area strings translated in every catalog; previously trivial: Italian: the interface audit checks the Italian catalog, `Privacy Settings` wording; previously trivial: Italian grammar: `po'`, `qual è`, `È`, `un`/`un'` rules; more elisions and truncations in spelling; previously trivial: Czech interface catalog completed, 2,447 entries; previously trivial: interface audit runs in CI again: size labels translated, 20 strings in every catalog, Read Aloud error race fixed, #1128; previously trivial: Review › Language reaches every language again — Set Proofing Language… and Set As Default, #860; previously minor: Italian proofing: it-IT spelling from the installed Hunspell dictionary, accent-first suggestions, conservative grammar with Italian messages; previously minor: Portuguese proofing; previously trivial: Turkish interface catalog completed, 2,325 entries, #774; previously minor: Hungarian interface added; previously trivial: sorting and table numbers follow the text's language, #836, #837; previously minor: Polish interface; Polish proofing — spelling, grammar, hyphenation — and a proofing language per run; previously minor: Turkish interface added; previously major: first version; catalogs measured from `crates/ui-egui/src/i18n`, Word's languages from its bundle listing) · **Target:** Microsoft Word (Microsoft 365) for Mac 16.113.4
 
-Interface languages, script support and proofing per language. How translation works (catalog
-format, adding a language, clean-room rule): `crates/ui-egui/src/i18n/mod.rs`.
+Interface languages, script support and proofing per language. How translation works (adding a
+language, the embedded catalogs): `crates/ui-egui/src/i18n/mod.rs`. The catalogs, their format and
+the clean-room rule live in [storytold/craft-i18n](https://github.com/storytold/craft-i18n)
+(`locales/<locale>/wordcraft.tsv` and the shared `common.tsv`).
 
 **Dimension: ~29% (estimated; 28% before Italian proofing, 27% before Portuguese proofing, 25% before Polish and per-run proofing languages), 70–115 h to full
 for the twelve key languages** plus ~45 h for the other ~17 languages Word ships, plus
@@ -25,8 +27,10 @@ native-speaker review (human).
   build. `cargo xtask i18n-report`, part of `cargo xtask ci`, prints per language the interface
   strings its catalog lacks: everything the interface audit saw looked up, the ribbon tabs, command
   labels and ribbon locations, the File › Home greetings, disabled-control reasons and the equation
-  gallery. The catalog checks apply to every language alike: format (the file parses, no duplicate
-  keys, placeholders match the English, whitespace, ellipses). Font tests check that the bundled faces have a glyph for each catalog's letters.
+  gallery. The catalogs are embedded at build time from craft-i18n (`CRAFT_I18N_DIR`, the commit
+  in `craft-i18n.rev`; a build without it is English only), and craft-i18n's checker applies the
+  format checks to every language alike (rows parse, no duplicate keys, placeholders match the
+  English, plural forms, ellipses); the report also lists rows the crate skips and strings kept in English. Font tests check that the bundled faces have a glyph for each catalog's letters.
   Tests of the lookup code (English fallback, contexts, placeholder templates, built-in style names,
   the per-thread language, command search) use small inline catalogs or the pseudo-language, so
   rewording a translation never fails a test.
@@ -91,13 +95,13 @@ Slovenian proofing is not included.
 Hungarian follows `hu-HU` system locales and `{"value":"hu"}`, with a complete catalog of 2,419 entries: every key of
 the Russian catalog, built-in style names shown translated, plus the citation style names. Hungarian proofing is not included; terminology and conventions:
 [`localization-hu.md`](localization-hu.md).
-Georgian (`ka`, ქართული) has 2,783 entries: every key of the reference catalogs and everything the
-interface audit finds. It follows `ka-GE` system locales and `{"value":"ka"}`. A native speaker
-reviewed the 2,610 entries of 2026-10-13 string by string against one shared glossary; of the 173
-rows added since, only the doubtful terms were reviewed. Counts use count-neutral wording
-(`სიტყვა: 21`). The interface draws Georgian with the craft-fonts Georgian face
-(storytold/craft-fonts#27), which release builds embed. Georgian spelling, hyphenation and dates are not added yet;
-terminology: [`localization-ka.md`](localization-ka.md).
+Georgian (`ka`, ქართული) has 2,788 entries in craft-i18n's `locales/ka/wordcraft.tsv`: every key of the
+other catalogs and everything the interface audit finds. It follows `ka-GE` system locales and
+`{"value":"ka"}`. A native speaker reviewed the 2,610 entries of 2026-10-13 string by string against
+one shared glossary; of the rows added since, only the doubtful terms were reviewed. Counts use
+count-neutral wording (`სიტყვა: 21`). The interface draws Georgian with the craft-fonts Georgian face,
+which release builds embed. Georgian spelling, hyphenation and dates are not added yet; terminology:
+[`localization-ka.md`](localization-ka.md).
 
 Czech follows `cs-CZ` system locales and `{"value":"cs"}`, with 2,447 entries: every key of the
 Russian and Spanish catalogs, including built-in style names and numbered families, the equation
@@ -222,6 +226,8 @@ WordCraft keeps 2,54 cm).
 
 | Date | Change | Summary |
 |---|---|---|
+| 2026-10-24 | minor | Georgian interface language (`ka`): catalog in craft-i18n (`locales/ka/wordcraft.tsv`, 2,788 entries, native-speaker reviewed), locale selection and checks |
+| 2026-10-23 | minor | Interface catalogs moved to storytold/craft-i18n (`locales/<locale>/wordcraft.tsv`), looked up through craft-libs' `craft-i18n` crate and embedded from the pinned commit (`craft-i18n.rev`); strings other Crafting Apps already translate in the shared catalog now show translated; the "Open" paragraph-spacing preset no longer shows the file verb |
 | 2026-10-23 | trivial | Lookup, context, template, style-name and command-search tests use inline fixture catalogs or the pseudo-language; tests that asserted one language's catalog wording removed |
 | 2026-10-23 | trivial | Interface-language tests: a missing translation falls back to English and never fails a test; `cargo xtask i18n-report` (part of `cargo xtask ci`) prints the strings each language lacks; single-language coverage tests removed |
 | 2026-10-23 | trivial | Interface audit: strings a catalog lacks are printed per language, for every language, instead of failing for Russian, Hungarian, Turkish and Bulgarian |
@@ -231,7 +237,6 @@ WordCraft keeps 2,54 cm).
 | 2026-10-20 | trivial | Cuban and Peruvian Spanish table numbers use decimal points for parsing and formula results, matching CLDR and the existing region settings; regression covers grouped values and a Spain control |
 | 2026-10-20 | trivial | Set As Default persists the proofing language across restarts; command and dialog regressions cover new documents, interface changes, existing document languages and rejection rollback (#2882); readiness estimates unchanged |
 | 2026-10-18 | trivial | German hyphenation: runs in `de` (any region) use the TeX German patterns for the reformed spelling (MIT) instead of the English ones; still no German spelling or grammar |
-| 2026-10-13 | minor | Georgian interface catalog (2,610 entries, native-speaker reviewed), locale selection, audit coverage and checks |
 | 2026-10-14 | trivial | The sentence-capital rule (English, Polish, Croatian, Italian, Turkish, Portuguese) skips the first word of a list item (#1741) |
 | 2026-10-16 | minor | Indonesian proofing (#498): id-ID spelling from the installed Hunspell `id_ID` dictionary (not bundled), Czech's dictionary-driven suggestions, repeated-word (hyphenated reduplication offered) and spacing checks with Indonesian messages; Review › Language, the status bar, Set Proofing Language and File › Options › Proofing list Indonesian; estimates unchanged |
 | 2026-10-16 | trivial | Read Aloud picks a voice for the sentence's language (run tag, else script) when the default voice doesn't speak it, reads Windows text as UTF-8 |

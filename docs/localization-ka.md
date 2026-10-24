@@ -1,6 +1,6 @@
 # Georgian interface
 
-> **Last reviewed:** 2026-10-13 · **Last updated:** 2026-10-23 · **Change:** trivial (checks follow the shared interface-language tests; previously minor: review scope of the newer rows; previously minor: Georgian interface notes and terminology) · **Target:** WordCraft 0.5.0
+> **Last reviewed:** 2026-10-13 · **Last updated:** 2026-10-24 · **Change:** trivial (the catalog is in storytold/craft-i18n, `locales/ka/wordcraft.tsv`; previously trivial: checks follow the shared interface-language tests; previously minor: review scope of the newer rows; previously minor: Georgian interface notes and terminology) · **Target:** WordCraft 0.5.0
 
 Choose **File › Options › Interface language › ქართული**, or follow a Georgian system display
 language (`ka`, `ka-GE`, `ka_GE.UTF-8`). The catalog code is `ka`; `ui.language` with
@@ -8,22 +8,21 @@ language (`ka`, `ka-GE`, `ka_GE.UTF-8`). The catalog code is `ka`; `ui.language`
 screenshot or a launch while the preference is `auto`. The choice is saved with the other interface
 settings. Document text, command ids, CLI/MCP/control responses and file paths do not change.
 
-`crates/ui-egui/src/i18n/ka.tsv` has 2,783 entries: every key of the other catalogs (built-in style
+craft-i18n's `locales/ka/wordcraft.tsv` (storytold/craft-i18n) has 2,788 entries: every key of the other catalogs (built-in style
 names, equation gallery labels, paper sizes, watermarks, greetings and citation style names
 included) and everything the interface audit finds. It is written from the meaning of the English
 labels; no proprietary translation resources were consulted. A native speaker reviewed the 2,610
 entries of 2026-10-13 string by string against one terminology glossary shared by the Craft apps;
-the 173 rows added since were written the same way, and only their doubtful terms were reviewed. Product, format and technology names
+the rows added since were written the same way, and only their doubtful terms were reviewed. Product, format and technology names
 (WordCraft, PDF, Markdown, MCP, citation styles such as APA and IEEE) stay in Latin letters, and
 `OK` stays `OK`. Strings added later fall back to English until they are translated.
 
 ## Georgian script
 
 - **No case.** Mkhedruli has no capital letters in running text. Unicode maps it to Mtavruli
-  (U+1C90–U+1CBF), but Mtavruli is only for all-caps text, so the catalog has no Mtavruli anywhere
-  (a test checks it), not even for UPPERCASE in Change Case.
-- **Count-neutral numbers.** A Georgian noun stays singular after a numeral, and the catalog format
-  has no plural forms, so counts are written as `noun: n` (`სიტყვა: 21`, `მიმღები: {count}`), which
+  (U+1C90–U+1CBF), but Mtavruli is only for all-caps text, so the catalog has no Mtavruli anywhere,
+  not even for UPPERCASE in Change Case.
+- **Count-neutral numbers.** A Georgian noun stays singular after a numeral, so counts are written as `noun: n` (`სიტყვა: 21`, `მიმღები: {count}`), which
   reads right for every number.
 - **Fonts.** None of the bundled interface faces (Inter, JetBrains Mono) has Georgian. The
   interface draws it with craft-fonts' Noto Sans Georgian (`Geor`), which release builds embed
@@ -82,12 +81,11 @@ decides any term not listed here.
 
 ## Maintenance
 
-Add a line `<TAB>English source<TAB>Georgian` to `crates/ui-egui/src/i18n/ka.tsv`, with the English
-exactly as the code passes it to `tl!` (escapes `\n`, `\t`, `\\`). Keep every `{name}` placeholder
-and a trailing `…` when the English has one. Tests in `crates/ui-egui/src/i18n/tests.rs` check
-locale selection, the saved preference and that no Mtavruli slipped in. The shared checks (catalog
-validation and the missing-translation report, `cargo xtask i18n-report`) include Georgian
-automatically; the report lists any interface text Georgian lacks.
+Add or fix rows in craft-i18n's `locales/ka/wordcraft.tsv` (`<TAB>English source<TAB>Georgian`, the
+English exactly as the code passes it to `tl!`; its `docs/integration.md`). They show here once
+`craft-i18n.rev` moves to a commit that has them. A test in `crates/ui-egui/src/i18n/tests.rs`
+checks locale selection and the saved preference; craft-i18n's checker validates the rows, and
+`cargo xtask i18n-report` lists any interface text Georgian lacks.
 
 Georgian spelling, grammar and hyphenation are not included: this is an interface translation, not
 Georgian proofing.
@@ -96,4 +94,5 @@ Georgian proofing.
 
 | Date | Change | Summary |
 |---|---|---|
+| 2026-10-24 | trivial | The catalog is in storytold/craft-i18n (`locales/ka/wordcraft.tsv`, 2,788 entries) |
 | 2026-10-13 | minor | Georgian interface notes: choosing it, coverage (2,610 entries), script notes, conventions, terminology and checks |
