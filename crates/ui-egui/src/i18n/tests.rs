@@ -402,7 +402,7 @@ fn interface_fonts_cover_georgian_when_a_georgian_face_is_available() {
     ctx.set_fonts(crate::theme::font_definitions(false, false));
     ctx.run_ui(Default::default(), |_| {}).textures_delta.clear();
     let covered = ctx.fonts_mut(|f| f.has_glyphs(&egui::FontId::proportional(14.0), "ქართული"));
-    if wordcraft_fonts::georgian_ui_font().is_some() || wordcraft_fonts::system_georgian_ui_font().is_some() {
+    if wordcraft_fonts::georgian_fonts().next().is_some() || wordcraft_fonts::system_georgian_ui_font().is_some() {
         assert!(covered, "a Georgian face is available but the interface lacks Georgian");
     }
 }

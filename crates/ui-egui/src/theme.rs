@@ -593,7 +593,7 @@ pub fn font_definitions_language(prefer_hans: bool, prefer_korean: bool, system_
     }
     // Georgian has no glyphs in Inter, Source Sans or the CJK faces: the craft-fonts Geor face.
     for f in wordcraft_fonts::georgian_fonts() {
-        add_cjk(&mut fonts, format!("{} {}", f.family, f.style), FontData::from_static(f.bytes));
+        add_fallback(&mut fonts, format!("{} {}", f.family, f.style), FontData::from_static(f.bytes));
     }
     // The embedded faces leave interface characters without a glyph (a build without craft-fonts,
     // without its Chinese face, #241, or with faces lacking catalog characters, #486): an
@@ -606,17 +606,15 @@ pub fn font_definitions_language(prefer_hans: bool, prefer_korean: bool, system_
     }
     #[cfg(target_arch = "wasm32")]
     let _ = system_cjk;
-    // Georgian: the craft-fonts face, else an installed one. Always added: the language list in
+    // Georgian without the craft-fonts face: an installed one. Always added: the language list in
     // Options shows "ქართული" whatever the interface language, and the files are small.
-    if let Some(f) = wordcraft_fonts::georgian_ui_font() {
-        add_fallback(&mut fonts, format!("{} {}", f.family, f.style), FontData::from_static(f.bytes));
-    } else {
-        #[cfg(not(target_arch = "wasm32"))]
-        if let Some(f) = system_georgian_font() {
-            let mut data = FontData::from_static(&f.bytes);
-            data.index = f.index;
-            add_fallback(&mut fonts, format!("system {}", f.family), data);
-        }
+    #[cfg(not(target_arch = "wasm32"))]
+    if wordcraft_fonts::georgian_fonts().next().is_none()
+        && let Some(f) = system_georgian_font()
+    {
+        let mut data = FontData::from_static(&f.bytes);
+        data.index = f.index;
+        add_fallback(&mut fonts, format!("system {}", f.family), data);
     }
     if let Some(bytes) = RUNTIME_FALLBACK.get() {
         let name = "runtime fallback".to_string();
