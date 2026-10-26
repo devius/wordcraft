@@ -67,11 +67,6 @@ pub fn chinese_fonts() -> impl Iterator<Item = &'static CraftFont> {
     CRAFT_FONTS.iter().filter(|f| f.scripts.contains(&"Hans"))
 }
 
-/// The craft-fonts Regular face for Georgian (`"Geor"`), if embedded.
-pub fn georgian_ui_font() -> Option<&'static CraftFont> {
-    CRAFT_FONTS.iter().find(|f| f.scripts.contains(&"Geor") && f.style == "Regular")
-}
-
 /// The craft-fonts faces for Korean (`"Kore"`), in manifest order. Empty without craft-fonts.
 pub fn korean_fonts() -> impl Iterator<Item = &'static CraftFont> {
     CRAFT_FONTS.iter().filter(|f| f.scripts.contains(&"Kore"))
