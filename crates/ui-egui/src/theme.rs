@@ -594,7 +594,7 @@ pub fn font_definitions_language(prefer_hans: bool, prefer_korean: bool, prefer_
     {
         let mut data = FontData::from_static(&f.bytes);
         data.index = f.index;
-        add_cjk(&mut fonts, format!("system hant {}", f.family), data);
+        add_fallback(&mut fonts, format!("system hant {}", f.family), data);
     }
     #[cfg(target_arch = "wasm32")]
     let _ = prefer_hant;
