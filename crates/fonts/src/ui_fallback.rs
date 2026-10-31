@@ -236,7 +236,7 @@ pub fn system_georgian_ui_font() -> Option<SystemUiFont> {
             "TTF/DejaVuSans.ttf",
         ]
     };
-    find_ui_font(&crate::system_font_dirs(), names, &['ა'], false)
+    find_ui_font(&crate::system_font_dirs(), names, &['ა'], Region::Other)
 }
 
 /// `dirs` and, for each macOS font asset folder among them (`com_apple_MobileAsset_Font<N>`),
