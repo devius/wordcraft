@@ -158,7 +158,11 @@ impl WordApp {
         if theme::take_new_runtime_fallback() {
             self.styled = false;
         }
-        if !self.styled || lang.prefers_hans() != self.fonts_hans || lang.prefers_korean() != self.fonts_korean || system_cjk != self.fonts_system_cjk
+        if !self.styled
+            || lang.prefers_hans() != self.fonts_hans
+            || lang.prefers_korean() != self.fonts_korean
+            || lang.prefers_hant() != self.fonts_hant
+            || system_cjk != self.fonts_system_cjk
         {
             // Every window's borrowed faces: the fonts are the app's.
             let mut faces = self.canvas.ime_faces.clone();
@@ -169,9 +173,10 @@ impl WordApp {
                     }
                 }
             }
-            theme::install_fonts_language_extra(ctx, lang.prefers_hans(), lang.prefers_korean(), system_cjk, &faces);
+            theme::install_fonts_language_extra(ctx, lang.prefers_hans(), lang.prefers_korean(), lang.prefers_hant(), system_cjk, &faces);
             self.fonts_hans = lang.prefers_hans();
             self.fonts_korean = lang.prefers_korean();
+            self.fonts_hant = lang.prefers_hant();
             self.fonts_system_cjk = system_cjk;
             // Mod with -, = and 0 are Word shortcuts (optional hyphen, subscript, paragraph spacing);
             // egui's keyboard zoom would also scale the whole window on them. Zoom is View › Zoom.
