@@ -729,17 +729,10 @@ fn convert(src: &str, mode: &str, para_start: bool) -> String {
     convert_chars(src, mode, para_start, &turkic).concat()
 }
 
-/// Does `c` belong to a script that capitalises the first letter of sentences and titles?
-/// Georgian doesn't: Mtavruli capitals are only for all-caps text.
-pub(crate) fn capitalizes(c: char) -> bool {
-    !matches!(c, '\u{10A0}'..='\u{10FF}' | '\u{1C90}'..='\u{1CBF}' | '\u{2D00}'..='\u{2D2F}')
-}
-
 fn convert_title_char(c: char, i: usize, up: &mut bool, upper: impl Fn(char) -> String, lower: impl Fn(usize, char) -> String) -> String {
     let n = if *up && c.is_alphabetic() {
         *up = false;
-        // Georgian has no sentence or title capitals (Mtavruli is only for all caps).
-        if capitalizes(c) { upper(c) } else { lower(i, c) }
+        upper(c)
     } else {
         lower(i, c)
     };
@@ -759,8 +752,7 @@ fn convert_sentence_char(
 ) -> String {
     let n = if *up && c.is_alphabetic() {
         *up = false;
-        // Georgian has no sentence or title capitals (Mtavruli is only for all caps).
-        if capitalizes(c) { upper(c) } else { lower(i, c) }
+        upper(c)
     } else {
         lower(i, c)
     };
@@ -1021,10 +1013,6 @@ mod tests {
         assert_eq!(convert("straße", "upper", true), "STRASSE");
         assert_eq!(convert("hello world", "title", false), "Hello World");
         assert_eq!(convert("ΣΟΦΟΣ ΟΔΟΣ", "lower", true), "σοφος οδος");
-        // Georgian has no sentence or title capitals; UPPERCASE gives Mtavruli.
-        assert_eq!(convert("გამარჯობა. როგორ ხარ?", "sentence", true), "გამარჯობა. როგორ ხარ?");
-        assert_eq!(convert("ᲒᲐᲛᲐᲠᲯᲝᲑᲐ ᲛᲡᲝᲤᲚᲘᲝ", "title", true), "გამარჯობა მსოფლიო");
-        assert_eq!(convert("გამარჯობა", "upper", true), "ᲒᲐᲛᲐᲠᲯᲝᲑᲐ");
     }
 
     #[test]

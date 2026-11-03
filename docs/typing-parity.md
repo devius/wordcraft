@@ -151,7 +151,7 @@ no-break space, a figure space or an ideographic space (`autocorrect_finds_the_w
 
 - First letter of a sentence (paragraph or list item start, after `. ! ?`) is capitalised; not
   after abbreviations (`e.g.`, `Dr.`, …) or initials (`J.`), and not for mixed-case words
-  (`iPhone`), single-letter labels (`a.`) or Georgian, which has no sentence capitals. `teh`→`the`, `i`→`I`, `(c)`→`©`, `(tm)`→`™`,
+  (`iPhone`) or single-letter labels (`a.`). `teh`→`the`, `i`→`I`, `(c)`→`©`, `(tm)`→`™`,
   `wait...`→`wait…`, smart quotes (`autocorrect_as_you_type`); a quote opens after a space,
   an opening bracket, a dash, `«` `‹` `„` `‚`, or the other kind of opening quote, so nested
   quotes curl correctly (`smart_quotes_nested_and_opening_delimiters`).
@@ -559,7 +559,6 @@ this correction; native Windows interaction and Microsoft Word remain untested.
 | 2026-10-24 | trivial | Highlight shortcut toggles the last chosen colour off when the whole selection has it; explicit colour commands remain setters (#4085). |
 | 2026-10-24 | trivial | AutoFormat As You Type: `*Bold* and _italic_ as real formatting` turns `*word*` bold and `_word_` italic without the marks; off by default |
 | 2026-10-23 | trivial | Input methods: a replaced body (Replace Document Text, version restore, Compare, Undo/Redo) starts a new context and interrupts the composition; smart quotes off keeps an IME quote an `InputMethod` change; equation `DeleteSurrounding` erases counted characters; bounded pre-edit/commit sizes; a partly refused two-sided deletion is rolled back |
-| 2026-10-13 | minor | AutoCorrect: Georgian sentences aren't capitalised (Mtavruli is only for all-caps text) |
 | 2026-10-22 | trivial | Input methods: while composing, the caret and the candidate window follow the input method's cursor inside the marked text |
 | 2026-10-21 | trivial | Bullets and Numbering toggle off style-inherited lists at their effective level, including basedOn chains and numbered ListParagraph styles; other paragraphs and list definitions stay unchanged (related to #3459) |
 | 2026-10-21 | trivial | List AutoFormat (`- `, `1. `, …) triggers at the start of an already-written paragraph, not only a fresh empty one; checked in Word for Windows (#3352) |
