@@ -729,11 +729,17 @@ fn convert(src: &str, mode: &str, para_start: bool) -> String {
     convert_chars(src, mode, para_start, &turkic).concat()
 }
 
+/// Does `c` belong to a script that capitalises the first letter of sentences and titles?
+/// Georgian doesn't: Mtavruli capitals are only for all-caps text.
+pub(crate) fn capitalizes(c: char) -> bool {
+    !matches!(c, '\u{10A0}'..='\u{10FF}' | '\u{1C90}'..='\u{1CBF}' | '\u{2D00}'..='\u{2D2F}')
+}
+
 fn convert_title_char(c: char, i: usize, up: &mut bool, upper: impl Fn(char) -> String, lower: impl Fn(usize, char) -> String) -> String {
     let n = if *up && c.is_alphabetic() {
         *up = false;
         // Georgian has no sentence or title capitals (Mtavruli is only for all caps).
-        if wordcraft_proof::capitalizes(c) { upper(c) } else { lower(i, c) }
+        if capitalizes(c) { upper(c) } else { lower(i, c) }
     } else {
         lower(i, c)
     };
@@ -754,7 +760,7 @@ fn convert_sentence_char(
     let n = if *up && c.is_alphabetic() {
         *up = false;
         // Georgian has no sentence or title capitals (Mtavruli is only for all caps).
-        if wordcraft_proof::capitalizes(c) { upper(c) } else { lower(i, c) }
+        if capitalizes(c) { upper(c) } else { lower(i, c) }
     } else {
         lower(i, c)
     };
