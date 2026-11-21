@@ -257,91 +257,6 @@ fn every_shipped_translation_is_drawn_by_the_interface_fonts() {
         eprintln!("skipped: no craft-fonts face is embedded (set CRAFT_FONTS_DIR)");
         return;
     }
-<<<<<<< HEAD
-    needs_catalogs!();
-    let names: String = Lang::all().map(Lang::name).collect();
-    for code in ["zh-hans", "zh-hant", "ja", "ko"] {
-        let l = lang(code);
-        let ctx = egui::Context::default();
-        ctx.set_fonts(crate::theme::font_definitions_language(l.prefers_hans(), l.prefers_korean(), l.prefers_hant(), false));
-        ctx.run_ui(Default::default(), |_| {}).textures_delta.clear();
-        let entries = translations(code);
-        let chars: std::collections::BTreeSet<char> =
-            entries.iter().flat_map(|e| e.chars()).chain(names.chars()).filter(|c| wordcraft_fonts::is_cjk(*c)).collect();
-        assert!(chars.len() > 300, "{code}: {} CJK characters", chars.len());
-        for font in [crate::theme::regular(14.0), crate::theme::medium(14.0), crate::theme::semibold(14.0)] {
-            let missing: String = ctx.fonts_mut(|f| chars.iter().filter(|c| !f.has_glyph(&font, **c)).collect());
-            assert!(missing.is_empty(), "{code}: no glyph in {font:?} for {missing}");
-        }
-        // So the interface reads no installed CJK font for these languages.
-        let mut texts: Vec<&str> = l.catalog_texts().collect();
-        texts.push(&names);
-        assert_eq!(
-            wordcraft_fonts::ui_uncovered_cjk(&texts, &wordcraft_fonts::ui_cjk_fonts_for(l.prefers_hans(), l.prefers_korean())),
-            Vec::<char>::new()
-        );
-    }
-}
-
-#[test]
-fn interface_fonts_cover_georgian_when_a_georgian_face_is_available() {
-    // No bundled interface face has Georgian: the craft-fonts face or an installed one fills in.
-    let ctx = egui::Context::default();
-    ctx.set_fonts(crate::theme::font_definitions(false, false));
-    ctx.run_ui(Default::default(), |_| {}).textures_delta.clear();
-    let covered = ctx.fonts_mut(|f| f.has_glyphs(&egui::FontId::proportional(14.0), "ქართული"));
-    if wordcraft_fonts::georgian_fonts().next().is_some() || wordcraft_fonts::system_georgian_ui_font().is_some() {
-        assert!(covered, "a Georgian face is available but the interface lacks Georgian");
-    }
-}
-
-#[test]
-fn only_cjk_languages_ask_for_an_installed_cjk_font() {
-    needs_catalogs!();
-    // #241 follow-up: an English interface must not read a large system CJK font on startup.
-    let cjk: Vec<&str> = Lang::all().filter(|l| l.uses_cjk()).map(Lang::code).collect();
-    assert_eq!(cjk, ["zh-hans", "zh-hant", "ja", "ko"]);
-}
-
-#[test]
-fn russian_locales_and_saved_preference_work_without_changing_the_document() {
-    needs_catalogs!();
-    let ru = lang("ru");
-    for tag in ["ru", "ru-RU", "ru_RU.UTF-8", "RU-ru", "ru_UA.UTF-8", "ru-Cyrl-RU"] {
-        assert_eq!(lang_from_tag(tag), Some(ru), "{tag}");
-    }
-    assert_eq!(first_supported([UNSUPPORTED, "ru-RU", "en-US"]), Some(ru));
-    let mut app = crate::WordApp::new(wordcraft_engine::Session::new(wordcraft_doc::Document::new()), Default::default());
-    let before = serde_json::to_value(&app.session.doc).unwrap();
-    let result = app.run("ui.language", serde_json::json!({"value": "RU"})).unwrap();
-    assert_eq!(result["effective"], "ru");
-    assert_eq!(app.ui.language, "ru");
-    assert_eq!(serde_json::to_value(&app.session.doc).unwrap(), before);
-    let saved = serde_json::to_string(&app.ui).unwrap();
-    let restored: crate::UiState = serde_json::from_str(&saved).unwrap();
-    assert_eq!(Lang::from_pref(&restored.language), ru);
-    assert_eq!(ru.name(), "Русский");
-}
-
-#[test]
-fn bundled_interface_fonts_cover_russian_without_system_fallbacks() {
-    let db = wordcraft_fonts::FontDb::with_font_dirs(Vec::new());
-    needs_catalogs!();
-    let entries = translations("ru");
-    let chars: std::collections::HashSet<char> = entries
-        .iter()
-        .flat_map(|e| e.chars())
-        // Cyrillic letters plus the Russian quotes and dash; symbols such as ¶, ⌘ or 📂 come from
-        // the English sources and render as they already do.
-        .filter(|c| ('\u{0400}'..='\u{04FF}').contains(c) || matches!(c, '«' | '»' | '—'))
-        .chain("АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя".chars())
-        .collect();
-    for (family, style) in [("Inter", "Regular"), ("Inter", "Medium"), ("Inter", "SemiBold"), ("JetBrains Mono", "Regular")] {
-        let face = db.face(family, style);
-        assert_eq!(face.family, family, "must use the bundled interface face");
-        for ch in &chars {
-            assert_ne!(face.glyph_for(*ch), 0, "{family} {style} lacks {ch}");
-=======
     for l in Lang::all().filter(|l| *l != Lang::EN) {
         let code = l.code();
         // A Han language is drawn by its craft-fonts face alone; a build without that face (no
@@ -356,7 +271,6 @@ fn bundled_interface_fonts_cover_russian_without_system_fallbacks() {
         if let Some(script) = face.filter(|s| !crate::app::fonts::CRAFT_FONTS.iter().any(|f| f.has_script(s))) {
             eprintln!("skipped {code}: no embedded {script} face (set CRAFT_FONTS_DIR)");
             continue;
->>>>>>> ka-catalog
         }
         // A symbol a translation keeps from its English source (the Spanish `ⁿ` of "(x+a)ⁿ") is the source's to
         // draw, as in English; the check is of the letters the translation adds.
