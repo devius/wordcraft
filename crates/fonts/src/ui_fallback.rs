@@ -1,27 +1,4 @@
-//! An installed CJK font for the interface, after the embedded craft-fonts faces, when they leave
-//! characters of the interface text without a glyph: a build without craft-fonts, one whose
-//! craft-fonts checkout lacks the Chinese face (#241), or one whose faces lack characters the
-//! catalogs use (#486) would otherwise draw Chinese menus with boxes and `?`. Native only; wasm
-//! has no system fonts to read.
-//!
-//! It looks for a short list of well-known files in the platform's font folders
-//! ([`system_font_dirs`](crate::system_font_dirs)) rather than waiting for the full system font
-//! scan, since the interface fonts are installed on the first frame.
-
-use skrifa::MetadataProvider;
-use skrifa::raw::FileRef;
-
-use crate::CraftFont;
-
-/// An installed font file chosen for the interface.
-pub struct SystemUiFont {
-    /// The face's family name, e.g. `Microsoft YaHei`.
-    pub family: String,
-    /// The whole font file.
-    pub bytes: Vec<u8>,
-    /// The face's index in the file (0 unless it is a collection).
-    pub index: u32,
-}
+//! Character classes the interface and the font scan share.
 
 /// Is `c` drawn from a CJK font: Han ideographs, kana, bopomofo, Hangul, CJK punctuation or a
 /// full-width form? (Latin, Cyrillic and symbols come from the interface's Latin faces.)
@@ -39,36 +16,12 @@ pub fn is_cjk(c: char) -> bool {
     )
 }
 
-/// The distinct CJK characters of `texts` (see [`is_cjk`]) that none of the `embedded` faces
-/// maps, in code point order. A craft-fonts face may lack characters the interface catalogs use
-/// (an older or subset file), and those would draw as boxes or `?` (#486).
-pub fn ui_uncovered_cjk(texts: &[&str], embedded: &[&CraftFont]) -> Vec<char> {
-    let faces: Vec<_> = embedded.iter().filter_map(|f| skrifa::FontRef::from_index(f.bytes, 0).ok()).map(|f| f.charmap()).collect();
-    let chars: std::collections::BTreeSet<char> = texts.iter().flat_map(|t| t.chars()).filter(|c| is_cjk(*c)).collect();
-    chars.into_iter().filter(|c| !faces.iter().any(|m| m.map(*c).is_some())).collect()
-}
-
-/// Do the embedded interface faces (`ui_cjk_fonts`) leave CJK characters of `texts` (the
-/// interface catalogs and language names that can be on screen) without a glyph? Then an
-/// installed CJK font goes after them. No embedded face (a build without craft-fonts) leaves
-/// every CJK character uncovered; a Japanese face alone lacks the simplified-only hanzi (页, 选,
-/// 删 …, #241) and some traditional ones (啟, 內 …, #486).
-pub fn ui_needs_system_cjk(texts: &[&str], embedded: &[&CraftFont]) -> bool {
-    !ui_uncovered_cjk(texts, embedded).is_empty()
-}
-
-/// Files larger than this are skipped (the big system CJK collections are around 20–80 MB).
-const MAX_FILE: u64 = 128 << 20;
-/// Faces looked at in one collection.
-const MAX_FACES: u32 = 64;
-/// Entries looked at in one macOS font asset folder (each font is one `<hash>.asset` folder).
-const MAX_ASSETS: usize = 8192;
-/// Characters a face's coverage is measured on.
-const MAX_NEEDED: usize = 4096;
 /// The tables skrifa reads glyph outlines from: TrueType, CFF, CFF2 and VARC. A face with
 /// outlines only in Apple's `hvgl` table has none of them, and the interface draws its characters
 /// as blank space.
+#[cfg(not(target_arch = "wasm32"))]
 pub(crate) const OUTLINE_TABLES: [&[u8; 4]; 4] = [b"glyf", b"CFF ", b"CFF2", b"VARC"];
+<<<<<<< HEAD
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub(crate) enum Region {
@@ -472,3 +425,5 @@ mod tests {
         let _ = std::fs::remove_dir_all(&dir);
     }
 }
+=======
+>>>>>>> ka-catalog

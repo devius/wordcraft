@@ -1,5 +1,6 @@
 //! Built-in sample documents and templates (original text, generated in code).
 
+use std::sync::Arc;
 use wordcraft_doc::para::InlineObject;
 use wordcraft_doc::props::{Align, Border, BorderStyle, Borders, CharProps, NumRef, Rgb, TabAlign, TabLeader, TabStop, TextColor};
 use wordcraft_doc::{Block, Document, ListKind, Paragraph, PartKind, Table, para_block};
@@ -55,12 +56,29 @@ const EN: Handbook = Handbook {
         " set up by the north windows, ",
         "letterpress",
         " regulars claim the back room, and somebody always brings bread. This handbook collects what we have learned about running a shared studio: the routines that keep it pleasant, the tools we pool, and the small agreements that let thirty strangers become a crew.",
+<<<<<<< HEAD
     ],
     why_head: "Why share a studio?",
     why: "Rent is the obvious reason, but it is not the best one. A shared room puts your work next to work you would never have seen otherwise. A ceramicist explains glaze chemistry to a comic artist; a photographer borrows a weaver's loom for a still life. The cross-talk is the point.",
     quote: "A studio is a place where unfinished things are welcome.",
     agree_head: "What we agree on",
     agree: [
+=======
+        CharProps::default(),
+    );
+    b.push(Block::Para(intro));
+    b.push(Block::Para(styled("Why share a studio?", "Heading1")));
+    b.push(Block::Para(para("Rent is the obvious reason, but it is not the best one. A shared room puts your work next to work you would never have seen otherwise. A ceramicist explains glaze chemistry to a comic artist; a photographer borrows a weaver's loom for a still life. The cross-talk is the point.")));
+    let mut quote = styled("A studio is a place where unfinished things are welcome.", "Quote");
+    quote.props.space_before = Some(12.0);
+    b.push(Block::Para(quote));
+    b.push(Block::Para(styled("What we agree on", "Heading2")));
+    let mut num = (*d.numbering).clone();
+    let bullets = num.add_list(ListKind::Bullet);
+    let steps = num.add_list(ListKind::Numbered);
+    d.numbering = Arc::new(num);
+    for (lead, rest) in [
+>>>>>>> ka-catalog
         ("Clean as you go. ", "Leave a table the way you would like to find it."),
         ("Label what is yours. ", "Unlabelled supplies on the commons shelf are fair game."),
         ("Ask before you borrow. ", "Even from the shelf, a quick note helps everyone keep track."),
