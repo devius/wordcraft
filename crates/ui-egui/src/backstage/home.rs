@@ -50,7 +50,7 @@ fn run_actions(app: &mut WordApp, ctx: &egui::Context, actions: Vec<StartAction>
                 let _ = app.run("ui.recentClear", json!({}));
             }
             StartAction::UseTemplate(id) => {
-                let _ = app.run("file.new", json!({"template": id}));
+                let _ = app.run("file.new", json!({"template": id, "lang": crate::i18n::current().code()}));
                 app.ui.backstage = false;
                 app.canvas.focus_page(ctx);
             }

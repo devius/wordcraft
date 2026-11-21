@@ -99,7 +99,7 @@ pub(super) fn show(ui: &mut Ui, app: &mut WordApp) {
                     .thumb(ThumbAspect::new(PAGE_WIDE, PAGE_HIGH), move |cx, rect| thumbs::paint(cx, rect, store, source, &thumb))
             });
             for id in activated(out.response.events) {
-                let _ = app.run("file.new", json!({"template": id}));
+                let _ = app.run("file.new", json!({"template": id, "lang": crate::i18n::current().code()}));
                 app.ui.backstage = false;
                 app.canvas.focus_page(&ctx);
             }

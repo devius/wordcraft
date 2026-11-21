@@ -362,66 +362,6 @@ fn works_without_document(page: &str) -> bool {
     matches!(page, "home" | "new" | "open" | "options")
 }
 
-<<<<<<< HEAD
-fn heading(ui: &mut Ui, s: &str) {
-    ui.label(egui::RichText::new(tl!(s)).font(semibold(26.0)));
-    ui.add_space(16.0);
-}
-
-/// Draws a template thumbnail and caption as one accessible button, lazily renders and caches a
-/// region-aware page preview, and creates a document from the template on click.
-fn template_tile(ui: &mut Ui, app: &mut WordApp, label: &str, template: &str) {
-    let t = Tokens::get(ui.ctx());
-    ui.vertical(|ui| {
-        // The thumbnail and its caption are one button named by the caption, so a screen reader
-        // announces "Blank document, button" rather than unnamed text (#3176); the caption opens
-        // the template too, as in Word.
-        let caption = crate::i18n::tc("template", label);
-        let galley = ui.painter().layout_no_wrap(caption.to_string(), regular(12.5), ui.visuals().text_color());
-        let (tile, resp) = ui.allocate_exact_size(vec2(galley.size().x.max(150.0), 194.0 + galley.size().y), Sense::click());
-        resp.widget_info(|| egui::WidgetInfo::labeled(egui::Role::Button, ui.is_enabled(), caption));
-        let r = Rect::from_min_size(tile.min, vec2(150.0, 194.0));
-        ui.painter().rect(
-            r,
-            2.0,
-            egui::Color32::WHITE,
-            Stroke::new(if resp.hovered() { 2.0 } else { 1.0 }, if resp.hovered() { t.accent } else { t.border_strong }),
-            egui::StrokeKind::Inside,
-        );
-        let ppp = ui.ctx().pixels_per_point();
-        let key = format!("tpl:{template}:{ppp}");
-        let region = app.session.region();
-        let tex = ui.ctx().data(|d| d.get_temp::<egui::TextureHandle>(egui::Id::unique(&key))).or_else(|| {
-            let mut s = wordcraft_engine::Session::new(wordcraft_doc::Document::new());
-            // The blank tile shows the region's paper (#838).
-            s.system_region = region;
-            let _ = s.run("file.new", &json!({"template": template, "lang": crate::i18n::current().code()}));
-            let l = s.export_layout();
-            let page = l.pages.first()?;
-            let img = wordcraft_render::render_page(&s.doc, page, 150.0 / page.w * ppp, &crate::canvas::screen_render_options());
-            let px = img.to_straight();
-            let h = ui.ctx().load_texture(
-                &key,
-                egui::ColorImage::from_rgba_unmultiplied([img.width as usize, img.height as usize], &px),
-                egui::TextureOptions::LINEAR,
-            );
-            ui.ctx().data_mut(|d| d.insert_temp(egui::Id::unique(&key), h.clone()));
-            Some(h)
-        });
-        if let Some(h) = tex {
-            ui.painter().image(h.id(), r.shrink(1.0), Rect::from_min_max(pos2(0.0, 0.0), pos2(1.0, 1.0)), egui::Color32::WHITE);
-        }
-        ui.painter().galley(pos2(r.min.x, r.max.y), galley, ui.visuals().text_color());
-        if resp.clicked() {
-            let _ = app.run("file.new", json!({"template": template, "lang": crate::i18n::current().code()}));
-            app.ui.backstage = false;
-            app.canvas.want_focus = true;
-        }
-    });
-}
-
-=======
->>>>>>> ka-catalog
 /// The built-in templates in gallery order: display label and the `file.new` template id.
 const TEMPLATES: [(&str, &str); 5] =
     [("Blank document", "blank"), ("Studio handbook (sample)", "sample"), ("Letter", "letter"), ("Résumé", "resume"), ("Report", "report")];

@@ -36,7 +36,7 @@ pub(crate) struct TemplateThumbs {
 impl ThumbSource<ThumbKey> for TemplateThumbs {
     fn revision(&self, key: &ThumbKey, _request: &ThumbRequest) -> Revision {
         match key {
-            ThumbKey::Template(id) => Revision::of(&(id, format!("{:?}", self.region))),
+            ThumbKey::Template(id) => Revision::of(&(id, format!("{:?}{}", self.region, crate::i18n::current().code()))),
             _ => Revision::new(0),
         }
     }
@@ -45,7 +45,7 @@ impl ThumbSource<ThumbKey> for TemplateThumbs {
         let ThumbKey::Template(id) = key else { return ThumbRender::Blank };
         let mut session = wordcraft_engine::Session::new(wordcraft_doc::Document::new());
         session.system_region = self.region.clone();
-        if session.run("file.new", &json!({"template": id})).is_err() {
+        if session.run("file.new", &json!({"template": id, "lang": crate::i18n::current().code()})).is_err() {
             return ThumbRender::Blank;
         }
         let layout = session.export_layout();

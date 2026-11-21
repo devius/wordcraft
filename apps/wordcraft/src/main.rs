@@ -554,20 +554,15 @@ fn main() -> eframe::Result {
                 app = app.with_fallback_chooser(true);
             }
             app.set_startup_update_check(true);
-<<<<<<< HEAD
-            load_prefs(&mut app);
+            // After the preferences, so the reason it gives is in the interface language.
+            if updates_unsafe {
+                app.disable_self_update();
+            }
             if sample {
                 // The handbook in the interface language, now that the saved preference is known.
                 let lang = wordcraft_ui_egui::i18n::Lang::from_pref(&app.ui.language);
                 app.session.set_document(wordcraft_engine::sample::sample_document_in(lang.code()));
             }
-            load_user_dictionary(&mut app);
-=======
-            // After the preferences, so the reason it gives is in the interface language.
-            if updates_unsafe {
-                app.disable_self_update();
-            }
->>>>>>> ka-catalog
             // Language packs from the suite's font store; an Install click is the person's own.
             wordcraft_engine::packs::use_font_store(true);
             // A region chosen in File › Options replaces the system's for the first blank
